@@ -9,6 +9,8 @@ public class EnemySpawner : MonoBehaviour
     Factory<Enemy> _factory;
     [SerializeField] private List<Transform> spawnPoint;
 
+    private float spawnTimer;
+
     void Start()
     {
         _factory = new Factory<Enemy>(enemy);    
@@ -18,11 +20,15 @@ public class EnemySpawner : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if(Input.GetKeyDown(KeyCode.Space))
+        spawnTimer += Time.deltaTime;
+        if(spawnTimer > 2)
         {
+            spawnTimer = 0;
             var e = _pool.GetObject();
             e.Create(_pool);
-            e.transform.position = spawnPoint[Random.Range(0, 5)].position;
+            e.transform.position = spawnPoint[Random.Range(0,6)].position; //SPAWNEO UN ENEMIGO EN UN CARRIL ALEATORIO
+            //ACA NECESITARIA PASARLE ESE CARRIL AL SCRIPT ENEMY QUE TIENE EL ENEMIGO
+
         }
     }
 }

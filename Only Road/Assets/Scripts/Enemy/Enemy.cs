@@ -9,6 +9,11 @@ public class Enemy : MonoBehaviour
     [SerializeField] private GameObject enemy;
     [SerializeField] private Rigidbody rb;
 
+    [Header("CURVY MOVEMENT")]
+    [SerializeField]private float _frequency;
+    [SerializeField]private float _magnitude;
+    [SerializeField]private float _turnSpeed;
+
     [Header("OBJECT POOL")]
     [SerializeField] private int _maxTime;
     private float _counter;
@@ -19,9 +24,10 @@ public class Enemy : MonoBehaviour
     //COMPOSITION
     private EnemyMovement _enemyMovement;
 
-    void Start()
+    private void Awake()
     {
-        _enemyMovement = new EnemyMovement(velocity,rb,gameObject);
+        _enemyMovement = new EnemyMovement(velocity, rb, gameObject,_frequency,_magnitude,_turnSpeed);
+        _enemyMovement.ManualAwake();
     }
 
     private void Update()
