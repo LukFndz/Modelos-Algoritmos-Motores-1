@@ -26,9 +26,7 @@ public class EnemySpawner : MonoBehaviour
             spawnTimer = 0;
             var e = _pool.GetObject();
             e.Create(_pool);
-            e.transform.position = spawnPoint[Random.Range(0,6)].position; //SPAWNEO UN ENEMIGO EN UN CARRIL ALEATORIO
-            //ACA NECESITARIA PASARLE ESE CARRIL AL SCRIPT ENEMY QUE TIENE EL ENEMIGO
-
+            e.transform.position = spawnPoint[EnemySelector.SetEnemy(e)].position; //SPAWNEO UN ENEMIGO EN UN CARRIL ALEATORIO
         }
     }
 }

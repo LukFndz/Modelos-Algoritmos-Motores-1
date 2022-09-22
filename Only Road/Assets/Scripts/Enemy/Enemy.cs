@@ -24,15 +24,17 @@ public class Enemy : MonoBehaviour
     //COMPOSITION
     private EnemyMovement _enemyMovement;
 
+    public EnemyMovement EnemyMovement { get => _enemyMovement; set => _enemyMovement = value; }
+
     private void Awake()
     {
-        _enemyMovement = new EnemyMovement(velocity, rb, gameObject,_frequency,_magnitude,_turnSpeed);
-        _enemyMovement.ManualAwake();
+        EnemyMovement = new EnemyMovement(velocity, rb, gameObject,_frequency,_magnitude,_turnSpeed);
+        EnemyMovement.ManualAwake();
     }
 
     private void Update()
     {
-        _enemyMovement.ManualUpdate();
+        EnemyMovement.ManualUpdate();
         _counter += Time.deltaTime;
         
         if(_counter >= _maxTime)

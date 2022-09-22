@@ -11,6 +11,8 @@ public class EnemyMovement
     private float _mag;
     private float _speed;
 
+    private int _lane;
+
 
     IAdvance[] _currents = new IAdvance[2];
     IAdvance _currentStrategy;
@@ -29,12 +31,16 @@ public class EnemyMovement
     {
         _currents[0] = new NormalAdvance(_velocity, _rb,_enemy);
         _currents[1] = new CurvyAdvance(_velocity, _rb, _enemy,_freq,_mag,_speed);
-
-        _currentStrategy = _currents[0];
     }
 
     public void ManualUpdate()
     {
         _currentStrategy.Advance();
+    }
+
+    public void SetStrategy(int lane, int strategy)
+    {
+        _lane = lane;
+        _currentStrategy = _currents[strategy];
     }
 }

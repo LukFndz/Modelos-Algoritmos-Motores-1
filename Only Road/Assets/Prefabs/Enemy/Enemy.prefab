@@ -113,9 +113,9 @@ MonoBehaviour:
   velocity: 0.1
   enemy: {fileID: 8707593996711878259}
   rb: {fileID: 8707593996711878257}
-  freq: 3
-  mag: 7
-  speed: 1.3
+  _frequency: 2
+  _magnitude: 5
+  _turnSpeed: 1
   _maxTime: 6
 --- !u!54 &8707593996711878257
 Rigidbody:
