@@ -2,14 +2,21 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+[System.Serializable]
+public struct EntityParams
+{
+    public Transform spawnPoint;
+    public MovementManager.TypeAdvance movementType;
+}
+
 public class EntitySpawner : MonoBehaviour
 {
     public Entity entity;
     ObjectPool<Entity> _pool;
     Factory<Entity> _factory;
-    [SerializeField] private List<Transform> spawnPoint;
+    [SerializeField] private EntityParams[] _entityParams;
 
-    private float spawnTimer;
+    float spawnTimer;
 
     void Start()
     {
@@ -26,7 +33,13 @@ public class EntitySpawner : MonoBehaviour
             spawnTimer = 0;
             var e = _pool.GetObject();
             e.Create(_pool);
-            e.transform.position = spawnPoint[EntitySelector.SetEntity(e)].position; //SPAWNEO UN ENEMIGO EN UN CARRIL ALEATORIO
+
+            int random = Random.Range(0, _entityParams.Length);
+            e.transform.position = _entityParams[random].spawnPoint.position;
+            var advance = MovementManager.Instance.GetMovement(_entityParams[random].movementType, e.gameObject, e.GetComponent<Rigidbody>());
+            e.EntityMovement.SetStrategy(advance);
+
         }
     }
 }
+

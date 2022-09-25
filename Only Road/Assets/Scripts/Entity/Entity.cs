@@ -28,8 +28,7 @@ public class Entity : MonoBehaviour
 
     private void Awake()
     {
-        _entityMovement = new EntityMovement(velocity, rb, gameObject,_frequency,_magnitude,_turnSpeed);
-        _entityMovement.ManualAwake();
+        _entityMovement = new EntityMovement();
     }
 
     private void Update()

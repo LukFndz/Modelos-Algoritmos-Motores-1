@@ -8,7 +8,7 @@ public class Player : MonoBehaviour
 
 
     public delegate void ComponentMethod();
-    public ComponentMethod _onValidate, _awake, _start, _update, _fixedUpdate, _lateUpdate, _onDrawGizmos;
+    public ComponentMethod _awake, _start, _update, _fixedUpdate, _onDrawGizmos;
 
     public Player()
     {
@@ -24,9 +24,7 @@ public class Player : MonoBehaviour
         _start();
     }
 
-    private void OnValidate() => _onValidate();
     private void Update() => _update();
     private void FixedUpdate() => _fixedUpdate();
-    private void LateUpdate() => _lateUpdate();
     private void OnDrawGizmos() => _onDrawGizmos();
 }
