@@ -4,7 +4,6 @@ using UnityEngine;
 
 public class EntityMovement
 {
-    //IAdvance[] _currents = new IAdvance[2];
     IAdvance _currentStrategy;
 
     public void ManualUpdate()
@@ -16,4 +15,6 @@ public class EntityMovement
     {
         _currentStrategy = strategy;
     }
+
+    //PREGUNTAR SI USAR BUILDER PARA LA STRATEGY EN MOVEMENT
 }

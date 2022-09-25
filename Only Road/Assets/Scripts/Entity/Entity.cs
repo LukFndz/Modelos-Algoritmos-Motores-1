@@ -42,7 +42,7 @@ public class Entity : MonoBehaviour
         }
     }
 
-    public void ResetBullet()
+    public void ResetCounter()
     {
         _counter = 0;
     }
@@ -59,7 +59,7 @@ public class Entity : MonoBehaviour
 
     public static void TurnOff(Entity e)
     {
-        e.ResetBullet();
+        e.ResetCounter();
         e.gameObject.SetActive(false);
     }
 }

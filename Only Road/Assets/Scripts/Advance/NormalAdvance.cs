@@ -4,17 +4,17 @@ public class NormalAdvance : IAdvance
 {
     private float _velocity;
     private Rigidbody _rb;
-    private GameObject _enemy;
+    private GameObject _entity;
 
-    public NormalAdvance(float velocity, Rigidbody rb, GameObject enemy)
+    public NormalAdvance(float velocity, Rigidbody rb, GameObject entity)
     {
         _velocity = velocity;
         _rb = rb;
-        _enemy = enemy;
+        _entity = entity;
     }
 
     public void Advance()
     {
-        _rb.velocity += _enemy.transform.right * _velocity;
+        _entity.transform.position += _entity.transform.right * _velocity;
     }
 }
