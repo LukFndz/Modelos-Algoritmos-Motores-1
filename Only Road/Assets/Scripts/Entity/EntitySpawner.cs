@@ -37,8 +37,9 @@ public class EntitySpawner : MonoBehaviour
             int random = Random.Range(0, _entityParams.Length);
             e.transform.position = _entityParams[random].spawnPoint.position;
             var advance = MovementManager.Instance.GetMovement(_entityParams[random].movementType, e.gameObject, e.GetComponent<Rigidbody>());
-            e.EntityMovement.SetStrategy(advance);
 
+            e.EntityMovement.SetStrategy(advance);
+            e.EntityMovement.ChangeVelocity(MovementManager.Instance.GetEnemiesVelocity());
         }
     }
 }

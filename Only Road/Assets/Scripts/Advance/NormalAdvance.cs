@@ -15,6 +15,16 @@ public class NormalAdvance : IAdvance
 
     public void Advance()
     {
-        _entity.transform.position += _entity.transform.right * _velocity;
+        _entity.transform.position += _entity.transform.right * _velocity * Time.deltaTime;
+    }
+
+    public void ChangeVel(float newVel)
+    {
+        _velocity = newVel;
+    }
+
+    public float GetVelocity()
+    {
+        return _velocity;
     }
 }

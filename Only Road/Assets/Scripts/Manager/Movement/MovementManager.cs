@@ -4,9 +4,13 @@ using UnityEngine;
 
 public class MovementManager : Singleton<MovementManager>
 {
+    [Header("STRAIGHT PARAMS")]
+    [Range(20,45)]
     [SerializeField]private float _velocity;
                     private Rigidbody _rb;
                     private GameObject _enemy;
+
+    [Header("CURVY PARAMS")]
     [SerializeField]private float _freq;
     [SerializeField]private float _mag;
     [SerializeField]private float _speed;
@@ -34,5 +38,15 @@ public class MovementManager : Singleton<MovementManager>
             default:
                 return new NormalAdvance(_velocity, rb, e);
         }
+    }
+
+    public void ChangeVelocity(float newVel)
+    {
+        _velocity += newVel;
+    }
+
+    public float GetEnemiesVelocity()
+    {
+        return _velocity;
     }
 }

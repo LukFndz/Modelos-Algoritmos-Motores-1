@@ -4,8 +4,23 @@ using UnityEngine;
 
 public class TileManager : Singleton<TileManager>
 {
-    public float tilesVelocity;
+    [SerializeField] private float _tilesVelocity;
     [SerializeField] private Transform _startSpawn;
+    [SerializeField] private Tile[] _tiles;
+
+    public float GetTilesVelocity()
+    {
+        return _tilesVelocity;
+    }
+
+    public void ChangeTilesVelocity(float newVel)
+    {
+        _tilesVelocity += newVel;
+        foreach(Tile t in _tiles)
+        {
+            t.ChangeVelocity(_tilesVelocity);
+        }
+    }
 
     public void TransportTile(GameObject tile)
     {

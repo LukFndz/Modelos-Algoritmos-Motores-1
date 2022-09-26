@@ -4,22 +4,11 @@ using UnityEngine;
 
 public class Entity : MonoBehaviour
 {
-    [Header("MOVEMENT")]
-    [SerializeField] private float velocity;
-    [SerializeField] private GameObject enemy;
-    [SerializeField] private Rigidbody rb;
-
-    [Header("CURVY MOVEMENT")]
-    [SerializeField]private float _frequency;
-    [SerializeField]private float _magnitude;
-    [SerializeField]private float _turnSpeed;
-
     [Header("OBJECT POOL")]
     [SerializeField] private int _maxTime;
     private float _counter;
 
     ObjectPool<Entity> _referenceBack;
-
 
     //COMPOSITION
     private EntityMovement _entityMovement;
