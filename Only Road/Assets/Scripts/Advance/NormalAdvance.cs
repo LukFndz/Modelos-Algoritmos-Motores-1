@@ -13,17 +13,17 @@ public class NormalAdvance : IAdvance
         _entity = entity;
     }
 
-    public void Advance()
+    public void Advance() //AVANZA LA VELOCIDAD A LA QUE AVANZA ACTUALMENTE
     {
         _entity.transform.position += _entity.transform.right * _velocity * Time.deltaTime;
     }
 
-    public void ChangeVel(float newVel)
+    public void ChangeVel(float newVel) //CAMBIA LA VELOCIDAD A LA QUE AVANZA ACTUALMENTE
     {
         _velocity = newVel;
     }
 
-    public float GetVelocity()
+    public float GetVelocity() //DEVUELVE LA VELOCIDAD A LA QUE AVANZA ACTUALMENTE
     {
         return _velocity;
     }

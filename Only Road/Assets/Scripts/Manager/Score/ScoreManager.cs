@@ -10,13 +10,11 @@ public class ScoreManager : Singleton<ScoreManager>
     private void Update()
     {
         _score += Time.deltaTime * _metersMultiplier;
-        UIManager.Instance.ChangeScore(_score);
+        UIManager.Instance.ChangeScore(_score); 
     }
 
     public void ChangeMultiplier(int newMultiplier)
     {
         _metersMultiplier += newMultiplier;
     }
-
-
 }

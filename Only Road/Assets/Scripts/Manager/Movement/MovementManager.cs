@@ -22,7 +22,7 @@ public class MovementManager : Singleton<MovementManager>
         Both
     }
 
-    public IAdvance GetMovement(TypeAdvance type, GameObject e, Rigidbody rb)
+    public IAdvance GetMovement(TypeAdvance type, GameObject e, Rigidbody rb) //DEVUELVE LA ESTRATEGIA
     {
         switch(type)
         {

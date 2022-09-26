@@ -32,4 +32,9 @@ public class MovementController : PlayerComponent
             _rb.velocity += _player.transform.forward * _speed * _input.z;
         }
     }
+
+    public void ChangeSpeed(float newSpeed)
+    {
+        _speed = newSpeed;
+    }
 }

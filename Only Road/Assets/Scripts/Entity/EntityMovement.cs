@@ -11,20 +11,20 @@ public class EntityMovement
         _currentStrategy.Advance();
     }
 
-    public void SetStrategy(IAdvance strategy)
+    public void SetStrategy(IAdvance strategy) //SETEA LA ESTRATEGIA QUE SE VA UTILIZAR
     {
         _currentStrategy = strategy;
     }
 
-    public void ChangeVelocity(float newVel)
+    public void ChangeVelocity(float newVel) //CAMBIA LA VELOCIDAD A LA QUE AVANZA ACTUALMENTE (SE LO PASA A LA INTERFAZ)
     {
-        _currentStrategy.ChangeVel(newVel);
+        _currentStrategy.ChangeVel(newVel); 
     }
 
-    public float GetActualVelocity()
+    public float GetActualVelocity() //DEVUELVE LA VELOCIDAD A LA QUE AVANZA ACTUALMENTE (SE LA PIDE A LA INTERFAZ)
     {
         return _currentStrategy.GetVelocity();
     }
 
-    //PREGUNTAR SI USAR BUILDER PARA LA STRATEGY EN MOVEMENT
+    
 }

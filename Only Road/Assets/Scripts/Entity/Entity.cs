@@ -23,9 +23,10 @@ public class Entity : MonoBehaviour
     private void Update()
     {
         _entityMovement.ManualUpdate();
-        _counter += Time.deltaTime;
+
+        _counter += Time.deltaTime; 
         
-        if(_counter >= _maxTime)
+        if(_counter >= _maxTime) // CADA X TIEMPO LA ENTIDAD DESAPARECE
         {
             _referenceBack.ReturnObject(this);
         }

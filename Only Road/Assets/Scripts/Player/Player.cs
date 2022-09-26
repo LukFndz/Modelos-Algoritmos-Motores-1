@@ -27,4 +27,16 @@ public class Player : MonoBehaviour
     private void Update() => _update();
     private void FixedUpdate() => _fixedUpdate();
     private void OnDrawGizmos() => _onDrawGizmos();
+
+    private void OnCollisionEnter(Collision collision)
+    {
+        if (collision.gameObject.CompareTag("Enemy")) // SI TOCA UN ENEMIGO, ACTIVA EL ENDGAME
+        {
+            GameManager.Instance.EndGame();
+            _movementController.ChangeSpeed(0); // CAMBIAR AL VELOCIDAD A 0
+            var enemy = collision.gameObject.GetComponent<Entity>();
+            enemy.EntityMovement.ChangeVelocity(0); // CAMBIAR AL VELOCIDAD A 0 DEL ENEMIGO
+        }
+    }
+
 }

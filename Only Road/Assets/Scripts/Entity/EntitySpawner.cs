@@ -14,7 +14,9 @@ public class EntitySpawner : MonoBehaviour
     public Entity entity;
     ObjectPool<Entity> _pool;
     Factory<Entity> _factory;
+    [SerializeField] private float _spawnTime;
     [SerializeField] private EntityParams[] _entityParams;
+
 
     float spawnTimer;
 
@@ -28,7 +30,7 @@ public class EntitySpawner : MonoBehaviour
     void Update()
     {
         spawnTimer += Time.deltaTime;
-        if(spawnTimer > 2)
+        if(spawnTimer > _spawnTime) // CADA X SEGUNDOS SPAWNEA UNA ENTIDAD
         {
             spawnTimer = 0;
             var e = _pool.GetObject();
@@ -39,7 +41,7 @@ public class EntitySpawner : MonoBehaviour
             var advance = MovementManager.Instance.GetMovement(_entityParams[random].movementType, e.gameObject, e.GetComponent<Rigidbody>());
 
             e.EntityMovement.SetStrategy(advance);
-            e.EntityMovement.ChangeVelocity(MovementManager.Instance.GetEnemiesVelocity());
+            e.EntityMovement.ChangeVelocity(MovementManager.Instance.GetEnemiesVelocity()); // CADA VEZ QUE SE PRENDE, SE CAMBIA LA VELOCIDAD A LA ACTUAL
         }
     }
 }

@@ -5,9 +5,24 @@ using UnityEngine;
 public class GameManager : Singleton<GameManager>
 {
     private int _avoidCars;
-    [SerializeField]private float _tileVelocityModifier;
-    [SerializeField]private float _enemyVelocityModifier;
+
+    [Header("MODIFIERS")]
+    [SerializeField] private float _tileVelocityModifier;
+    [SerializeField] private float _enemyVelocityModifier;
     [SerializeField] private int _scoreMultiplierModifier;
+
+    [Header("MAX TILES VELOCITY")]
+    [SerializeField] private float _maxTileVelocityModifier;
+
+    [Header("CARS TO AVOID FOR MULTIPLIERS")]
+    [SerializeField] private float _carsToAvoid;
+
+    [Header("MANAGERS")]
+    [SerializeField] private List<GameObject> _mainObjects;
+
+    private bool _gameState;
+
+    public bool GameState { get => _gameState; set => _gameState = value; }
 
     private void OnTriggerEnter(Collider other)
     {
@@ -15,7 +30,7 @@ public class GameManager : Singleton<GameManager>
         {
             _avoidCars++;
 
-            if (_avoidCars >= 1)
+            if (_avoidCars >= _carsToAvoid && TileManager.Instance.GetTilesVelocity() < _maxTileVelocityModifier) // MIENTRAS SEA MENOR A LA VELOCIDAD MAX DE LOS TILES, SE APLICAN LOS MULTIPLICADORES
                 ApplyMultipliers();
         }
     }
@@ -27,4 +42,15 @@ public class GameManager : Singleton<GameManager>
         MovementManager.Instance.ChangeVelocity(_enemyVelocityModifier);
         ScoreManager.Instance.ChangeMultiplier(_scoreMultiplierModifier);
     }
+
+
+    public void EndGame()
+    {
+        _gameState = false;
+        TileManager.Instance.ChangeTilesVelocity(-TileManager.Instance.GetTilesVelocity());
+        foreach (GameObject g in _mainObjects)
+            g.SetActive(false);
+    }
+
+
 }
