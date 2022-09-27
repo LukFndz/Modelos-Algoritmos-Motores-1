@@ -50,7 +50,7 @@ public class GameManager : Singleton<GameManager>
         foreach (GameObject g in _mainObjects) //DESACTIVA LOS OBJETOS QUE DEJAN DE SER NECESARIOS
             g.SetActive(false);
 
-        ScoreManager.Instance.CheckHighscore();
-        SavePlayerDataJSON.Instance.SaveParams();
+        ScoreManager.Instance.CheckHighscore(); //CHECKEA EL HIGHSCORE PARA CAMBIARLO SI LO SOBREPASO
+        SavePlayerDataJSON.Instance.SaveParams(); //SALVA LO QUE CONSIGUIO EN LA PARTIDA.
     }
 }

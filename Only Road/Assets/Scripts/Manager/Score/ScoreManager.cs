@@ -12,8 +12,8 @@ public class ScoreManager : Singleton<ScoreManager>
 
     private void Start()
     {
-        CheckHighscore();
-        UIManager.Instance.SetHighScore();
+        CheckHighscore(); 
+        UIManager.Instance.SetHighScore(); //SETEA EL HIGHSCORE QUE TIENE GUARDADO JSON EN EL UI
     }
 
     private void Update()
@@ -22,7 +22,7 @@ public class ScoreManager : Singleton<ScoreManager>
         UIManager.Instance.ChangeScore(_score);
     }
 
-    public void CheckHighscore()
+    public void CheckHighscore() //SETEA EL HIGHSCORE QUE TIENE GUARDADO JSON
     {
         _highscore = SavePlayerDataJSON.Instance.Savedata.highscore;
         if (_score > _highscore)
@@ -42,7 +42,7 @@ public class ScoreManager : Singleton<ScoreManager>
         return _highscore;
     }
 
-    public void ChangeMultiplier(int newMultiplier)
+    public void ChangeMultiplier(int newMultiplier) //CAMBIA EL MULTIPLICADOR DE PUNTOS
     {
         _metersMultiplier += newMultiplier;
     }
