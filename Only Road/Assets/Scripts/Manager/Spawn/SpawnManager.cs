@@ -11,14 +11,12 @@ public class SpawnManager : Singleton<SpawnManager>
 
     float coinCounter;
     float spawnTimer;
-    private List<EntitySpawner> _spawnersEntities = new List<EntitySpawner>();
 
     private void Start()
     {
-        foreach (EntitySpawner e in _spawners)
+        for (int i = 0; i < _spawners.Count; i++)
         {
-            EntitySpawner entitySpawner = new EntitySpawner(e);
-            _spawnersEntities.Add(entitySpawner);
+            _spawners[i] = new EntitySpawner(_spawners[i]);
         }
     }
 
@@ -31,15 +29,15 @@ public class SpawnManager : Singleton<SpawnManager>
             switch(coinCounter)
             {
                 case float n when n < _coinsSpawnBetweenTime:
-                    _spawnersEntities[0].SpawnEntity();
+                    _spawners[0].SpawnEntity();
                     break;
                 case float n when n > _coinsSpawnBetweenTime:
-                    _spawnersEntities[1].SpawnEntity();
+                    _spawners[1].SpawnEntity();
                     ResetCounter();
                     coinCounter = 0;
                     break;
                 default:
-                    _spawnersEntities[0].SpawnEntity();
+                    _spawners[0].SpawnEntity();
                     break;
             }
             ResetCounter();
