@@ -7,7 +7,7 @@ public class ObjectPool<T>
 {
     public delegate T FactoryMethod();
     
-    List<T> _currentEnemies = new List<T>();
+    List<T> _currentEntities = new List<T>();
     FactoryMethod _factoryMethod;
     Action<T> _turnOnCallback;
     Action<T> _turnOffCallback;
@@ -22,7 +22,7 @@ public class ObjectPool<T>
         {
             var o = _factoryMethod();
             _turnOffCallback(o);
-            _currentEnemies.Add(o);
+            _currentEntities.Add(o);
         }
     }
 
@@ -30,10 +30,10 @@ public class ObjectPool<T>
     {
         T result;
 
-        if (_currentEnemies.Count > 0)
+        if (_currentEntities.Count > 0)
         {
-            result = _currentEnemies[0];
-            _currentEnemies.RemoveAt(0);
+            result = _currentEntities[0];
+            _currentEntities.RemoveAt(0);
         } else
             result = _factoryMethod();
 
@@ -45,6 +45,6 @@ public class ObjectPool<T>
     public void ReturnObject(T o)
     {
         _turnOffCallback(o);
-        _currentEnemies.Add(o);
+        _currentEntities.Add(o);
     }
 }

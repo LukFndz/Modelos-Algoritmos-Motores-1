@@ -43,14 +43,13 @@ public class GameManager : Singleton<GameManager>
         ScoreManager.Instance.ChangeMultiplier(_scoreMultiplierModifier);
     }
 
-
     public void EndGame()
     {
-        _gameState = false;
-        TileManager.Instance.ChangeTilesVelocity(-TileManager.Instance.GetTilesVelocity());
-        foreach (GameObject g in _mainObjects)
+        _gameState = false; // ESTADO DEL JUEGO A FALSO
+        TileManager.Instance.ChangeTilesVelocity(-TileManager.Instance.GetTilesVelocity()); //FRENA LOS TILES
+        foreach (GameObject g in _mainObjects) //DESACTIVA LOS OBJETOS QUE DEJAN DE SER NECESARIOS
             g.SetActive(false);
+
+        SavePlayerDataJSON.Instance.SaveParams(CoinManager.Instance.GetCoins(),ScoreManager.Instance.GetHighscore());
     }
-
-
 }

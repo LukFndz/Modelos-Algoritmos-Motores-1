@@ -7,6 +7,8 @@ public class MovementManager : Singleton<MovementManager>
     [Header("STRAIGHT PARAMS")]
     [Range(20,45)]
     [SerializeField]private float _velocity;
+
+
                     private Rigidbody _rb;
                     private GameObject _enemy;
 
@@ -45,7 +47,7 @@ public class MovementManager : Singleton<MovementManager>
         _velocity += newVel;
     }
 
-    public float GetEnemiesVelocity()
+    public float GetEntityVelocity()
     {
         return _velocity;
     }
