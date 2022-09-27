@@ -1,6 +1,9 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Unity;
+
+//LUCA FERNANDEZ - TP1
 
 [System.Serializable]
 public struct EntityParams
@@ -9,39 +12,38 @@ public struct EntityParams
     public MovementManager.TypeAdvance movementType;
 }
 
-public class EntitySpawner : MonoBehaviour
+[System.Serializable]
+public class EntitySpawner
 {
     public Entity entity;
     ObjectPool<Entity> _pool;
     Factory<Entity> _factory;
-    [SerializeField] private float _spawnTime;
     [SerializeField] private EntityParams[] _entityParams;
+    [SerializeField] private int _enemyAmount;
 
     float spawnTimer;
 
-    void Start()
+    public EntitySpawner(EntitySpawner e)
     {
-        _factory = new Factory<Entity>(entity);    
-        _pool = new ObjectPool<Entity>(_factory.Get, Entity.TurnOn, Entity.TurnOff, 8);
+        this.entity = e.entity;
+        _entityParams = e._entityParams;
+        _enemyAmount = e._enemyAmount;
+        _factory = new Factory<Entity>(e.entity);
+        _pool = new ObjectPool<Entity>(_factory.Get, Entity.TurnOn, Entity.TurnOff, _enemyAmount);
+
     }
 
-    // Update is called once per frame
-    void Update()
+    public void SpawnEntity()
     {
-        spawnTimer += Time.deltaTime;
-        if(spawnTimer > _spawnTime) // CADA X SEGUNDOS SPAWNEA UNA ENTIDAD  
-        {
-            spawnTimer = 0;
-            var e = _pool.GetObject();
-            e.Create(_pool);
+        var e = _pool.GetObject();
+        e.Create(_pool);
 
-            int random = Random.Range(0, _entityParams.Length);
-            e.transform.position = _entityParams[random].spawnPoint.position;
-            var advance = MovementManager.Instance.GetMovement(_entityParams[random].movementType, e.gameObject, e.GetComponent<Rigidbody>());
+        int random = Random.Range(0, _entityParams.Length);
+        e.transform.position = _entityParams[random].spawnPoint.position;
+        var advance = MovementManager.Instance.GetMovement(_entityParams[random].movementType, e.gameObject, e.GetComponent<Rigidbody>());
 
-            e.EntityMovement.SetStrategy(advance);
-            e.EntityMovement.ChangeVelocity(MovementManager.Instance.GetEntityVelocity()); // CADA VEZ QUE SE PRENDE, SE CAMBIA LA VELOCIDAD A LA ACTUAL
-        }
+        e.EntityMovement.SetStrategy(advance);
+        e.EntityMovement.ChangeVelocity(MovementManager.Instance.GetEntityVelocity()); // CADA VEZ QUE SE PRENDE, SE CAMBIA LA VELOCIDAD A LA ACTUAL
     }
 }
 

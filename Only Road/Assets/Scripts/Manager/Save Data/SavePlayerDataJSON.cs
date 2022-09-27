@@ -14,25 +14,18 @@ public class SavePlayerDataJSON : Singleton<SavePlayerDataJSON>
     private void Awake()
     {
         base.Awake();
+        path = Application.persistentDataPath + "/mySave.json";
         LoadParams();
     }
 
-    private void Start()
+    public void SaveParams()
     {
-        path = Application.persistentDataPath + "/mySave.json";
-    }
+        int coins = CoinManager.Instance.GetCoins();
+        float score = ScoreManager.Instance.GetScore();
 
-    private void Update()
-    {
-        if (Input.GetKeyDown(KeyCode.L))
-            LoadParams();
-    }
-
-    public void SaveParams(int coins, float score)
-    {
         _savedata.coins = coins;
         if(_savedata.highscore < score)
-            _savedata.highscore = coins;
+            _savedata.highscore = score;
 
         string json = JsonUtility.ToJson(_savedata, true);
 
@@ -41,8 +34,12 @@ public class SavePlayerDataJSON : Singleton<SavePlayerDataJSON>
 
     public void LoadParams()
     {
-        if (!File.Exists(path)) return;
-        else _savedata.coins = 0; _savedata.highscore = 0;
+        if (!File.Exists(path))
+        {
+            _savedata.coins = 0; 
+            _savedata.highscore = 0;
+            return;
+        }
 
         string json = File.ReadAllText(path);
 

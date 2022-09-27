@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -11,7 +12,8 @@ public class ScoreManager : Singleton<ScoreManager>
 
     private void Start()
     {
-        _highscore = SavePlayerDataJSON.Instance.Savedata.highscore;
+        CheckHighscore();
+        UIManager.Instance.SetHighScore();
     }
 
     private void Update()
@@ -22,8 +24,17 @@ public class ScoreManager : Singleton<ScoreManager>
 
     public void CheckHighscore()
     {
+        _highscore = SavePlayerDataJSON.Instance.Savedata.highscore;
         if (_score > _highscore)
+        {
             _highscore = _score;
+            UIManager.Instance.SetHighScore();
+        }
+    }
+
+    public float GetScore()
+    {
+        return _score;
     }
 
     public float GetHighscore()

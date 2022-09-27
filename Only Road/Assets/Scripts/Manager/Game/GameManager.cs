@@ -50,6 +50,7 @@ public class GameManager : Singleton<GameManager>
         foreach (GameObject g in _mainObjects) //DESACTIVA LOS OBJETOS QUE DEJAN DE SER NECESARIOS
             g.SetActive(false);
 
-        SavePlayerDataJSON.Instance.SaveParams(CoinManager.Instance.GetCoins(),ScoreManager.Instance.GetHighscore());
+        ScoreManager.Instance.CheckHighscore();
+        SavePlayerDataJSON.Instance.SaveParams();
     }
 }
