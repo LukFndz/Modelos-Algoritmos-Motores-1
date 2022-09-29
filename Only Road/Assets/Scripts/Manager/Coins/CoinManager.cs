@@ -9,6 +9,12 @@ public class CoinManager : Singleton<CoinManager>
 
     private void Start()
     {
+        SetCoinsFromSave();
+        UIManager.Instance.SetCoins();
+    }
+
+    public void SetCoinsFromSave()
+    {
         _coins = SavePlayerDataJSON.Instance.Savedata.coins;
     }
 

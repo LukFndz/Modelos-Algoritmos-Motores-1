@@ -30,7 +30,6 @@ public class EntitySpawner
         _enemyAmount = e._enemyAmount;
         _factory = new Factory<Entity>(e.entity);
         _pool = new ObjectPool<Entity>(_factory.Get, Entity.TurnOn, Entity.TurnOff, _enemyAmount);
-
     }
 
     public void SpawnEntity()

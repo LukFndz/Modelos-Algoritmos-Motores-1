@@ -18,6 +18,10 @@ public class SpawnManager : Singleton<SpawnManager>
         {
             _spawners[i] = new EntitySpawner(_spawners[i]);
         }
+
+        if(!GameManager.Instance.GameState)
+            gameObject.SetActive(false);
+
     }
 
     private void Update()

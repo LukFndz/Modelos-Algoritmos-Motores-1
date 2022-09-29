@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using System.IO;
+using System;
 
 public class SavePlayerDataJSON : Singleton<SavePlayerDataJSON>
 {
@@ -11,7 +12,7 @@ public class SavePlayerDataJSON : Singleton<SavePlayerDataJSON>
 
     public SaveData Savedata { get => _savedata; set => _savedata = value; }
 
-    private void Awake()
+    protected override void Awake()
     {
         base.Awake();
         path = Application.persistentDataPath + "/mySave.json";
@@ -20,6 +21,7 @@ public class SavePlayerDataJSON : Singleton<SavePlayerDataJSON>
 
     public void SaveParams()
     {
+        _savedata.firstTime = true;
         int coins = CoinManager.Instance.GetCoins();
         float score = ScoreManager.Instance.GetScore();
 
@@ -27,9 +29,34 @@ public class SavePlayerDataJSON : Singleton<SavePlayerDataJSON>
         if(_savedata.highscore < score)
             _savedata.highscore = score;
 
-        string json = JsonUtility.ToJson(_savedata, true);
+        WriteParams(_savedata);
+    }
+
+    public void WriteParams(SaveData save)
+    {
+        string json = JsonUtility.ToJson(save, true);
 
         File.WriteAllText(path, json);
+
+        LoadParams();
+
+        CoinManager.Instance.SetCoinsFromSave();
+        ScoreManager.Instance.SetHighScoreFromSave();
+
+        UIManager.Instance.UpdateAllTxt();
+    }
+
+    public void DeleteData()
+    {
+        if (File.Exists(path))
+        {
+            SaveData _deleteSavedata = new SaveData();
+            _deleteSavedata.firstTime = false;
+            _deleteSavedata.highscore = 0;
+            _deleteSavedata.coins = 0;
+            WriteParams(_deleteSavedata);
+            return;
+        }
     }
 
     public void LoadParams()
