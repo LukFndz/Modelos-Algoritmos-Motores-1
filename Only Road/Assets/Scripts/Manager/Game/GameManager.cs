@@ -60,6 +60,7 @@ public class GameManager : Singleton<GameManager>
 
         ScoreManager.Instance.CheckHighscore(); //CHECKEA EL HIGHSCORE PARA CAMBIARLO SI LO SOBREPASO
         SavePlayerDataJSON.Instance.SaveParams(); //SALVA LO QUE CONSIGUIO EN LA PARTIDA.
+        UIManager.Instance.SwitchCanvas(PanelType.END_MENU); //MENU DE DERROTA
     }
 
     public void ResumeGame()
