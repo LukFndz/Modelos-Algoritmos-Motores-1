@@ -29,15 +29,17 @@ public class Tank : MonoBehaviour
         _timer = 0;
         gameObject.SetActive(false);
     }
-    private void OnCollisionEnter(Collision collision)
+
+    private void OnTriggerEnter(Collider other)
     {
-        if (collision.gameObject.layer == 6)
+        if (other.gameObject.layer == 6)
         {
             AudioManager.Instance.ChangeEffect("Explosion");
             AudioManager.Instance.PlayOneShot();
-            _boom.transform.position = collision.transform.position + new Vector3(0, 2);
+            _boom.transform.position = other.transform.position + new Vector3(0, 2);
             _boom.Play();
-            Entity.TurnOff(collision.gameObject.GetComponent<Entity>());
+            Entity.TurnOff(other.gameObject.GetComponent<Entity>());
         }
     }
+
 }

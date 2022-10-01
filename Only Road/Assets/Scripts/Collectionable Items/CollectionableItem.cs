@@ -30,6 +30,7 @@ public class CollectionableItem : MonoBehaviour
                     CoinManager.Instance.AddCoin();
                     AudioManager.Instance.ChangeEffect("Coin");
                     AudioManager.Instance.PlayOneShot();
+                    UIManager.Instance.SetCoins();
                     break;
                 case CollectionableType.POWER_UP:
                     PowerUpManager.Instance.ActivatePowerUp(GetComponent<PowerUp>().type);

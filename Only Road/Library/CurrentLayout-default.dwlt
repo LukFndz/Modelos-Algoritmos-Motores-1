@@ -21,7 +21,7 @@ MonoBehaviour:
   m_ShowMode: 4
   m_Title: Game
   m_RootView: {fileID: 2}
-  m_MinSize: {x: 875, y: 542}
+  m_MinSize: {x: 875, y: 521}
   m_MaxSize: {x: 10000, y: 10000}
   m_Maximized: 1
 --- !u!114 &2
@@ -46,7 +46,7 @@ MonoBehaviour:
     y: 0
     width: 1680
     height: 977
-  m_MinSize: {x: 875, y: 542}
+  m_MinSize: {x: 875, y: 521}
   m_MaxSize: {x: 10000, y: 10000}
   m_UseTopView: 1
   m_TopViewHeight: 30
@@ -119,10 +119,10 @@ MonoBehaviour:
     y: 30
     width: 1680
     height: 927
-  m_MinSize: {x: 709, y: 492}
-  m_MaxSize: {x: 18004, y: 14042}
+  m_MinSize: {x: 707, y: 471}
+  m_MaxSize: {x: 18002, y: 14021}
   vertical: 0
-  controlID: 21200
+  controlID: 5252
 --- !u!114 &6
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -144,10 +144,10 @@ MonoBehaviour:
     y: 0
     width: 1311
     height: 927
-  m_MinSize: {x: 433, y: 492}
-  m_MaxSize: {x: 14003, y: 14042}
+  m_MinSize: {x: 432, y: 471}
+  m_MaxSize: {x: 14002, y: 14021}
   vertical: 1
-  controlID: 21201
+  controlID: 5253
 --- !u!114 &7
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -169,10 +169,10 @@ MonoBehaviour:
     y: 0
     width: 1311
     height: 357
-  m_MinSize: {x: 403, y: 221}
-  m_MaxSize: {x: 8003, y: 4021}
+  m_MinSize: {x: 402, y: 221}
+  m_MaxSize: {x: 8002, y: 4021}
   vertical: 0
-  controlID: 21202
+  controlID: 5128
 --- !u!114 &8
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -248,10 +248,10 @@ MonoBehaviour:
     y: 357
     width: 1311
     height: 570
-  m_MinSize: {x: 433, y: 271}
-  m_MaxSize: {x: 14003, y: 10021}
+  m_MinSize: {x: 432, y: 250}
+  m_MaxSize: {x: 14002, y: 10000}
   vertical: 0
-  controlID: 21181
+  controlID: 5254
 --- !u!114 &11
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -449,10 +449,10 @@ MonoBehaviour:
   m_ViewDataDictionary: {fileID: 0}
   m_SceneHierarchy:
     m_TreeViewState:
-      scrollPos: {x: 0, y: 229}
-      m_SelectedIDs: 
-      m_LastClickedID: 0
-      m_ExpandedIDs: 36fbffff8e450000b8460000184700008c470000
+      scrollPos: {x: 0, y: 0}
+      m_SelectedIDs: ac480000
+      m_LastClickedID: 18604
+      m_ExpandedIDs: cef8ffffde480000
       m_RenameOverlay:
         m_UserAcceptedRename: 0
         m_Name: 
@@ -512,9 +512,9 @@ MonoBehaviour:
   m_PlayAudio: 0
   m_AudioPlay: 0
   m_Position:
-    m_Target: {x: 315.5, y: 227, z: 0}
+    m_Target: {x: 640.6603, y: 500.77307, z: 6.3302155}
     speed: 2
-    m_Value: {x: 315.5, y: 227, z: 0}
+    m_Value: {x: 640.6603, y: 500.77307, z: 6.3302155}
   m_RenderMode: 0
   m_CameraMode:
     drawMode: 0
@@ -561,13 +561,13 @@ MonoBehaviour:
     m_GridAxis: 1
     m_gridOpacity: 0.5
   m_Rotation:
-    m_Target: {x: 0.14987138, y: 0.13218705, z: -0.020210123, w: 0.9796419}
+    m_Target: {x: 0.14654416, y: -0.055737194, z: 0.008282804, w: 0.98761886}
     speed: 2
-    m_Value: {x: -0.14987138, y: -0.13218705, z: 0.020210125, w: -0.9796419}
+    m_Value: {x: -0.14654416, y: 0.055737194, z: -0.008282804, w: -0.98761886}
   m_Size:
-    m_Target: 80.622574
+    m_Target: 103.077644
     speed: 2
-    m_Value: 80.622574
+    m_Value: 103.077644
   m_Ortho:
     m_Target: 0
     speed: 2
@@ -716,13 +716,13 @@ MonoBehaviour:
     m_SkipHidden: 0
     m_SearchArea: 1
     m_Folders:
-    - Assets/Scripts/UI/Sliders
+    - Assets/Canvas/Coin
     m_Globs: []
     m_OriginalText: 
   m_ViewMode: 1
   m_StartGridSize: 64
   m_LastFolders:
-  - Assets/Scripts/UI/Sliders
+  - Assets/Canvas/Coin
   m_LastFoldersGridSize: -1
   m_LastProjectPath: C:\Users\Luca\Documents\GitHub\Modelos-Algoritmos-Motores-1\Only
     Road
@@ -730,9 +730,9 @@ MonoBehaviour:
     m_IsLocked: 0
   m_FolderTreeState:
     scrollPos: {x: 0, y: 0}
-    m_SelectedIDs: ea690000
-    m_LastClickedID: 27114
-    m_ExpandedIDs: 000000005e49000062490000644900001e4a0000324a00004a4a0000
+    m_SelectedIDs: 40570000
+    m_LastClickedID: 22336
+    m_ExpandedIDs: 000000004a4c00004c4c00004e4c00005c4c00005e4c0000
     m_RenameOverlay:
       m_UserAcceptedRename: 0
       m_Name: 
@@ -760,7 +760,7 @@ MonoBehaviour:
     scrollPos: {x: 0, y: 0}
     m_SelectedIDs: 
     m_LastClickedID: 0
-    m_ExpandedIDs: 000000005e4900006249000064490000324a00004a4a0000
+    m_ExpandedIDs: 000000004a4c00004c4c00004e4c00005c4c0000
     m_RenameOverlay:
       m_UserAcceptedRename: 0
       m_Name: 
@@ -868,7 +868,7 @@ MonoBehaviour:
   m_ViewDataDictionary: {fileID: 0}
   m_LockTracker:
     m_IsLocked: 0
-  m_LastSelectedObjectID: -40786
+  m_LastSelectedObjectID: 18604
 --- !u!114 &22
 MonoBehaviour:
   m_ObjectHideFlags: 52

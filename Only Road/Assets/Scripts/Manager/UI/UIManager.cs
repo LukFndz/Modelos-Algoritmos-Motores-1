@@ -66,7 +66,7 @@ public class UIManager : Singleton<UIManager>
     public void SetCoins()
     {
         foreach(TextMeshProUGUI tm in _txtCoins)
-            tm.text = "Coins:" + CoinManager.Instance.GetCoins().ToString();
+            tm.text = CoinManager.Instance.GetCoins().ToString();
     }
 
     public void SetHighScore()
