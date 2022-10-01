@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 705507994}
-  m_IndirectSpecularColor: {r: 0.44657874, g: 0.49641258, b: 0.5748172, a: 1}
+  m_IndirectSpecularColor: {r: 0.44657898, g: 0.4964133, b: 0.5748178, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -559,8 +559,9 @@ Transform:
   - {fileID: 1725993914}
   - {fileID: 988458531}
   - {fileID: 757684190}
+  - {fileID: 218873686}
   m_Father: {fileID: 0}
-  m_RootOrder: 4
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &207520575
 GameObject:
@@ -598,6 +599,51 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &218873685
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 218873686}
+  - component: {fileID: 218873687}
+  m_Layer: 0
+  m_Name: PowerUpManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &218873686
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 218873685}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 195296681}
+  m_RootOrder: 8
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &218873687
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 218873685}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 724fb801de19ece4e9c9cfefb363dd1c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _player: {fileID: 501255836}
+  _tankTime: 10
 --- !u!1 &243755489
 GameObject:
   m_ObjectHideFlags: 0
@@ -2259,6 +2305,8 @@ MonoBehaviour:
   _movementController:
     _rb: {fileID: 501255835}
     _speed: 0.4
+  _powerUpController:
+    _tank: {fileID: 1818840839452364548, guid: 3766463094f26d645b9f589a2437e7f0, type: 3}
 --- !u!65 &501255837
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -2270,8 +2318,8 @@ BoxCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 3.1297026, y: 1.0151566, z: 1.6695385}
-  m_Center: {x: 0.074223995, y: 0.34349066, z: -0.0037603378}
+  m_Size: {x: 2.8890114, y: 1.0151566, z: 1.6695385}
+  m_Center: {x: -0.046121597, y: 0.34349066, z: -0.0037603378}
 --- !u!4 &501255840
 Transform:
   m_ObjectHideFlags: 0
@@ -2285,7 +2333,7 @@ Transform:
   m_Children:
   - {fileID: 812998360}
   m_Father: {fileID: 0}
-  m_RootOrder: 5
+  m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &527970547
 GameObject:
@@ -2452,36 +2500,6 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 30, y: 45, z: 0}
---- !u!1 &569491876
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 569491878}
-  m_Layer: 0
-  m_Name: ---------FACTORY----------
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &569491878
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 569491876}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 167.95036, y: -117.92456, z: 16.912855}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children: []
-  m_Father: {fileID: 0}
-  m_RootOrder: 3
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &579557964
 GameObject:
   m_ObjectHideFlags: 0
@@ -3812,7 +3830,7 @@ Transform:
   - {fileID: 154409676}
   - {fileID: 1671924820}
   m_Father: {fileID: 0}
-  m_RootOrder: 6
+  m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &781074185
 GameObject:
@@ -4012,7 +4030,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 8
+  m_RootOrder: 7
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &812998359
 PrefabInstance:
@@ -4576,7 +4594,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _entitiesSpawnBetweenTime: 1
-  _coinsSpawnBetweenTime: 20
+  _collectionableSpawnBetweenTime: 3
   _spawners:
   - entity: {fileID: 8707593996711878262, guid: 62923186c13b94a4bae3ec7add429504, type: 3}
     _entityParams:
@@ -4599,6 +4617,19 @@ MonoBehaviour:
       movementType: 0
     - spawnPoint: {fileID: 2073713658}
       movementType: 2
+    - spawnPoint: {fileID: 154409676}
+      movementType: 0
+    - spawnPoint: {fileID: 1671924820}
+      movementType: 0
+    _enemyAmount: 2
+  - entity: {fileID: 2008257415313814826, guid: cd8e93bd3adbbbe409cee2843b353804, type: 3}
+    _entityParams:
+    - spawnPoint: {fileID: 733635728}
+      movementType: 0
+    - spawnPoint: {fileID: 1920464589}
+      movementType: 0
+    - spawnPoint: {fileID: 2073713658}
+      movementType: 0
     - spawnPoint: {fileID: 154409676}
       movementType: 0
     - spawnPoint: {fileID: 1671924820}
@@ -5213,7 +5244,7 @@ RectTransform:
   - {fileID: 1030655764}
   - {fileID: 333320118}
   m_Father: {fileID: 0}
-  m_RootOrder: 7
+  m_RootOrder: 6
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}

@@ -6,10 +6,10 @@ public class SpawnManager : Singleton<SpawnManager>
 {
     private List<int> _lastLanes;
     [SerializeField] private float _entitiesSpawnBetweenTime;
-    [SerializeField] private float _coinsSpawnBetweenTime;
+    [SerializeField] private float _collectionableSpawnBetweenTime;
     [SerializeField] private List<EntitySpawner> _spawners;
 
-    float coinCounter;
+    float collectionableCounter;
     float spawnTimer;
 
     private void Start()
@@ -27,21 +27,22 @@ public class SpawnManager : Singleton<SpawnManager>
     private void Update()
     {
         spawnTimer += Time.deltaTime;
-        coinCounter += Time.deltaTime;
-        if(spawnTimer > _entitiesSpawnBetweenTime)
+        collectionableCounter += Time.deltaTime;
+
+        if (spawnTimer > _entitiesSpawnBetweenTime)
         {
-            switch(coinCounter)
+            switch(collectionableCounter)
             {
-                case float n when n < _coinsSpawnBetweenTime:
+                case float n when n < _collectionableSpawnBetweenTime:
                     _spawners[0].SpawnEntity();
                     break;
-                case float n when n > _coinsSpawnBetweenTime:
-                    _spawners[1].SpawnEntity();
+                case float n when n > _collectionableSpawnBetweenTime:
+                    _spawners[Random.Range(1,3)].SpawnEntity();
                     ResetCounter();
-                    coinCounter = 0;
+                    collectionableCounter = 0;
                     break;
                 default:
-                    _spawners[0].SpawnEntity();
+                    _spawners[2].SpawnEntity();
                     break;
             }
             ResetCounter();

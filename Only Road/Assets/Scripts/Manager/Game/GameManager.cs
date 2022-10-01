@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using System.Linq;
 
 public class GameManager : Singleton<GameManager>
 {
@@ -55,8 +56,11 @@ public class GameManager : Singleton<GameManager>
     {
         _gameState = false; // ESTADO DEL JUEGO A FALSO
         TileManager.Instance.ChangeTilesVelocity(-TileManager.Instance.GetTilesVelocity()); //FRENA LOS TILES
+
         foreach (GameObject g in _mainObjects) //DESACTIVA LOS OBJETOS QUE DEJAN DE SER NECESARIOS
             g.SetActive(false);
+
+        Entity.entities.Where(x => x.gameObject.activeSelf == true).ToList().ForEach(x =>x.EntityMovement.ChangeVelocity(0));
 
         ScoreManager.Instance.CheckHighscore(); //CHECKEA EL HIGHSCORE PARA CAMBIARLO SI LO SOBREPASO
         SavePlayerDataJSON.Instance.SaveParams(); //SALVA LO QUE CONSIGUIO EN LA PARTIDA.

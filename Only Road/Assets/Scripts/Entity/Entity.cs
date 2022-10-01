@@ -15,9 +15,12 @@ public class Entity : MonoBehaviour
 
     public EntityMovement EntityMovement { get => _entityMovement; set => _entityMovement = value; }
 
+    public static List<Entity> entities = new List<Entity>();
+
     private void Awake()
     {
         _entityMovement = new EntityMovement();
+        entities.Add(this);
     }
 
     private void Update()
