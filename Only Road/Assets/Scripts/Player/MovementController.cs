@@ -6,9 +6,12 @@ using UnityEngine;
 public class MovementController : PlayerComponent
 {
     [SerializeField] private Rigidbody _rb;
-    [SerializeField] private float _speed;
+    [SerializeField] private float _currentSpeed;
+    [SerializeField] private float _gameSpeed;
 
     private Vector3 _input;
+
+    public float GameSpeed { get => _gameSpeed; set => _gameSpeed = value; }
 
     public override void ManualUpdate()
     {
@@ -29,12 +32,12 @@ public class MovementController : PlayerComponent
     {
         if (_input != Vector3.zero)
         {
-            _rb.velocity += _player.transform.forward * _speed * _input.z;
+            _rb.velocity += _player.transform.forward * _currentSpeed * _input.z;
         }
     }
 
     public void ChangeSpeed(float newSpeed)
     {
-        _speed = newSpeed;
+        _currentSpeed = newSpeed;
     }
 }

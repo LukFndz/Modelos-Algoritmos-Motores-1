@@ -12,12 +12,13 @@ public class Player : MonoBehaviour
     public delegate void ComponentMethod();
     public ComponentMethod _awake, _start, _update, _fixedUpdate, _onDrawGizmos;
 
+    public MovementController MovementController { get => _movementController; set => _movementController = value; }
     public PowerUpController PowerUpController { get => _powerUpController; set => _powerUpController = value; }
 
     public Player()
     {
         _movementController.SetContext(this);
-        _powerUpController.SetContext(this);
+        PowerUpController.SetContext(this);
     }
 
     private void Awake() => _awake();

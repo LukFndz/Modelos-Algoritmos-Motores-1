@@ -119,10 +119,10 @@ MonoBehaviour:
     y: 30
     width: 1680
     height: 927
-  m_MinSize: {x: 707, y: 471}
-  m_MaxSize: {x: 18002, y: 14021}
+  m_MinSize: {x: 708, y: 471}
+  m_MaxSize: {x: 18003, y: 14021}
   vertical: 0
-  controlID: 5252
+  controlID: 673
 --- !u!114 &6
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -147,7 +147,7 @@ MonoBehaviour:
   m_MinSize: {x: 432, y: 471}
   m_MaxSize: {x: 14002, y: 14021}
   vertical: 1
-  controlID: 5253
+  controlID: 674
 --- !u!114 &7
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -169,10 +169,10 @@ MonoBehaviour:
     y: 0
     width: 1311
     height: 357
-  m_MinSize: {x: 402, y: 221}
-  m_MaxSize: {x: 8002, y: 4021}
+  m_MinSize: {x: 401, y: 221}
+  m_MaxSize: {x: 8001, y: 4021}
   vertical: 0
-  controlID: 5128
+  controlID: 650
 --- !u!114 &8
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -251,7 +251,7 @@ MonoBehaviour:
   m_MinSize: {x: 432, y: 250}
   m_MaxSize: {x: 14002, y: 10000}
   vertical: 0
-  controlID: 5254
+  controlID: 675
 --- !u!114 &11
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -450,9 +450,9 @@ MonoBehaviour:
   m_SceneHierarchy:
     m_TreeViewState:
       scrollPos: {x: 0, y: 0}
-      m_SelectedIDs: ac480000
-      m_LastClickedID: 18604
-      m_ExpandedIDs: cef8ffffde480000
+      m_SelectedIDs: 
+      m_LastClickedID: 0
+      m_ExpandedIDs: 64fbffff
       m_RenameOverlay:
         m_UserAcceptedRename: 0
         m_Name: 
@@ -512,9 +512,9 @@ MonoBehaviour:
   m_PlayAudio: 0
   m_AudioPlay: 0
   m_Position:
-    m_Target: {x: 640.6603, y: 500.77307, z: 6.3302155}
+    m_Target: {x: -17.856358, y: 5.592255, z: -23.60656}
     speed: 2
-    m_Value: {x: 640.6603, y: 500.77307, z: 6.3302155}
+    m_Value: {x: -17.856358, y: 5.592255, z: -23.60656}
   m_RenderMode: 0
   m_CameraMode:
     drawMode: 0
@@ -561,13 +561,13 @@ MonoBehaviour:
     m_GridAxis: 1
     m_gridOpacity: 0.5
   m_Rotation:
-    m_Target: {x: 0.14654416, y: -0.055737194, z: 0.008282804, w: 0.98761886}
+    m_Target: {x: -0.21248552, y: 0.3354612, z: -0.07794806, w: -0.91446185}
     speed: 2
-    m_Value: {x: -0.14654416, y: 0.055737194, z: -0.008282804, w: -0.98761886}
+    m_Value: {x: -0.2124855, y: 0.33546117, z: -0.07794806, w: -0.91446185}
   m_Size:
-    m_Target: 103.077644
+    m_Target: 10
     speed: 2
-    m_Value: 103.077644
+    m_Value: 10
   m_Ortho:
     m_Target: 0
     speed: 2
@@ -716,13 +716,13 @@ MonoBehaviour:
     m_SkipHidden: 0
     m_SearchArea: 1
     m_Folders:
-    - Assets/Canvas/Coin
+    - Assets/Scripts/Manager/Event
     m_Globs: []
     m_OriginalText: 
   m_ViewMode: 1
   m_StartGridSize: 64
   m_LastFolders:
-  - Assets/Canvas/Coin
+  - Assets/Scripts/Manager/Event
   m_LastFoldersGridSize: -1
   m_LastProjectPath: C:\Users\Luca\Documents\GitHub\Modelos-Algoritmos-Motores-1\Only
     Road
@@ -730,9 +730,9 @@ MonoBehaviour:
     m_IsLocked: 0
   m_FolderTreeState:
     scrollPos: {x: 0, y: 0}
-    m_SelectedIDs: 40570000
-    m_LastClickedID: 22336
-    m_ExpandedIDs: 000000004a4c00004c4c00004e4c00005c4c00005e4c0000
+    m_SelectedIDs: 5c470000
+    m_LastClickedID: 18268
+    m_ExpandedIDs: 000000007e460000804600008246000084460000
     m_RenameOverlay:
       m_UserAcceptedRename: 0
       m_Name: 
@@ -760,7 +760,7 @@ MonoBehaviour:
     scrollPos: {x: 0, y: 0}
     m_SelectedIDs: 
     m_LastClickedID: 0
-    m_ExpandedIDs: 000000004a4c00004c4c00004e4c00005c4c0000
+    m_ExpandedIDs: 000000007e460000804600008246000084460000
     m_RenameOverlay:
       m_UserAcceptedRename: 0
       m_Name: 
@@ -868,7 +868,7 @@ MonoBehaviour:
   m_ViewDataDictionary: {fileID: 0}
   m_LockTracker:
     m_IsLocked: 0
-  m_LastSelectedObjectID: 18604
+  m_LastSelectedObjectID: 17102
 --- !u!114 &22
 MonoBehaviour:
   m_ObjectHideFlags: 52

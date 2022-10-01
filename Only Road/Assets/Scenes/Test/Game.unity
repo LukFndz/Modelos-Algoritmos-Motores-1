@@ -632,6 +632,7 @@ MonoBehaviour:
   _mainObjects:
   - {fileID: 988458530}
   - {fileID: 93886456}
+  _player: {fileID: 501255836}
 --- !u!1 &154409675
 GameObject:
   m_ObjectHideFlags: 0
@@ -2656,7 +2657,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _movementController:
     _rb: {fileID: 501255835}
-    _speed: 0.4
+    _currentSpeed: 0
+    _gameSpeed: 0.4
   _powerUpController:
     _tank: {fileID: 1818840839452364548, guid: 3766463094f26d645b9f589a2437e7f0, type: 3}
 --- !u!65 &501255837

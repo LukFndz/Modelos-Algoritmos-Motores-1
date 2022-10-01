@@ -24,6 +24,8 @@ public class GameManager : Singleton<GameManager>
 
     private bool _gameState;
 
+
+
     public bool GameState { get => _gameState; set => _gameState = value; }
 
     private void OnTriggerEnter(Collider other)
@@ -50,6 +52,9 @@ public class GameManager : Singleton<GameManager>
         _gameState = true;
         foreach (GameObject g in _mainObjects) //DESACTIVA LOS OBJETOS QUE DEJAN DE SER NECESARIOS
             g.SetActive(true);
+
+        var player = FindObjectOfType<Player>();
+        player.MovementController.ChangeSpeed(player.MovementController.GameSpeed);
     }
 
     public void EndGame()

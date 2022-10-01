@@ -9,6 +9,7 @@ public class PowerUpController : PlayerComponent
     [SerializeField] private GameObject _tank;
 
     GameObject gTank;
+
     public override void ManualStart()
     {
         gTank = GameObject.Instantiate(_tank);
