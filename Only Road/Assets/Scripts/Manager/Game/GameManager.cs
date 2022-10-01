@@ -54,6 +54,9 @@ public class GameManager : Singleton<GameManager>
 
     public void EndGame()
     {
+        AudioManager.Instance.ChangeEffect("Explosion");
+        AudioManager.Instance.PlayOneShot();
+
         _gameState = false; // ESTADO DEL JUEGO A FALSO
         TileManager.Instance.ChangeTilesVelocity(-TileManager.Instance.GetTilesVelocity()); //FRENA LOS TILES
 

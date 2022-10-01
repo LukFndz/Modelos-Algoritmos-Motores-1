@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 6620083701780340807}
   - component: {fileID: 1358828992525610881}
   - component: {fileID: 5772310255903040900}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Coin
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -48,6 +48,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _rotationSpeed: 20
   _model: {fileID: 1266995675341630603}
+  _type: 0
 --- !u!114 &1358828992525610881
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -140,6 +141,14 @@ PrefabInstance:
     - target: {fileID: 919132149155446097, guid: 40c50aa69afa9a442a1e9e06dd800a3a, type: 3}
       propertyPath: m_Name
       value: _MODEL Coin
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 40c50aa69afa9a442a1e9e06dd800a3a, type: 3}
+      propertyPath: m_Layer
+      value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 8164078558771037576, guid: 40c50aa69afa9a442a1e9e06dd800a3a, type: 3}
+      propertyPath: m_Layer
+      value: 8
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 40c50aa69afa9a442a1e9e06dd800a3a, type: 3}

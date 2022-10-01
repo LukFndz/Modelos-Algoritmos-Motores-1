@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 6026641038613653953}
   - component: {fileID: 1352650481783829910}
   - component: {fileID: 822611030708663634}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: PS_boom_text
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -4912,7 +4912,7 @@ GameObject:
   - component: {fileID: 1353376195400561280}
   - component: {fileID: 5433201375280580294}
   - component: {fileID: 2133365492365072477}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: PS_boom_smoke
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -9786,7 +9786,7 @@ GameObject:
   - component: {fileID: 8199374088502629936}
   - component: {fileID: 8199374088502629943}
   - component: {fileID: 8199374088502629942}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: _PARTICLE Boom
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -14605,7 +14605,7 @@ GameObject:
   - component: {fileID: 8199374088637691734}
   - component: {fileID: 8199374088637691728}
   - component: {fileID: 8199374088637691735}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: PS_boom_smoke (1)
   m_TagString: Untagged
   m_Icon: {fileID: 0}

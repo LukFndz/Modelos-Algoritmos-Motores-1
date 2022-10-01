@@ -24,6 +24,11 @@ public class SavePlayerDataJSON : Singleton<SavePlayerDataJSON>
         _savedata.firstTime = true;
         int coins = CoinManager.Instance.GetCoins();
         float score = ScoreManager.Instance.GetScore();
+        float musicVolume = AudioManager.Instance.GetActualVolume(SliderType.Music);
+        float effectVolume = AudioManager.Instance.GetActualVolume(SliderType.Effects);
+
+        _savedata.effectVolume = effectVolume;
+        _savedata.musicVolume = musicVolume;
 
         _savedata.coins = coins;
         if(_savedata.highscore < score)
@@ -54,6 +59,8 @@ public class SavePlayerDataJSON : Singleton<SavePlayerDataJSON>
             _deleteSavedata.firstTime = false;
             _deleteSavedata.highscore = 0;
             _deleteSavedata.coins = 0;
+            _deleteSavedata.musicVolume = 1;
+            _deleteSavedata.effectVolume = 1;
             WriteParams(_deleteSavedata);
             return;
         }
@@ -63,8 +70,11 @@ public class SavePlayerDataJSON : Singleton<SavePlayerDataJSON>
     {
         if (!File.Exists(path))
         {
+            _savedata.firstTime = false;
             _savedata.coins = 0; 
             _savedata.highscore = 0;
+            _savedata.musicVolume = 1;
+            _savedata.effectVolume = 1;
             return;
         }
 

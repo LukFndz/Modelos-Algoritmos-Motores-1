@@ -18,5 +18,7 @@ public class PowerUpManager : Singleton<PowerUpManager>
                 _player.PowerUpController.Tank();
                 break;
         }
+        AudioManager.Instance.ChangeEffect("PowerUp");
+        AudioManager.Instance.PlayOneShot();
     }
 }

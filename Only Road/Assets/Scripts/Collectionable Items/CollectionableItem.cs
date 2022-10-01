@@ -28,6 +28,8 @@ public class CollectionableItem : MonoBehaviour
             {
                 case CollectionableType.COIN:
                     CoinManager.Instance.AddCoin();
+                    AudioManager.Instance.ChangeEffect("Coin");
+                    AudioManager.Instance.PlayOneShot();
                     break;
                 case CollectionableType.POWER_UP:
                     PowerUpManager.Instance.ActivatePowerUp(GetComponent<PowerUp>().type);
