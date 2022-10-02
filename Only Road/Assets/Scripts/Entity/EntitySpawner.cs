@@ -2,47 +2,84 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using Unity;
+using System.Linq;
 
 //LUCA FERNANDEZ - TP1
 
 [System.Serializable]
-public struct EntityParams
+public struct SpawnerParams
+{
+    public Entity entity;
+    public LaneParams[] laneParams;
+    public int enemyAmount;
+    public int timeToSpawn;
+}
+
+[System.Serializable]
+public struct LaneParams
 {
     public Transform spawnPoint;
     public MovementManager.TypeAdvance movementType;
 }
 
 [System.Serializable]
-public class EntitySpawner
+public class EntitySpawner : MonoBehaviour
 {
-    public Entity entity;
     ObjectPool<Entity> _pool;
     Factory<Entity> _factory;
-    [SerializeField] private EntityParams[] _entityParams;
+    public Entity entity;
+    [SerializeField] private LaneParams[] _laneParams;
     [SerializeField] private int _enemyAmount;
+    [SerializeField] private int _timeToSpawn;
 
     float spawnTimer;
+    int [] lanes = { 0, 1, 2, 3, 4 };
 
-    public EntitySpawner(EntitySpawner e)
+    public void BuildEntitySpawner(SpawnerParams e)
     {
         this.entity = e.entity;
-        _entityParams = e._entityParams;
-        _enemyAmount = e._enemyAmount;
+        _laneParams = e.laneParams;
+        _enemyAmount = e.enemyAmount;
         _factory = new Factory<Entity>(e.entity);
         _pool = new ObjectPool<Entity>(_factory.Get, Entity.TurnOn, Entity.TurnOff, _enemyAmount);
+        _timeToSpawn = e.timeToSpawn;
     }
 
-    public void SpawnEntity()
+    public void Update()
     {
-        var e = _pool.GetObject();
-        e.Create(_pool);
+        spawnTimer += Time.deltaTime;
+        if (spawnTimer > _timeToSpawn)
+        {
+            spawnTimer = 0;
+            var e = _pool.GetObject();
+            e.Create(_pool);
 
-        int random = Random.Range(0, _entityParams.Length);
-        e.transform.position = _entityParams[random].spawnPoint.position;
-        var advance = MovementManager.Instance.GetMovement(_entityParams[random].movementType, e.gameObject, e.GetComponent<Rigidbody>());
+            int random = GetRandomWithoutLastLane();
+            e.transform.position = _laneParams[random].spawnPoint.position;
+            var advance = MovementManager.Instance.GetMovement(_laneParams[random].movementType, e.gameObject, e.GetComponent<Rigidbody>());
 
-        e.EntityMovement.SetStrategy(advance);
-        e.EntityMovement.ChangeVelocity(MovementManager.Instance.GetEntityVelocity()); // CADA VEZ QUE SE PRENDE, SE CAMBIA LA VELOCIDAD A LA ACTUAL
+            e.EntityMovement.SetStrategy(advance);
+            e.EntityMovement.ChangeVelocity(MovementManager.Instance.GetEntityVelocity()); // CADA VEZ QUE SE PRENDE, SE CAMBIA LA VELOCIDAD A LA ACTUAL
+        }
     }
+    
+
+    private int GetRandomWithoutLastLane()
+    {
+        var list = lanes.Where(x => x != SpawnManager.Instance.LastLane).ToList();
+        int result = list[Random.Range(0, list.Count)];
+        SpawnManager.Instance.LastLane = result;
+        return result;
+    }
+
+    //private int RandomWithoutLastLane()
+    //{
+    //    var exclude = new HashSet<int>() { SpawnManager.Instance.GetLastLane() };
+    //    var range = Enumerable.Range(0, 4).Where(i => !exclude.Contains(i));
+
+    //    var rand = new System.Random();
+    //    int index = rand.Next(0, 4 - exclude.Count);
+    //    return range.ElementAt(index);
+    //}
 }
 

@@ -632,7 +632,6 @@ MonoBehaviour:
   _mainObjects:
   - {fileID: 988458530}
   - {fileID: 93886456}
-  _player: {fileID: 501255836}
 --- !u!1 &154409675
 GameObject:
   m_ObjectHideFlags: 0
@@ -2687,7 +2686,7 @@ Transform:
   m_Children:
   - {fileID: 812998360}
   m_Father: {fileID: 0}
-  m_RootOrder: 4
+  m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &527970547
 GameObject:
@@ -4471,7 +4470,7 @@ Transform:
   - {fileID: 154409676}
   - {fileID: 1671924820}
   m_Father: {fileID: 0}
-  m_RootOrder: 5
+  m_RootOrder: 6
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &781074185
 GameObject:
@@ -4607,6 +4606,87 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 781074185}
   m_CullTransparentMesh: 1
+--- !u!1 &798285435
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 798285439}
+  - component: {fileID: 798285438}
+  - component: {fileID: 798285437}
+  - component: {fileID: 798285436}
+  m_Layer: 0
+  m_Name: -------FACTORY-----------
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &798285436
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 798285435}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 23038f7db83bfdc4c88b0cf812a832b2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  entity: {fileID: 0}
+  _laneParams: []
+  _enemyAmount: 0
+  _timeToSpawn: 0
+--- !u!114 &798285437
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 798285435}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 23038f7db83bfdc4c88b0cf812a832b2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  entity: {fileID: 0}
+  _laneParams: []
+  _enemyAmount: 0
+  _timeToSpawn: 0
+--- !u!114 &798285438
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 798285435}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 23038f7db83bfdc4c88b0cf812a832b2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  entity: {fileID: 0}
+  _laneParams: []
+  _enemyAmount: 0
+  _timeToSpawn: 0
+--- !u!4 &798285439
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 798285435}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 9.603184, y: 3.58766, z: -24.223475}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 4
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &800303665
 GameObject:
   m_ObjectHideFlags: 0
@@ -4671,7 +4751,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 7
+  m_RootOrder: 8
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &812998359
 PrefabInstance:
@@ -5242,11 +5322,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fb98d272c2d0a2d4081307379eb240e5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _entitiesSpawnBetweenTime: 1
-  _collectionableSpawnBetweenTime: 3
   _spawners:
   - entity: {fileID: 8707593996711878262, guid: 62923186c13b94a4bae3ec7add429504, type: 3}
-    _entityParams:
+    laneParams:
     - spawnPoint: {fileID: 733635728}
       movementType: 0
     - spawnPoint: {fileID: 1920464589}
@@ -5257,22 +5335,24 @@ MonoBehaviour:
       movementType: 0
     - spawnPoint: {fileID: 1671924820}
       movementType: 0
-    _enemyAmount: 6
+    enemyAmount: 6
+    timeToSpawn: 2
   - entity: {fileID: 1358828992525610881, guid: 474a6a0da600d8c429effd532ad47437, type: 3}
-    _entityParams:
+    laneParams:
     - spawnPoint: {fileID: 733635728}
       movementType: 0
     - spawnPoint: {fileID: 1920464589}
       movementType: 0
     - spawnPoint: {fileID: 2073713658}
-      movementType: 2
+      movementType: 0
     - spawnPoint: {fileID: 154409676}
       movementType: 0
     - spawnPoint: {fileID: 1671924820}
       movementType: 0
-    _enemyAmount: 2
+    enemyAmount: 3
+    timeToSpawn: 10
   - entity: {fileID: 2008257415313814826, guid: cd8e93bd3adbbbe409cee2843b353804, type: 3}
-    _entityParams:
+    laneParams:
     - spawnPoint: {fileID: 733635728}
       movementType: 0
     - spawnPoint: {fileID: 1920464589}
@@ -5283,7 +5363,8 @@ MonoBehaviour:
       movementType: 0
     - spawnPoint: {fileID: 1671924820}
       movementType: 0
-    _enemyAmount: 2
+    enemyAmount: 1
+    timeToSpawn: 20
 --- !u!1 &1017651295 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 919132149155446097, guid: 1d61105200677224984083300f29a2eb, type: 3}
@@ -5930,7 +6011,7 @@ RectTransform:
   - {fileID: 1030655764}
   - {fileID: 333320118}
   m_Father: {fileID: 0}
-  m_RootOrder: 6
+  m_RootOrder: 7
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}

@@ -4,51 +4,40 @@ using UnityEngine;
 
 public class SpawnManager : Singleton<SpawnManager>
 {
-    private List<int> _lastLanes;
-    [SerializeField] private float _entitiesSpawnBetweenTime;
-    [SerializeField] private float _collectionableSpawnBetweenTime;
-    [SerializeField] private List<EntitySpawner> _spawners;
+    private int _lastLane;
 
-    float collectionableCounter;
-    float spawnTimer;
+    [SerializeField] private List<SpawnerParams> _spawners;
+
+
+    private EntitySpawner[] _spawnersEntity;
+
+    public int LastLane { get => _lastLane; set => _lastLane = value; }
 
     private void Start()
     {
+        _spawnersEntity = FindObjectsOfType<EntitySpawner>();
         for (int i = 0; i < _spawners.Count; i++)
         {
-            _spawners[i] = new EntitySpawner(_spawners[i]);
+            _spawnersEntity[i].BuildEntitySpawner(_spawners[i]);
+            _spawnersEntity[i].enabled = false;
         }
 
         if(!GameManager.Instance.GameState)
             gameObject.SetActive(false);
     }
 
-    private void Update()
+    public void EnableSpawners()
     {
-        spawnTimer += Time.deltaTime;
-        collectionableCounter += Time.deltaTime;
+        foreach (EntitySpawner e in _spawnersEntity)
+            e.enabled = true;
+    }
 
-        if (spawnTimer > _entitiesSpawnBetweenTime)
-        {
-            switch(collectionableCounter)
-            {
-                case float n when n < _collectionableSpawnBetweenTime:
-                    _spawners[0].SpawnEntity();
-                    break;
-                case float n when n > _collectionableSpawnBetweenTime:
-                    _spawners[Random.Range(1,3)].SpawnEntity();
-                    ResetCounter();
-                    collectionableCounter = 0;
-                    break;
-                default:
-                    _spawners[2].SpawnEntity();
-                    break;
-            }
-            ResetCounter();
-        }
-    }
-    public void ResetCounter()
+    public void DisableSpawners()
     {
-        spawnTimer = 0;
+        foreach (EntitySpawner e in _spawnersEntity)
+            e.enabled = false;
     }
+
+
+
 }

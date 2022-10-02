@@ -54,13 +54,18 @@ public class GameManager : Singleton<GameManager>
             g.SetActive(true);
 
         var player = FindObjectOfType<Player>();
+        
         player.MovementController.ChangeSpeed(player.MovementController.GameSpeed);
+
+        SpawnManager.Instance.EnableSpawners();
     }
 
     public void EndGame()
     {
-        AudioManager.Instance.ChangeEffect("Explosion");
-        AudioManager.Instance.PlayOneShot();
+        SpawnManager.Instance.DisableSpawners(); //DESHABILITA LOS SPAWNERS
+
+        AudioManager.Instance.ChangeEffect("Explosion"); //CAMBIA EL SONIDO EXPLOSION
+        AudioManager.Instance.PlayOneShot(); //REPRODUCE SONIDO
 
         _gameState = false; // ESTADO DEL JUEGO A FALSO
         TileManager.Instance.ChangeTilesVelocity(-TileManager.Instance.GetTilesVelocity()); //FRENA LOS TILES
