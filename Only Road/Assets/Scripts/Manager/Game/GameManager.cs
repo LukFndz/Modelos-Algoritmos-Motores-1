@@ -36,8 +36,11 @@ public class GameManager : Singleton<GameManager>
             _avoidCars++;
 
             if (_avoidCars >= _carsToAvoid && TileManager.Instance.GetTilesVelocity() < _maxTileVelocityModifier) // MIENTRAS SEA MENOR A LA VELOCIDAD MAX DE LOS TILES, SE APLICAN LOS MULTIPLICADORES
-                EventManager.Instance.Trigger(EventManager.NameEvent.ApplyMultipliers, 
+            {
+                EventManager.Instance.Trigger(EventManager.NameEvent.ApplyMultipliers,
                                     _tileVelocityModifier, _enemyVelocityModifier, _scoreMultiplierModifier);
+                _avoidCars = 0;
+            }
         }
     }
 
