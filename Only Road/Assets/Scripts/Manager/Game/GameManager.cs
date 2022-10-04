@@ -35,17 +35,18 @@ public class GameManager : Singleton<GameManager>
             _avoidCars++;
 
             if (_avoidCars >= _carsToAvoid && TileManager.Instance.GetTilesVelocity() < _maxTileVelocityModifier) // MIENTRAS SEA MENOR A LA VELOCIDAD MAX DE LOS TILES, SE APLICAN LOS MULTIPLICADORES
-                ApplyMultipliers();
+                EventManager.Trigger(EventManager.NameEvent.ApplyMultipliers, 
+                                    _tileVelocityModifier, _enemyVelocityModifier, _scoreMultiplierModifier);
         }
     }
 
-    public void ApplyMultipliers()
-    {
-        _avoidCars = 0;
-        TileManager.Instance.ChangeTilesVelocity(_tileVelocityModifier);
-        MovementManager.Instance.ChangeVelocity(_enemyVelocityModifier);
-        ScoreManager.Instance.ChangeMultiplier(_scoreMultiplierModifier);
-    }
+    //public void ApplyMultipliers()
+    //{
+    //    _avoidCars = 0;
+    //    TileManager.Instance.ChangeTilesVelocity(_tileVelocityModifier);
+    //    MovementManager.Instance.ChangeVelocity(_enemyVelocityModifier);
+    //    ScoreManager.Instance.ChangeMultiplier(_scoreMultiplierModifier);
+    //}
 
     public void StartGame()
     {
@@ -60,24 +61,34 @@ public class GameManager : Singleton<GameManager>
         SpawnManager.Instance.EnableSpawners();
     }
 
-    public void EndGame()
+    public void GameOver()
     {
-        SpawnManager.Instance.DisableSpawners(); //DESHABILITA LOS SPAWNERS
+        EventManager.Trigger(EventManager.NameEvent.ChangeSoundEffect, "Explosion");
 
-        AudioManager.Instance.ChangeEffect("Explosion"); //CAMBIA EL SONIDO EXPLOSION
-        AudioManager.Instance.PlayOneShot(); //REPRODUCE SONIDO
+        EventManager.Trigger(EventManager.NameEvent.Gameover);
+
+        EventManager.Trigger(EventManager.NameEvent.ApplyMultipliers,
+            -TileManager.Instance.GetTilesVelocity(), 0f, 0f);
+
+        Entity.entities.Where(x => x.gameObject.activeSelf == true).ToList().ForEach(x => x.EntityMovement.ChangeVelocity(0));
 
         _gameState = false; // ESTADO DEL JUEGO A FALSO
-        TileManager.Instance.ChangeTilesVelocity(-TileManager.Instance.GetTilesVelocity()); //FRENA LOS TILES
 
         foreach (GameObject g in _mainObjects) //DESACTIVA LOS OBJETOS QUE DEJAN DE SER NECESARIOS
             g.SetActive(false);
 
-        Entity.entities.Where(x => x.gameObject.activeSelf == true).ToList().ForEach(x =>x.EntityMovement.ChangeVelocity(0));
-
-        ScoreManager.Instance.CheckHighscore(); //CHECKEA EL HIGHSCORE PARA CAMBIARLO SI LO SOBREPASO
-        SavePlayerDataJSON.Instance.SaveParams(); //SALVA LO QUE CONSIGUIO EN LA PARTIDA.
         UIManager.Instance.SwitchCanvas(PanelType.END_MENU); //MENU DE DERROTA
+
+        //SpawnManager.Instance.DisableSpawners(); //DESHABILITA LOS SPAWNERS
+
+        //AudioManager.Instance.ChangeEffect("Explosion"); //CAMBIA EL SONIDO EXPLOSION
+        //AudioManager.Instance.PlayOneShot(); //REPRODUCE SONIDO
+
+        //TileManager.Instance.ChangeTilesVelocity(-TileManager.Instance.GetTilesVelocity()); //FRENA LOS TILES
+
+        //ScoreManager.Instance.CheckHighscore(); //CHECKEA EL HIGHSCORE PARA CAMBIARLO SI LO SOBREPASO
+        //SavePlayerDataJSON.Instance.SaveParams(); //SALVA LO QUE CONSIGUIO EN LA PARTIDA.
+
     }
 
     public void ResumeGame()

@@ -37,7 +37,7 @@ public class Player : MonoBehaviour
     {
         if (collision.gameObject.layer == 6) // SI TOCA UN ENEMIGO, ACTIVA EL ENDGAME
         {
-            GameManager.Instance.EndGame();
+            GameManager.Instance.GameOver();
             _movementController.ChangeSpeed(0); // CAMBIAR AL VELOCIDAD A 0
         }
     }

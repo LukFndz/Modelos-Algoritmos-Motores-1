@@ -14,14 +14,19 @@ public class TileManager : Singleton<TileManager>
     [SerializeField] private Transform _startSpawn;
     [SerializeField] private Tile[] _tiles;
 
+    private void Start()
+    {
+        EventManager.Subscribe(EventManager.NameEvent.ApplyMultipliers, ChangeTilesVelocity);
+    }
+
     public float GetTilesVelocity()
     {
         return _tilesVelocity;
     }
 
-    public void ChangeTilesVelocity(float newVel)
+    public void ChangeTilesVelocity(params object[] parameters)
     {
-        _tilesVelocity += newVel;
+        _tilesVelocity += (float)parameters[0];
         foreach(Tile t in _tiles)
         {
             t.ChangeVelocity(_tilesVelocity);

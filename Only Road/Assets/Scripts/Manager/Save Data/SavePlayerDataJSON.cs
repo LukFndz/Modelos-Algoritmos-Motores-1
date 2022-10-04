@@ -19,7 +19,12 @@ public class SavePlayerDataJSON : Singleton<SavePlayerDataJSON>
         LoadParams();
     }
 
-    public void SaveParams()
+    private void Start()
+    {
+        EventManager.Subscribe(EventManager.NameEvent.Gameover, SaveParams);
+    }
+
+    public void SaveParams(params object[] parameters)
     {
         _savedata.firstTime = true;
         int coins = CoinManager.Instance.GetCoins();

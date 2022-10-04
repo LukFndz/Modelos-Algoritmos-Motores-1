@@ -24,6 +24,11 @@ public class MovementManager : Singleton<MovementManager>
         Both
     }
 
+    private void Start()
+    {
+        EventManager.Subscribe(EventManager.NameEvent.ApplyMultipliers, ChangeVelocity);
+    }
+
     public IAdvance GetMovement(TypeAdvance type, GameObject e, Rigidbody rb) //DEVUELVE LA ESTRATEGIA
     {
         switch(type)
@@ -42,9 +47,9 @@ public class MovementManager : Singleton<MovementManager>
         }
     }
 
-    public void ChangeVelocity(float newVel)
+    public void ChangeVelocity(params object[] parameters)
     {
-        _velocity += newVel;
+        _velocity += (float)parameters[1];
     }
 
     public float GetEntityVelocity()

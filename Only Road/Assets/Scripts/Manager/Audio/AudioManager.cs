@@ -30,6 +30,9 @@ public class AudioManager : Singleton<AudioManager>
 
         _musicSource.clip = _musicDictionary[TileManager.Instance.GetActualMap().ToString() + "Music"];
         PlayMusic();
+
+        EventManager.Subscribe(EventManager.NameEvent.ChangeSoundEffect, ChangeEffect);
+        EventManager.Subscribe(EventManager.NameEvent.ChangeSoundEffect, PlayOneShot);
     }
 
     public void ChangeMusic(string id)
@@ -37,9 +40,9 @@ public class AudioManager : Singleton<AudioManager>
         _musicSource.clip = _musicDictionary[id];
     }
 
-    public void ChangeEffect(string id)
+    public void ChangeEffect(params object[] parameters)
     {
-        _effectSource.clip = _effectDictionary[id];
+        _effectSource.clip = _effectDictionary[(string)parameters[0]];
     }
 
     public void AddMusicClip(string id, AudioClip clip)
@@ -57,7 +60,7 @@ public class AudioManager : Singleton<AudioManager>
         _musicSource.Play();
     }
 
-    public void PlayOneShot()
+    public void PlayOneShot(params object[] parameters)
     {
         _effectSource.Play();
     }

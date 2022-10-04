@@ -12,13 +12,14 @@ public class ScoreManager : Singleton<ScoreManager>
 
     private void Start()
     {
-        SetHighScoreFromSave();
         CheckHighscore();
 
         UIManager.Instance.SetHighScore(); //SETEA EL HIGHSCORE QUE TIENE GUARDADO JSON EN EL UI
 
         if (!GameManager.Instance.GameState)
             gameObject.SetActive(false);
+
+        EventManager.Subscribe(EventManager.NameEvent.Gameover, CheckHighscore);
     }
 
     private void Update()
@@ -32,7 +33,7 @@ public class ScoreManager : Singleton<ScoreManager>
         _highscore = SavePlayerDataJSON.Instance.Savedata.highscore;
     }
 
-    public void CheckHighscore() 
+    public void CheckHighscore(params object[] parameters) 
     {
         SetHighScoreFromSave();
         if (_score > _highscore)
@@ -51,8 +52,8 @@ public class ScoreManager : Singleton<ScoreManager>
         return _highscore;
     }
 
-    public void ChangeMultiplier(int newMultiplier) //CAMBIA EL MULTIPLICADOR DE PUNTOS
+    public void ChangeMultiplier(params object[] parameters) //CAMBIA EL MULTIPLICADOR DE PUNTOS
     {
-        _metersMultiplier += newMultiplier;
+        _metersMultiplier += (float)parameters[2];
     }
 }
