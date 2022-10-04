@@ -21,7 +21,7 @@ public class SavePlayerDataJSON : Singleton<SavePlayerDataJSON>
 
     private void Start()
     {
-        EventManager.Subscribe(EventManager.NameEvent.Gameover, SaveParams);
+        EventManager.Instance.Subscribe(EventManager.NameEvent.Gameover, SaveParams);
     }
 
     public void SaveParams(params object[] parameters)

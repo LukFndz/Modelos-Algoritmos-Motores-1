@@ -19,7 +19,7 @@ public class ScoreManager : Singleton<ScoreManager>
         if (!GameManager.Instance.GameState)
             gameObject.SetActive(false);
 
-        EventManager.Subscribe(EventManager.NameEvent.Gameover, CheckHighscore);
+        EventManager.Instance.Subscribe(EventManager.NameEvent.Gameover, CheckHighscore);
     }
 
     private void Update()

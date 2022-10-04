@@ -16,7 +16,7 @@ public class TileManager : Singleton<TileManager>
 
     private void Start()
     {
-        EventManager.Subscribe(EventManager.NameEvent.ApplyMultipliers, ChangeTilesVelocity);
+        EventManager.Instance.Subscribe(EventManager.NameEvent.ApplyMultipliers, ChangeTilesVelocity);
     }
 
     public float GetTilesVelocity()

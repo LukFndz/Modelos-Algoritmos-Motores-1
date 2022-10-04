@@ -22,11 +22,13 @@ public class GameManager : Singleton<GameManager>
     [Header("MANAGERS")]
     [SerializeField] private List<GameObject> _mainObjects;
 
+    
+    private List<Entity> entities = new List<Entity>();
+
     private bool _gameState;
 
-
-
     public bool GameState { get => _gameState; set => _gameState = value; }
+    public List<Entity> Entities { get => entities; set => entities = value; }
 
     private void OnTriggerEnter(Collider other)
     {
@@ -35,7 +37,7 @@ public class GameManager : Singleton<GameManager>
             _avoidCars++;
 
             if (_avoidCars >= _carsToAvoid && TileManager.Instance.GetTilesVelocity() < _maxTileVelocityModifier) // MIENTRAS SEA MENOR A LA VELOCIDAD MAX DE LOS TILES, SE APLICAN LOS MULTIPLICADORES
-                EventManager.Trigger(EventManager.NameEvent.ApplyMultipliers, 
+                EventManager.Instance.Trigger(EventManager.NameEvent.ApplyMultipliers, 
                                     _tileVelocityModifier, _enemyVelocityModifier, _scoreMultiplierModifier);
         }
     }
@@ -63,14 +65,14 @@ public class GameManager : Singleton<GameManager>
 
     public void GameOver()
     {
-        EventManager.Trigger(EventManager.NameEvent.ChangeSoundEffect, "Explosion");
+        EventManager.Instance.Trigger(EventManager.NameEvent.ChangeSoundEffect, "Explosion");
 
-        EventManager.Trigger(EventManager.NameEvent.Gameover);
+        EventManager.Instance.Trigger(EventManager.NameEvent.Gameover);
 
-        EventManager.Trigger(EventManager.NameEvent.ApplyMultipliers,
+        EventManager.Instance.Trigger(EventManager.NameEvent.ApplyMultipliers,
             -TileManager.Instance.GetTilesVelocity(), 0f, 0f);
 
-        Entity.entities.Where(x => x.gameObject.activeSelf == true).ToList().ForEach(x => x.EntityMovement.ChangeVelocity(0));
+        Entities.Where(x => x.gameObject.activeSelf == true).ToList().ForEach(x => x.EntityMovement.ChangeVelocity(0));
 
         _gameState = false; // ESTADO DEL JUEGO A FALSO
 

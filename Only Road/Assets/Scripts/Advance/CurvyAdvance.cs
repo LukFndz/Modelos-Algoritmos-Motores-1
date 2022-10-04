@@ -24,6 +24,8 @@ public class CurvyAdvance : IAdvance
 
     public void Advance() //AVANZA
     {
+
+
         _entity.transform.position += (Vector3.forward * Time.deltaTime * speed) * Mathf.Sin(Time.time * freq) * mag;
         _entity.transform.position += _entity.transform.right * _velocity * Time.deltaTime;
     }
@@ -31,6 +33,8 @@ public class CurvyAdvance : IAdvance
     public void ChangeVel(float newVel) //CAMBIAR LA VELOCIDAD A LA QUE AVANZA ACTUALMENTE
     {
         _velocity = newVel;
+        if (_velocity == 0)
+            speed = 0;
     }
 
     public float GetVelocity() //DEVUELVE LA VELOCIDAD A LA QUE AVANZA ACTUALMENTE

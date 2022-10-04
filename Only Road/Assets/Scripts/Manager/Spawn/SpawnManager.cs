@@ -25,7 +25,7 @@ public class SpawnManager : Singleton<SpawnManager>
         if(!GameManager.Instance.GameState)
             gameObject.SetActive(false);
 
-        EventManager.Subscribe(EventManager.NameEvent.Gameover, DisableSpawners);
+        EventManager.Instance.Subscribe(EventManager.NameEvent.Gameover, DisableSpawners);
     }
 
     public void EnableSpawners()

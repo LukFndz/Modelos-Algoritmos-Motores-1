@@ -31,8 +31,8 @@ public class AudioManager : Singleton<AudioManager>
         _musicSource.clip = _musicDictionary[TileManager.Instance.GetActualMap().ToString() + "Music"];
         PlayMusic();
 
-        EventManager.Subscribe(EventManager.NameEvent.ChangeSoundEffect, ChangeEffect);
-        EventManager.Subscribe(EventManager.NameEvent.ChangeSoundEffect, PlayOneShot);
+        EventManager.Instance.Subscribe(EventManager.NameEvent.ChangeSoundEffect, ChangeEffect);
+        EventManager.Instance.Subscribe(EventManager.NameEvent.ChangeSoundEffect, PlayOneShot);
     }
 
     public void ChangeMusic(string id)

@@ -26,7 +26,7 @@ public class MovementManager : Singleton<MovementManager>
 
     private void Start()
     {
-        EventManager.Subscribe(EventManager.NameEvent.ApplyMultipliers, ChangeVelocity);
+        EventManager.Instance.Subscribe(EventManager.NameEvent.ApplyMultipliers, ChangeVelocity);
     }
 
     public IAdvance GetMovement(TypeAdvance type, GameObject e, Rigidbody rb) //DEVUELVE LA ESTRATEGIA

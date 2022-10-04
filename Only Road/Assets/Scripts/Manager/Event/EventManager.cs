@@ -2,10 +2,10 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class EventManager
+public class EventManager : Singleton<EventManager>
 {
     public delegate void EventReceiver(params object[] parameters);
-    static Dictionary<NameEvent, EventReceiver> _events = new Dictionary<NameEvent, EventReceiver>();
+    public Dictionary<NameEvent, EventReceiver> _events = new Dictionary<NameEvent, EventReceiver>();
 
     public enum NameEvent
     {
@@ -14,7 +14,7 @@ public class EventManager
         ChangeSoundEffect
     }
 
-    public static void Subscribe(NameEvent eventType, EventReceiver listener)
+    public void Subscribe(NameEvent eventType, EventReceiver listener)
     {
         if (!_events.ContainsKey(eventType))
             _events.Add(eventType, listener);
@@ -22,7 +22,7 @@ public class EventManager
             _events[eventType] += listener;
     }
 
-    public static void Unsubscribe(NameEvent eventType, EventReceiver listener)
+    public void Unsubscribe(NameEvent eventType, EventReceiver listener)
     {
         if (_events.ContainsKey(eventType))
         {
@@ -33,7 +33,7 @@ public class EventManager
         }
     }
 
-    public static void Trigger(NameEvent eventType, params object[] parameters)
+    public void Trigger(NameEvent eventType, params object[] parameters)
     {
         if (_events.ContainsKey(eventType))
             _events[eventType](parameters);
