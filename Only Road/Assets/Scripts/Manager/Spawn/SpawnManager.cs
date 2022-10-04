@@ -9,15 +9,15 @@ public class SpawnManager : Singleton<SpawnManager>
     [SerializeField] private List<SpawnerParams> _spawners;
 
 
-    private EntitySpawner[] _spawnersEntity;
+    List<EntitySpawner> _spawnersEntity = new List<EntitySpawner>();
 
     public int LastLane { get => _lastLane; set => _lastLane = value; }
 
     private void Start()
     {
-        _spawnersEntity = FindObjectsOfType<EntitySpawner>();
         for (int i = 0; i < _spawners.Count; i++)
         {
+            _spawnersEntity.Add(gameObject.AddComponent<EntitySpawner>());
             _spawnersEntity[i].BuildEntitySpawner(_spawners[i]);
             _spawnersEntity[i].enabled = false;
         }

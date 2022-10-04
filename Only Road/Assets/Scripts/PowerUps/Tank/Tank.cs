@@ -32,12 +32,12 @@ public class Tank : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        if (other.gameObject.layer == 6)
+        var col = other.gameObject?.GetComponent<IAffectTank>();
+        if (col != null)
         {
-            EventManager.Instance.Trigger(EventManager.NameEvent.ChangeSoundEffect, "Explosion");
             _boom.transform.position = other.transform.position + new Vector3(0, 2);
             _boom.Play();
-            Entity.TurnOff(other.gameObject.GetComponent<Entity>());
+            col.TankHit();
         }
     }
 

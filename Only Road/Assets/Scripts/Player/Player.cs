@@ -34,9 +34,10 @@ public class Player : MonoBehaviour
 
     private void OnCollisionEnter(Collision collision)
     {
-        if (collision.gameObject.layer == 6) // SI TOCA UN ENEMIGO, ACTIVA EL ENDGAME
+        var col = collision.gameObject?.GetComponent<IEnemy>();
+        if (col != null) // SI TOCA UN ENEMIGO, ACTIVA EL ENDGAME
         {
-            GameManager.Instance.GameOver();
+            col.Touch();
         }
     }
 

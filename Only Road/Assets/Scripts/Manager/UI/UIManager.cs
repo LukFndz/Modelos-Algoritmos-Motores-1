@@ -88,21 +88,4 @@ public class UIManager : Singleton<UIManager>
         SetCoins();
         SetHighScore();
     }
-
-    public void ActivatePowerUpTxt()
-    {
-
-    }
-
-
-    //public void ChangeSprite(GameObject g, Image img)
-    //{
-    //    g.GetComponent<Image>().sprite = img.sprite;
-    //}
-
-    //public void ChangeAlpha(GameObject g, float alpha)
-    //{
-    //    var img = g.GetComponent<Image>().color;
-    //    g.GetComponent<Image>().color = new Color(img.r,img.g,img.b, alpha);
-    //}
 }

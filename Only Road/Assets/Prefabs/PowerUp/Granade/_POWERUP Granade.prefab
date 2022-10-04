@@ -10,9 +10,9 @@ GameObject:
   m_Component:
   - component: {fileID: 2008257415313814827}
   - component: {fileID: 2008257415313814826}
-  - component: {fileID: 2008257415313814825}
   - component: {fileID: 2008257415313814804}
   - component: {fileID: -368269440317118701}
+  - component: {fileID: -2468252794596295489}
   m_Layer: 8
   m_Name: _POWERUP Granade
   m_TagString: Untagged
@@ -48,21 +48,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _maxTime: 6
---- !u!114 &2008257415313814825
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2008257415313814824}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 3f04ee8c09c30b54e8f67836b51d304e, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _rotationSpeed: 10
-  _model: {fileID: 1666238039645363080}
-  _type: 1
 --- !u!114 &2008257415313814804
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -75,6 +60,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c57a33eafab42fa4ea78821094c45a19, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _rotationSpeed: 0
+  _model: {fileID: 0}
+  _type: 0
   type: 0
 --- !u!65 &-368269440317118701
 BoxCollider:
@@ -89,6 +77,21 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 1, y: 1.9123443, z: 1}
   m_Center: {x: -0, y: 0.0026679635, z: -0}
+--- !u!114 &-2468252794596295489
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2008257415313814824}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6e23bd42e73e8db45afdf63df0ff1f3c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _rotationSpeed: 10
+  _model: {fileID: 1666238039645363080}
+  _type: 1
 --- !u!1001 &2008257415363110617
 PrefabInstance:
   m_ObjectHideFlags: 0

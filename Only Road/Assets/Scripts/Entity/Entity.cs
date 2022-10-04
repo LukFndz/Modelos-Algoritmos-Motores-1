@@ -23,7 +23,7 @@ public class Entity : MonoBehaviour
 
     private void Start()
     {
-        GameManager.Instance.Entities.Add(this);
+        _entityMovement.ManualStart();
     }
 
     private void Update()

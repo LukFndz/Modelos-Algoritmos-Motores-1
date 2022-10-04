@@ -22,16 +22,13 @@ public class GameManager : Singleton<GameManager>
     [Header("MANAGERS")]
     [SerializeField] private List<GameObject> _mainObjects;
 
-    private List<Entity> entities = new List<Entity>();
-
     private bool _gameState;
 
     public bool GameState { get => _gameState; set => _gameState = value; }
-    public List<Entity> Entities { get => entities; set => entities = value; }
 
     private void OnTriggerEnter(Collider other)
     {
-        if (other.CompareTag("Enemy"))
+        if (other.gameObject.GetComponent<IEnemy>() != null)
         {
             _avoidCars++;
 
@@ -44,20 +41,11 @@ public class GameManager : Singleton<GameManager>
         }
     }
 
-    //public void ApplyMultipliers()
-    //{
-    //    _avoidCars = 0;
-    //    TileManager.Instance.ChangeTilesVelocity(_tileVelocityModifier);
-    //    MovementManager.Instance.ChangeVelocity(_enemyVelocityModifier);
-    //    ScoreManager.Instance.ChangeMultiplier(_scoreMultiplierModifier);
-    //}
-
-
     public void StartGame()
     {
         _gameState = true;
 
-        foreach (GameObject g in _mainObjects) //DESACTIVA LOS OBJETOS QUE DEJAN DE SER NECESARIOS
+        foreach (GameObject g in _mainObjects) //ACTIVA LOS OBJETOS QUE SON NECESARIOS
             g.SetActive(true);
 
         var player = FindObjectOfType<Player>();
@@ -74,25 +62,12 @@ public class GameManager : Singleton<GameManager>
         EventManager.Instance.Trigger(EventManager.NameEvent.ApplyMultipliers,
             -TileManager.Instance.GetTilesVelocity(), 0f, 0f);
 
-        Entities.Where(x => x.gameObject.activeSelf == true).ToList().ForEach(x => x.EntityMovement.ChangeVelocity(0));
-
         _gameState = false; // ESTADO DEL JUEGO A FALSO
 
         foreach (GameObject g in _mainObjects) //DESACTIVA LOS OBJETOS QUE DEJAN DE SER NECESARIOS
             g.SetActive(false);
 
         UIManager.Instance.SwitchCanvas(PanelType.END_MENU); //MENU DE DERROTA
-
-        //SpawnManager.Instance.DisableSpawners(); //DESHABILITA LOS SPAWNERS
-
-        //AudioManager.Instance.ChangeEffect("Explosion"); //CAMBIA EL SONIDO EXPLOSION
-        //AudioManager.Instance.PlayOneShot(); //REPRODUCE SONIDO
-
-        //TileManager.Instance.ChangeTilesVelocity(-TileManager.Instance.GetTilesVelocity()); //FRENA LOS TILES
-
-        //ScoreManager.Instance.CheckHighscore(); //CHECKEA EL HIGHSCORE PARA CAMBIARLO SI LO SOBREPASO
-        //SavePlayerDataJSON.Instance.SaveParams(); //SALVA LO QUE CONSIGUIO EN LA PARTIDA.
-
     }
 
     public void ResumeGame()

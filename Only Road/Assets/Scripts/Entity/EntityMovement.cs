@@ -6,6 +6,11 @@ public class EntityMovement
 {
     private IAdvance _currentStrategy;
 
+    public void ManualStart()
+    {
+        EventManager.Instance.Subscribe(EventManager.NameEvent.Gameover, StopMoving);
+    }
+
     public void ManualUpdate()
     {
         _currentStrategy.Advance();
@@ -24,6 +29,11 @@ public class EntityMovement
     public float GetActualVelocity() //DEVUELVE LA VELOCIDAD A LA QUE AVANZA ACTUALMENTE (SE LA PIDE A LA INTERFAZ)
     {
         return _currentStrategy.GetVelocity();
+    }
+
+    public void StopMoving(params object[] parameters)
+    {
+        ChangeVelocity(0);
     }
 
     
