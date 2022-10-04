@@ -13,7 +13,6 @@ public class PlayerComponent
         _player._start += ManualStart;
         _player._update += ManualUpdate;
         _player._fixedUpdate += ManualFixedUpdate;
-        _player._onDrawGizmos += ManualDrawGizmos;
     }
 
     public virtual void ManualAwake() { }

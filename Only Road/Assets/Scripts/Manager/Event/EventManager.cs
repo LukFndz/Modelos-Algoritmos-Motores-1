@@ -9,6 +9,7 @@ public class EventManager : Singleton<EventManager>
 
     public enum NameEvent
     {
+        StartGame,
         Gameover,
         ApplyMultipliers,
         ChangeSoundEffect

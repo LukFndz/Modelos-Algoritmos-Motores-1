@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using TMPro;
 
 public class PowerUpManager : Singleton<PowerUpManager>
 {
@@ -8,6 +9,7 @@ public class PowerUpManager : Singleton<PowerUpManager>
 
     [SerializeField] private float _tankTime;
 
+    float timer;
     public float TankTime { get => _tankTime; set => _tankTime = value; }
 
     public void ActivatePowerUp(PowerUpType type)
@@ -18,7 +20,6 @@ public class PowerUpManager : Singleton<PowerUpManager>
                 _player.PowerUpController.Tank();
                 break;
         }
-        AudioManager.Instance.ChangeEffect("PowerUp");
-        AudioManager.Instance.PlayOneShot();
+        EventManager.Instance.Trigger(EventManager.NameEvent.ChangeSoundEffect, "PowerUp");
     }
 }

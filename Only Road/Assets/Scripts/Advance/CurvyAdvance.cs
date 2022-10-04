@@ -24,8 +24,6 @@ public class CurvyAdvance : IAdvance
 
     public void Advance() //AVANZA
     {
-
-
         _entity.transform.position += (Vector3.forward * Time.deltaTime * speed) * Mathf.Sin(Time.time * freq) * mag;
         _entity.transform.position += _entity.transform.right * _velocity * Time.deltaTime;
     }

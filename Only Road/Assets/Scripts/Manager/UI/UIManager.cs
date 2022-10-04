@@ -39,6 +39,9 @@ public class UIManager : Singleton<UIManager>
     {
         if (!SavePlayerDataJSON.Instance.Savedata.firstTime)
             SwitchCanvas(PanelType.HELP_MENU);
+
+        //Cursor.lockState = CursorLockMode.Locked;
+        //Cursor.visible = false;
     }
 
     public PanelManager GetLastCanvas()
@@ -85,6 +88,12 @@ public class UIManager : Singleton<UIManager>
         SetCoins();
         SetHighScore();
     }
+
+    public void ActivatePowerUpTxt()
+    {
+
+    }
+
 
     //public void ChangeSprite(GameObject g, Image img)
     //{

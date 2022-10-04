@@ -17,19 +17,18 @@ public class CollectionableItem : MonoBehaviour
 
     void Update()
     {
-        _model.transform.Rotate(0, (_rotationSpeed * 10) * Time.deltaTime , 0);
+        _model.transform.Rotate(0, (_rotationSpeed * 10) * Time.deltaTime , 0); //ROTA CONSTANTEMENTE EL ITEM 
     }
 
     private void OnTriggerEnter(Collider other)
     {
         if (other.CompareTag("Player"))
         {
-            switch (_type)
+            switch (_type) //CHECKEA EL TIPO
             {
                 case CollectionableType.COIN:
                     CoinManager.Instance.AddCoin();
-                    AudioManager.Instance.ChangeEffect("Coin");
-                    AudioManager.Instance.PlayOneShot();
+                    EventManager.Instance.Trigger(EventManager.NameEvent.ChangeSoundEffect, "Coin");
                     UIManager.Instance.SetCoins();
                     break;
                 case CollectionableType.POWER_UP:

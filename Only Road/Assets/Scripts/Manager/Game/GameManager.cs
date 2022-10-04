@@ -22,7 +22,6 @@ public class GameManager : Singleton<GameManager>
     [Header("MANAGERS")]
     [SerializeField] private List<GameObject> _mainObjects;
 
-    
     private List<Entity> entities = new List<Entity>();
 
     private bool _gameState;
@@ -50,24 +49,24 @@ public class GameManager : Singleton<GameManager>
     //    ScoreManager.Instance.ChangeMultiplier(_scoreMultiplierModifier);
     //}
 
+
     public void StartGame()
     {
         _gameState = true;
+
         foreach (GameObject g in _mainObjects) //DESACTIVA LOS OBJETOS QUE DEJAN DE SER NECESARIOS
             g.SetActive(true);
 
         var player = FindObjectOfType<Player>();
-        
-        player.MovementController.ChangeSpeed(player.MovementController.GameSpeed);
-
-        SpawnManager.Instance.EnableSpawners();
+      
+        EventManager.Instance.Trigger(EventManager.NameEvent.StartGame, player.MovementController.GameSpeed);
     }
 
     public void GameOver()
     {
         EventManager.Instance.Trigger(EventManager.NameEvent.ChangeSoundEffect, "Explosion");
 
-        EventManager.Instance.Trigger(EventManager.NameEvent.Gameover);
+        EventManager.Instance.Trigger(EventManager.NameEvent.Gameover, 0f);
 
         EventManager.Instance.Trigger(EventManager.NameEvent.ApplyMultipliers,
             -TileManager.Instance.GetTilesVelocity(), 0f, 0f);

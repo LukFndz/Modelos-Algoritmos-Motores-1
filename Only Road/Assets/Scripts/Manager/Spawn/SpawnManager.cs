@@ -26,9 +26,10 @@ public class SpawnManager : Singleton<SpawnManager>
             gameObject.SetActive(false);
 
         EventManager.Instance.Subscribe(EventManager.NameEvent.Gameover, DisableSpawners);
+        EventManager.Instance.Subscribe(EventManager.NameEvent.StartGame, EnableSpawners);
     }
 
-    public void EnableSpawners()
+    public void EnableSpawners(params object[] parameters)
     {
         foreach (EntitySpawner e in _spawnersEntity)
             e.enabled = true;

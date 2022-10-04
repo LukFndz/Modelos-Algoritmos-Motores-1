@@ -18,27 +18,25 @@ public class Player : MonoBehaviour
     public Player()
     {
         _movementController.SetContext(this);
-        PowerUpController.SetContext(this);
+        _powerUpController.SetContext(this);
     }
 
     private void Awake() => _awake();
 
     private void Start()
     {
-        //Cursor.lockState = CursorLockMode.Locked;
-        //Cursor.visible = false;
         _start();
     }
 
     private void Update() => _update();
+
     private void FixedUpdate() => _fixedUpdate();
-    private void OnDrawGizmos() => _onDrawGizmos();
+
     private void OnCollisionEnter(Collision collision)
     {
         if (collision.gameObject.layer == 6) // SI TOCA UN ENEMIGO, ACTIVA EL ENDGAME
         {
             GameManager.Instance.GameOver();
-            _movementController.ChangeSpeed(0); // CAMBIAR AL VELOCIDAD A 0
         }
     }
 

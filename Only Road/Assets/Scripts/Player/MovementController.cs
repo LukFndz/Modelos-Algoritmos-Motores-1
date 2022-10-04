@@ -13,6 +13,12 @@ public class MovementController : PlayerComponent
 
     public float GameSpeed { get => _gameSpeed; set => _gameSpeed = value; }
 
+    public override void ManualStart()
+    {
+        EventManager.Instance.Subscribe(EventManager.NameEvent.StartGame, ChangeSpeed);
+        EventManager.Instance.Subscribe(EventManager.NameEvent.Gameover, ChangeSpeed);
+    }
+
     public override void ManualUpdate()
     {
         GetInput();
@@ -36,8 +42,8 @@ public class MovementController : PlayerComponent
         }
     }
 
-    public void ChangeSpeed(float newSpeed)
+    public void ChangeSpeed(params object[] parameters)
     {
-        _currentSpeed = newSpeed;
+        _currentSpeed = (float)parameters[0];
     }
 }

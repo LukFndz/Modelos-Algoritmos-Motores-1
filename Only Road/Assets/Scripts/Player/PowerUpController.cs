@@ -5,7 +5,6 @@ using UnityEngine;
 [System.Serializable]
 public class PowerUpController : PlayerComponent
 {
-
     [SerializeField] private GameObject _tank;
 
     GameObject gTank;

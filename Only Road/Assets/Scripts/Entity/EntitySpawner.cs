@@ -4,8 +4,6 @@ using UnityEngine;
 using Unity;
 using System.Linq;
 
-//LUCA FERNANDEZ - TP1
-
 [System.Serializable]
 public struct SpawnerParams
 {
@@ -22,7 +20,7 @@ public struct LaneParams
     public MovementManager.TypeAdvance movementType;
 }
 
-[System.Serializable]
+
 public class EntitySpawner : MonoBehaviour
 {
     ObjectPool<Entity> _pool;
@@ -58,28 +56,18 @@ public class EntitySpawner : MonoBehaviour
             e.transform.position = _laneParams[random].spawnPoint.position;
             var advance = MovementManager.Instance.GetMovement(_laneParams[random].movementType, e.gameObject, e.GetComponent<Rigidbody>());
 
-            e.EntityMovement.SetStrategy(advance);
+            e.EntityMovement.SetStrategy(advance); // SETEA LA ESTRATEGIA A USAR (RECTA/SINUOSA)
             e.EntityMovement.ChangeVelocity(MovementManager.Instance.GetEntityVelocity()); // CADA VEZ QUE SE PRENDE, SE CAMBIA LA VELOCIDAD A LA ACTUAL
         }
     }
     
 
-    private int GetRandomWithoutLastLane()
+    private int GetRandomWithoutLastLane() //DEVUELVE UN RANDOM DISTINTO AL ULTIMO CARRIL
     {
         var list = lanes.Where(x => x != SpawnManager.Instance.LastLane).ToList();
         int result = list[Random.Range(0, list.Count)];
         SpawnManager.Instance.LastLane = result;
         return result;
     }
-
-    //private int RandomWithoutLastLane()
-    //{
-    //    var exclude = new HashSet<int>() { SpawnManager.Instance.GetLastLane() };
-    //    var range = Enumerable.Range(0, 4).Where(i => !exclude.Contains(i));
-
-    //    var rand = new System.Random();
-    //    int index = rand.Next(0, 4 - exclude.Count);
-    //    return range.ElementAt(index);
-    //}
 }
 

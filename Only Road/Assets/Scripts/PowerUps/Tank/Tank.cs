@@ -34,8 +34,7 @@ public class Tank : MonoBehaviour
     {
         if (other.gameObject.layer == 6)
         {
-            AudioManager.Instance.ChangeEffect("Explosion");
-            AudioManager.Instance.PlayOneShot();
+            EventManager.Instance.Trigger(EventManager.NameEvent.ChangeSoundEffect, "Explosion");
             _boom.transform.position = other.transform.position + new Vector3(0, 2);
             _boom.Play();
             Entity.TurnOff(other.gameObject.GetComponent<Entity>());
