@@ -19,19 +19,14 @@ public class MovementController : PlayerComponent
         EventManager.Instance.Subscribe(EventManager.NameEvent.Gameover, ChangeSpeed);
     }
 
-    public override void ManualUpdate()
-    {
-        GetInput();
-    }
-
     public override void ManualFixedUpdate()
     {
         Move();
     }
 
-    public void GetInput()
+    public void SetInput(float value)
     {
-        _input = new Vector3(0, 0, Input.GetAxisRaw("Horizontal"));
+        _input = new Vector3(0, 0, value);
     }
 
     public void Move()
