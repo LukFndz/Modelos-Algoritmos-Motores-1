@@ -5864,7 +5864,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _spawners:
-  - entity: {fileID: 8707593996711878262, guid: 62923186c13b94a4bae3ec7add429504, type: 3}
+  - entity:
+    - {fileID: 8594853208951164058, guid: 1bb2bd0f248695345b1b9dabe46e9bc4, type: 3}
+    - {fileID: 3983719290945112916, guid: 723949eda67b86e4d895e0230994cf58, type: 3}
+    - {fileID: 2486120648585702159, guid: 3b0a585c65b78f943bb120d8306ab8e7, type: 3}
     laneParams:
     - spawnPoint: {fileID: 733635728}
       movementType: 0
@@ -5878,7 +5881,8 @@ MonoBehaviour:
       movementType: 0
     enemyAmount: 6
     timeToSpawn: 2
-  - entity: {fileID: 1358828992525610881, guid: 474a6a0da600d8c429effd532ad47437, type: 3}
+  - entity:
+    - {fileID: 1358828992525610881, guid: 474a6a0da600d8c429effd532ad47437, type: 3}
     laneParams:
     - spawnPoint: {fileID: 733635728}
       movementType: 0
@@ -5892,7 +5896,8 @@ MonoBehaviour:
       movementType: 0
     enemyAmount: 3
     timeToSpawn: 10
-  - entity: {fileID: 2008257415313814826, guid: cd8e93bd3adbbbe409cee2843b353804, type: 3}
+  - entity:
+    - {fileID: 2008257415313814826, guid: cd8e93bd3adbbbe409cee2843b353804, type: 3}
     laneParams:
     - spawnPoint: {fileID: 733635728}
       movementType: 0

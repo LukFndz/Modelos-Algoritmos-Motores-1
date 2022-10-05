@@ -7,7 +7,7 @@ using System.Linq;
 [System.Serializable]
 public struct SpawnerParams
 {
-    public Entity entity;
+    public Entity[] entity;
     public LaneParams[] laneParams;
     public int enemyAmount;
     public int timeToSpawn;
@@ -25,7 +25,7 @@ public class EntitySpawner : MonoBehaviour
 {
     ObjectPool<Entity> _pool;
     Factory<Entity> _factory;
-    public Entity entity;
+    public Entity[] entity;
     [SerializeField] private LaneParams[] _laneParams;
     [SerializeField] private int _enemyAmount;
     [SerializeField] private int _timeToSpawn;
