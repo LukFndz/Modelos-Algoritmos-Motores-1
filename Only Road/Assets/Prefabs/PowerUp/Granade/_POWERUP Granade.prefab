@@ -60,9 +60,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c57a33eafab42fa4ea78821094c45a19, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _rotationSpeed: 0
-  _model: {fileID: 0}
-  _type: 0
   type: 0
 --- !u!65 &-368269440317118701
 BoxCollider:
@@ -155,6 +152,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: -7635826562936255635, guid: 48ac85a469b69224c8edc5059b8a1cff, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: 2e83f0e13793e4449aef637b0d01e350, type: 2}
     - target: {fileID: 919132149155446097, guid: 48ac85a469b69224c8edc5059b8a1cff, type: 3}
       propertyPath: m_Name
       value: _MODEL Granade

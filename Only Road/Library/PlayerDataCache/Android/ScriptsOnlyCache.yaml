@@ -93,83 +93,83 @@ ScriptsOnlyBuild:
     - Class: 108
       Script: {instanceID: 0}
     - Class: 114
-      Script: {instanceID: 1610}
+      Script: {instanceID: 1580}
     - Class: 114
-      Script: {instanceID: 1824}
+      Script: {instanceID: 1794}
     - Class: 114
-      Script: {instanceID: 1914}
+      Script: {instanceID: 1884}
     - Class: 114
-      Script: {instanceID: 1958}
+      Script: {instanceID: 1928}
     - Class: 114
-      Script: {instanceID: 2130}
+      Script: {instanceID: 2100}
     - Class: 114
-      Script: {instanceID: 2272}
+      Script: {instanceID: 2242}
     - Class: 114
-      Script: {instanceID: 2280}
+      Script: {instanceID: 2250}
     - Class: 114
-      Script: {instanceID: 2432}
+      Script: {instanceID: 2402}
     - Class: 114
-      Script: {instanceID: 2652}
+      Script: {instanceID: 2622}
     - Class: 114
-      Script: {instanceID: 2802}
+      Script: {instanceID: 2772}
     - Class: 114
-      Script: {instanceID: 2852}
+      Script: {instanceID: 2822}
     - Class: 114
-      Script: {instanceID: 3016}
+      Script: {instanceID: 2986}
     - Class: 114
-      Script: {instanceID: 3106}
+      Script: {instanceID: 3076}
     - Class: 114
-      Script: {instanceID: 3124}
+      Script: {instanceID: 3094}
     - Class: 114
-      Script: {instanceID: 3150}
+      Script: {instanceID: 3096}
     - Class: 114
-      Script: {instanceID: 3172}
+      Script: {instanceID: 3122}
     - Class: 114
-      Script: {instanceID: 3262}
+      Script: {instanceID: 3144}
     - Class: 114
-      Script: {instanceID: 3288}
+      Script: {instanceID: 3234}
     - Class: 114
-      Script: {instanceID: 3350}
+      Script: {instanceID: 3260}
+    - Class: 114
+      Script: {instanceID: 3322}
+    - Class: 114
+      Script: {instanceID: 3338}
     - Class: 114
       Script: {instanceID: 3366}
     - Class: 114
       Script: {instanceID: 3394}
     - Class: 114
-      Script: {instanceID: 3422}
+      Script: {instanceID: 3400}
     - Class: 114
-      Script: {instanceID: 3428}
+      Script: {instanceID: 3520}
     - Class: 114
-      Script: {instanceID: 3548}
+      Script: {instanceID: 4056}
     - Class: 114
-      Script: {instanceID: 4084}
+      Script: {instanceID: 4074}
     - Class: 114
-      Script: {instanceID: 4102}
+      Script: {instanceID: 4156}
     - Class: 114
-      Script: {instanceID: 4184}
+      Script: {instanceID: 4174}
     - Class: 114
-      Script: {instanceID: 4202}
+      Script: {instanceID: 4330}
     - Class: 114
-      Script: {instanceID: 4358}
+      Script: {instanceID: 4360}
     - Class: 114
-      Script: {instanceID: 4388}
+      Script: {instanceID: 4394}
     - Class: 114
-      Script: {instanceID: 4422}
+      Script: {instanceID: 4432}
     - Class: 114
-      Script: {instanceID: 4460}
+      Script: {instanceID: 4548}
     - Class: 114
-      Script: {instanceID: 4576}
+      Script: {instanceID: 4678}
     - Class: 114
-      Script: {instanceID: 4706}
+      Script: {instanceID: 4682}
     - Class: 114
-      Script: {instanceID: 4710}
+      Script: {instanceID: 4898}
     - Class: 114
-      Script: {instanceID: 4926}
+      Script: {instanceID: 5024}
     - Class: 114
-      Script: {instanceID: 5052}
-    - Class: 114
-      Script: {instanceID: 5378}
-    - Class: 114
-      Script: {instanceID: 21870}
+      Script: {instanceID: 5350}
     - Class: 115
       Script: {instanceID: 0}
     - Class: 128
@@ -189,8 +189,6 @@ ScriptsOnlyBuild:
     - Class: 223
       Script: {instanceID: 0}
     - Class: 224
-      Script: {instanceID: 0}
-    - Class: 850595691
       Script: {instanceID: 0}
   scriptHashData:
   - hash:
@@ -541,6 +539,12 @@ ScriptsOnlyBuild:
     assemblyName: Assembly-CSharp.dll
     namespaceName: 
     className: Player
+  - hash:
+      serializedVersion: 2
+      Hash: ecfed489bc20f33e5e8175243cc920e8
+    assemblyName: Assembly-CSharp.dll
+    namespaceName: 
+    className: ButtonMove
   - hash:
       serializedVersion: 2
       Hash: c3d3430df9e3ea95e3e3d587961390fb
@@ -1111,12 +1115,6 @@ ScriptsOnlyBuild:
     assemblyName: Cinemachine.dll
     namespaceName: Cinemachine
     className: CinemachineBlendListCamera
-  - hash:
-      serializedVersion: 2
-      Hash: ecfed489bc20f33e5e8175243cc920e8
-    assemblyName: Assembly-CSharp.dll
-    namespaceName: 
-    className: ButtonMove
   platform: 13
   scenePathNames:
   - Assets/Scenes/Test/Game.unity
