@@ -1,7 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-
 public class EntityMovement
 {
     private IAdvance _currentStrategy;
@@ -34,7 +33,5 @@ public class EntityMovement
     public void StopMoving(params object[] parameters)
     {
         ChangeVelocity(0);
-    }
-
-    
+    } 
 }

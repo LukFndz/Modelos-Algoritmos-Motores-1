@@ -15,6 +15,10 @@ public class Entity : MonoBehaviour
 
     public EntityMovement EntityMovement { get => _entityMovement; set => _entityMovement = value; }
 
+    private void OnEnable()
+    {
+        
+    }
 
     private void Awake()
     {

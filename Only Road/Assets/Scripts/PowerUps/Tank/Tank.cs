@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Tank : MonoBehaviour
+public class Tank : MonoBehaviour, IPlayer
 {
     [SerializeField] private ParticleSystem _boom;
 

@@ -2,18 +2,11 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public enum CollectionableType
-{
-    COIN,
-    POWER_UP
-}
-
 public class CollectionableItem : MonoBehaviour
 {
     [Range(10, 30)]
     [SerializeField] private float _rotationSpeed;
     [SerializeField] private GameObject _model;
-    [SerializeField] private CollectionableType _type;
 
     void Update()
     {
@@ -27,7 +20,7 @@ public class CollectionableItem : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        if (other.CompareTag("Player"))
+        if (other.gameObject.GetComponent<IPlayer>() != null)
         {
             GetItem();
         }
