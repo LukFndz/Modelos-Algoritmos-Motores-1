@@ -17,6 +17,7 @@ ScriptsOnlyBuild:
     - PanelManager
     - Player
     - PowerUp
+    - PowerUpCount
     - PowerUpManager
     - SavePlayerDataJSON
     - ScoreManager
@@ -161,15 +162,17 @@ ScriptsOnlyBuild:
     - Class: 114
       Script: {instanceID: 4548}
     - Class: 114
-      Script: {instanceID: 4678}
+      Script: {instanceID: 4680}
     - Class: 114
-      Script: {instanceID: 4682}
+      Script: {instanceID: 4684}
     - Class: 114
-      Script: {instanceID: 4898}
+      Script: {instanceID: 4900}
     - Class: 114
-      Script: {instanceID: 5024}
+      Script: {instanceID: 5026}
     - Class: 114
-      Script: {instanceID: 5350}
+      Script: {instanceID: 5234}
+    - Class: 114
+      Script: {instanceID: 5354}
     - Class: 115
       Script: {instanceID: 0}
     - Class: 128
@@ -313,7 +316,7 @@ ScriptsOnlyBuild:
     className: AudioManager
   - hash:
       serializedVersion: 2
-      Hash: 52d6bc2fd8e9186bb8c20e06afb1d11b
+      Hash: 88326d83d6f86e807e4b2ac317b988c9
     assemblyName: Assembly-CSharp.dll
     namespaceName: 
     className: EntitySpawner
@@ -349,7 +352,7 @@ ScriptsOnlyBuild:
     className: GroupTrack
   - hash:
       serializedVersion: 2
-      Hash: 064da71fd7baa069560e555312377b3b
+      Hash: ed4a8e35aeb71e67dcd002f452f578e3
     assemblyName: Assembly-CSharp.dll
     namespaceName: 
     className: PowerUpManager
@@ -655,7 +658,7 @@ ScriptsOnlyBuild:
     className: Button
   - hash:
       serializedVersion: 2
-      Hash: 1318516a053a89ad15256959adb7123f
+      Hash: 5fa09f6d581069d6dbbbed9f434f2b8e
     assemblyName: Assembly-CSharp.dll
     namespaceName: 
     className: Granade
@@ -685,7 +688,7 @@ ScriptsOnlyBuild:
     className: ButtonManager
   - hash:
       serializedVersion: 2
-      Hash: 1318516a053a89ad15256959adb7123f
+      Hash: 5fa09f6d581069d6dbbbed9f434f2b8e
     assemblyName: Assembly-CSharp.dll
     namespaceName: 
     className: CollectionableItem
@@ -835,7 +838,7 @@ ScriptsOnlyBuild:
     className: Dropdown
   - hash:
       serializedVersion: 2
-      Hash: 1318516a053a89ad15256959adb7123f
+      Hash: 5fa09f6d581069d6dbbbed9f434f2b8e
     assemblyName: Assembly-CSharp.dll
     namespaceName: 
     className: Coin
@@ -853,7 +856,7 @@ ScriptsOnlyBuild:
     className: CinemachineIndependentImpulseListener
   - hash:
       serializedVersion: 2
-      Hash: 75510b455aee304608c78f0edeb8529e
+      Hash: a6f82c9a0bcb4dda975a580a31e08289
     assemblyName: Assembly-CSharp.dll
     namespaceName: 
     className: SpawnManager
@@ -931,7 +934,7 @@ ScriptsOnlyBuild:
     className: SignalReceiver
   - hash:
       serializedVersion: 2
-      Hash: cb7a47afef52e534763c90ac854529a2
+      Hash: ec06af14427a83170d6a730e77d0d2c0
     assemblyName: Assembly-CSharp.dll
     namespaceName: 
     className: UIManager
@@ -1057,6 +1060,12 @@ ScriptsOnlyBuild:
     className: CinemachineRecomposer
   - hash:
       serializedVersion: 2
+      Hash: 52e719c699e6b3fdbc3b51c71f774aaf
+    assemblyName: Assembly-CSharp.dll
+    namespaceName: 
+    className: PowerUpCount
+  - hash:
+      serializedVersion: 2
       Hash: b5c3dbcb94925c8b595ad16a62b44788
     assemblyName: Cinemachine.dll
     namespaceName: Cinemachine
@@ -1118,5 +1127,4 @@ ScriptsOnlyBuild:
   platform: 13
   scenePathNames:
   - Assets/Scenes/Test/Game.unity
-  playerPath: C:/Users/Luca/Desktop/Motores Only Road - Luca Fernandez Tobias Lesta/Build/Only
-    Road.apk
+  playerPath: C:/Users/Luca/Desktop/TP1Motores2-Fernandez-Lesta/TP1Motores2-Fernandez-Lesta/Build/OnlyRoad.apk

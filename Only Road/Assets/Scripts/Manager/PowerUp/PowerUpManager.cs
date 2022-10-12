@@ -7,10 +7,10 @@ public class PowerUpManager : Singleton<PowerUpManager>
 {
     [SerializeField] private Player _player;
 
-    [SerializeField] private float _tankTime;
+    [SerializeField] private float _powerUpTime;
 
     float timer;
-    public float TankTime { get => _tankTime; set => _tankTime = value; }
+    public float PowerUpTime { get => _powerUpTime; set => _powerUpTime = value; }
 
     public void ActivatePowerUp(PowerUpType type)
     {
@@ -21,5 +21,6 @@ public class PowerUpManager : Singleton<PowerUpManager>
                 break;
         }
         EventManager.Instance.Trigger(EventManager.NameEvent.ChangeSoundEffect, "PowerUp");
+        UIManager.Instance.StartPowerUpTimer();
     }
 }

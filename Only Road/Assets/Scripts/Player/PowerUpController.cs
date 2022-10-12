@@ -6,8 +6,12 @@ using UnityEngine;
 public class PowerUpController : PlayerComponent
 {
     [SerializeField] private GameObject _tank;
+    private bool _isInvencible;
+
 
     GameObject gTank;
+
+    public bool IsInvencible { get => _isInvencible; set => _isInvencible = value; }
 
     public override void ManualStart()
     {

@@ -24,6 +24,10 @@ public class UIManager : Singleton<UIManager>
     [SerializeField] private TextMeshProUGUI[] _txtHighScore;
     [SerializeField] private TextMeshProUGUI[] _txtCoins;
 
+    [Header("PowerUp")]
+    [SerializeField] private GameObject _powerUpOBJ;
+
+
     public List<PanelManager> canvasControllerList;
     PanelManager actualActiveCanvas;
     PanelManager lastActiveCanvas;
@@ -87,5 +91,15 @@ public class UIManager : Singleton<UIManager>
     {
         SetCoins();
         SetHighScore();
+    }
+
+    public void StartPowerUpTimer()
+    {
+        _powerUpOBJ.SetActive(true);
+    }
+
+    public void FinishPowerUpTimer()
+    {
+        _powerUpOBJ.SetActive(false);
     }
 }
