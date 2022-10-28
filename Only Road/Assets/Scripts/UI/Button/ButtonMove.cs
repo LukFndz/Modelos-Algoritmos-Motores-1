@@ -17,11 +17,11 @@ public class ButtonMove : MonoBehaviour
 
     public void Move()
     {
-        _player.MovementController.SetInput(_value);
+        _player.MyController.SetInput(_value);
     }
 
     public void StopMove()
     {
-        _player.MovementController.SetInput(0);
+        _player.MyController.SetInput(0);
     }
 }

@@ -22,14 +22,14 @@ public class Tank : MonoBehaviour, IPlayer
     {
         gameObject.SetActive(true);
         _maxTime = PowerUpManager.Instance.PowerUpTime;
-        FindObjectOfType<Player>().PowerUpController.IsInvencible = true;
+        FindObjectOfType<Player>().MyModel.PowerUpController.IsInvencible = true;
     }
 
     public void DisableTank()
     {
         _timer = 0;
         gameObject.SetActive(false);
-        FindObjectOfType<Player>().PowerUpController.IsInvencible = false;
+        FindObjectOfType<Player>().MyModel.PowerUpController.IsInvencible = false;
     }
 
     private void OnTriggerEnter(Collider other)

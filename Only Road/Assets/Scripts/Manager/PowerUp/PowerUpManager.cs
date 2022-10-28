@@ -17,7 +17,7 @@ public class PowerUpManager : Singleton<PowerUpManager>
         switch (type)
         {
             case PowerUpType.TANK:
-                _player.PowerUpController.Tank();
+                _player.MyModel.PowerUpController.Tank();
                 break;
         }
         EventManager.Instance.Trigger(EventManager.NameEvent.ChangeSoundEffect, "PowerUp");

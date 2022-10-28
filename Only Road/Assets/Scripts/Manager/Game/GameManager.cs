@@ -50,7 +50,7 @@ public class GameManager : Singleton<GameManager>
 
         var player = FindObjectOfType<Player>();
       
-        EventManager.Instance.Trigger(EventManager.NameEvent.StartGame, player.MovementController.GameSpeed);
+        EventManager.Instance.Trigger(EventManager.NameEvent.StartGame, player.MyModel.MovementController.GameSpeed);
     }
 
     public void GameOver()

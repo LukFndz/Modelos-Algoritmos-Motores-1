@@ -4,7 +4,6 @@ using UnityEngine;
 
 public class PlayerComponent
 {
-
     protected Player _player;
     public void SetContext(Player player)
     {
