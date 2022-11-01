@@ -14,7 +14,8 @@ public enum PanelType
     INVENTORY_MENU,
     OPTIONS_MENU,
     HELP_MENU,
-    END_MENU
+    END_MENU,
+    REWARD_MENU
 }
 
 

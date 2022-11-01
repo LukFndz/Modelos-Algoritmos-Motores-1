@@ -78,7 +78,7 @@ public class GameManager : Singleton<GameManager>
         foreach (GameObject g in _mainObjects) //DESACTIVA LOS OBJETOS QUE DEJAN DE SER NECESARIOS
             g.SetActive(false);
 
-        UIManager.Instance.SwitchCanvas(PanelType.END_MENU); //MENU DE DERROTA
+        UIManager.Instance.SwitchCanvas(PanelType.REWARD_MENU); //MENU DE DERROTA
     }
 
     public void ResumeGame()

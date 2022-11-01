@@ -23,8 +23,15 @@ public class CoinManager : Singleton<CoinManager>
         return _coins;
     }
 
-    internal void AddCoin()
+    public void AddCoin()
     {
         _coins++;
+    }
+
+    public void AddMuchCoins(int quantity)
+    {
+        _coins += quantity;
+        UIManager.Instance.SetCoins();
+        SavePlayerDataJSON.Instance.SaveParams();
     }
 }
