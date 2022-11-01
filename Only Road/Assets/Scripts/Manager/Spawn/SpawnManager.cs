@@ -13,8 +13,10 @@ public class SpawnManager : Singleton<SpawnManager>
 
     public int LastLane { get => _lastLane; set => _lastLane = value; }
 
-    private void Start()
+    private void Awake()
     {
+        base.Awake();
+
         for (int i = 0; i < _spawners.Count; i++)
         {
             _spawnersEntity.Add(gameObject.AddComponent<EntitySpawner>());
@@ -22,11 +24,14 @@ public class SpawnManager : Singleton<SpawnManager>
             _spawnersEntity[i].enabled = false;
         }
 
-        if(!GameManager.Instance.GameState)
-            gameObject.SetActive(false);
-
         EventManager.Instance.Subscribe(EventManager.NameEvent.Gameover, DisableSpawners);
         EventManager.Instance.Subscribe(EventManager.NameEvent.StartGame, EnableSpawners);
+    }
+
+    private void Start()
+    {
+        if (!GameManager.Instance.GameState)
+            gameObject.SetActive(false);
     }
 
     public void EnableSpawners(params object[] parameters)

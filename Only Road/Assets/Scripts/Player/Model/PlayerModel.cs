@@ -16,9 +16,13 @@ public class PlayerModel : PlayerComponent
         _powerUpController = new PowerUpController(player);
     }
 
+    public override void ManualAwake()
+    {
+        _movementController.ManualAwake();
+    }
+
     public override void ManualStart()
     {
-        _movementController.ManualStart();
         _powerUpController.ManualStart();
     }
 

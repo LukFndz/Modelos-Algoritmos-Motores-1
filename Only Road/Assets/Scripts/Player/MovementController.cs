@@ -21,7 +21,7 @@ public class MovementController
         _player = player;
     }
 
-    public void ManualStart()
+    public void ManualAwake()
     {
         EventManager.Instance.Subscribe(EventManager.NameEvent.StartGame, ChangeSpeed);
         EventManager.Instance.Subscribe(EventManager.NameEvent.Gameover, ChangeSpeed);

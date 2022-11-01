@@ -6,6 +6,9 @@ using System.Linq;
 
 public class GameManager : Singleton<GameManager>
 {
+
+    public static bool restartGame = false;
+    
     private int _avoidCars;
 
     [Header("MODIFIERS")]
@@ -25,6 +28,12 @@ public class GameManager : Singleton<GameManager>
     private bool _gameState;
 
     public bool GameState { get => _gameState; set => _gameState = value; }
+
+    private void Start()
+    {
+        if (restartGame)
+            StartGame();
+    }
 
     private void OnTriggerEnter(Collider other)
     {
@@ -49,7 +58,9 @@ public class GameManager : Singleton<GameManager>
             g.SetActive(true);
 
         var player = FindObjectOfType<Player>();
-      
+
+        UIManager.Instance.SwitchCanvas(PanelType.IN_GAME_MENU);
+
         EventManager.Instance.Trigger(EventManager.NameEvent.StartGame, player.MyModel.MovementController.GameSpeed);
     }
 
@@ -82,6 +93,14 @@ public class GameManager : Singleton<GameManager>
 
     public void ReloadGame()
     {
+        restartGame = false;
+        Time.timeScale = 1;
+        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+    }
+
+    public void RestartGame()
+    {
+        restartGame = true;
         Time.timeScale = 1;
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
     }
