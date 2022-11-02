@@ -6,6 +6,14 @@ public class NormalAdvance : IAdvance
     private Rigidbody _rb;
     private GameObject _entity;
 
+    public NormalAdvance(Rigidbody rb, GameObject entity)
+    {
+        _velocity = FlyweightPointer.Entity.velocity;
+        _rb = rb;
+        _entity = entity;
+    }
+
+    //TILES CONSTRUCTOR
     public NormalAdvance(float velocity, Rigidbody rb, GameObject entity)
     {
         _velocity = velocity;

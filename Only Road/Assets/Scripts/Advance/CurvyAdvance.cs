@@ -12,9 +12,9 @@ public class CurvyAdvance : IAdvance
     private float speed;
 
 
-    public CurvyAdvance(float velocity, Rigidbody rb, GameObject entity, float freq, float mag, float speed)
+    public CurvyAdvance(Rigidbody rb, GameObject entity, float freq, float mag, float speed)
     {
-        _velocity = velocity;
+        _velocity = FlyweightPointer.Entity.velocity;
         _rb = rb;
         _entity = entity;
         this.freq = freq;

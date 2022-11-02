@@ -34,16 +34,16 @@ public class MovementManager : Singleton<MovementManager>
         switch(type)
         {
             case TypeAdvance.Straight:
-                return new NormalAdvance(_velocity, rb, e);
+                return new NormalAdvance(rb, e);
             case TypeAdvance.Curvy:
-                return new CurvyAdvance(_velocity, rb, e, _freq, _mag, _speed);
+                return new CurvyAdvance(rb, e, _freq, _mag, _speed);
             case TypeAdvance.Both:
                 if(Random.Range(0,2) == 1)
-                    return new CurvyAdvance(_velocity, rb, e, _freq, _mag, _speed);
+                    return new CurvyAdvance(rb, e, _freq, _mag, _speed);
                 else
-                    return new NormalAdvance(_velocity, rb, e);
+                    return new NormalAdvance(rb, e);
             default:
-                return new NormalAdvance(_velocity, rb, e);
+                return new NormalAdvance(rb, e);
         }
     }
 

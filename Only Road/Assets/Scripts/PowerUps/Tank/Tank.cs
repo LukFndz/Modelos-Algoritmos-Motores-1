@@ -37,8 +37,10 @@ public class Tank : MonoBehaviour, IPlayer
         var col = other.gameObject?.GetComponent<IAffectTank>();
         if (col != null)
         {
-            _boom.transform.position = other.transform.position + new Vector3(0, 2);
-            _boom.Play();
+            ParticleSystem particle = Instantiate(_boom);
+            particle.transform.position = other.transform.position + new Vector3(0, 2);
+            particle.Play();
+            Destroy(particle, 3);
             col.TankHit();
         }
     }

@@ -11,7 +11,7 @@ public class Entity : MonoBehaviour
     ObjectPool<Entity> _referenceBack;
 
     //COMPOSITION
-    private EntityMovement _entityMovement;
+    protected EntityMovement _entityMovement;
 
     public EntityMovement EntityMovement { get => _entityMovement; set => _entityMovement = value; }
 
@@ -25,12 +25,12 @@ public class Entity : MonoBehaviour
         _entityMovement = new EntityMovement();
     }
 
-    private void Start()
+    public virtual void Start()
     {
         _entityMovement.ManualStart();
     }
 
-    private void Update()
+    public virtual void Update()
     {
         _entityMovement.ManualUpdate();
 

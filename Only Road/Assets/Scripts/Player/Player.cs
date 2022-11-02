@@ -10,8 +10,8 @@ public class Player : MonoBehaviour, IPlayer
     [SerializeField] private PlayerController _myController = new PlayerController();
     [SerializeField] private PlayerView _myView = new PlayerView();
 
-    public delegate void ComponentMethod();
-    public ComponentMethod _awake, _start, _update, _fixedUpdate, _onDrawGizmos;
+    public delegate void Component();
+    public Component _awake, _start, _update, _fixedUpdate, _onDrawGizmos;
 
     public PlayerModel MyModel { get => _myModel; set => _myModel = value; }
     public PlayerController MyController { get => _myController; set => _myController = value; }
