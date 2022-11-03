@@ -52,6 +52,8 @@ public class GameManager : Singleton<GameManager>
 
     public void StartGame()
     {
+        StaminaManager.Instance.UseEnergy(StaminaManager.Instance.PlayEnergy);
+
         _gameState = true;
 
         foreach (GameObject g in _mainObjects) //ACTIVA LOS OBJETOS QUE SON NECESARIOS

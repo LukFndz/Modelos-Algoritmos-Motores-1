@@ -11,6 +11,9 @@ public struct SaveData
     public float highscore;
     public Map[] unlockedMaps;
     public int lastMapIndex;
+    public int currentStamina;
+    public DateTime _lastStamina;
+    public DateTime _nextStamina;
 
     //UI
     public float musicVolume;

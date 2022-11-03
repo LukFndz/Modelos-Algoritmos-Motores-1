@@ -4,6 +4,7 @@ using UnityEngine;
 using TMPro;
 using UnityEngine.UI;
 using System.Linq;
+using System;
 
 public enum PanelType
 {
@@ -24,6 +25,8 @@ public class UIManager : Singleton<UIManager>
     [SerializeField] private TextMeshProUGUI _txtScore;
     [SerializeField] private TextMeshProUGUI[] _txtHighScore;
     [SerializeField] private TextMeshProUGUI[] _txtCoins;
+    [SerializeField] private TextMeshProUGUI _txtStamina;
+    [SerializeField] private TextMeshProUGUI _txtTimer;
 
     [Header("PowerUp")]
     [SerializeField] private GameObject _powerUpOBJ;
@@ -102,5 +105,22 @@ public class UIManager : Singleton<UIManager>
     public void FinishPowerUpTimer()
     {
         _powerUpOBJ.SetActive(false);
+    }
+
+    public void UpdateStamina()
+    {
+        _txtStamina.text = StaminaManager.Instance.GetStamina().ToString() + " / " + StaminaManager.Instance.MaxStamina.ToString();
+    }
+
+    public void UpdateStaminaTimer()
+    {
+        if (StaminaManager.Instance.GetStamina() >= StaminaManager.Instance.MaxStamina)
+            _txtTimer.gameObject.SetActive(false);
+        else
+        {
+            _txtTimer.gameObject.SetActive(false);
+            TimeSpan timer = StaminaManager.Instance.GetNextDate() - DateTime.Now;
+            _txtTimer.text = timer.Minutes.ToString() + ":" + timer.Seconds.ToString();
+        }
     }
 }
