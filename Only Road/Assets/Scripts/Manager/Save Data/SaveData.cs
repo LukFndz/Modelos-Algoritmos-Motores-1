@@ -10,6 +10,7 @@ public struct SaveData
     public int coins;
     public float highscore;
     public Map[] unlockedMaps;
+    public int lastMapIndex;
 
     //UI
     public float musicVolume;

@@ -49,16 +49,18 @@ public class InventoryManager : Singleton<InventoryManager>
 
     private void Start()
     {
-        _currentMap = Instantiate(_maps[index].map, _mapPivot.transform);
-        _currentPlayer = Instantiate(_maps[index].player, _playerPivot.transform);
-        _cam.backgroundColor = _maps[index].skyColor;
-        _txtMapName.text = _maps[index].name;
-        _currentIndex = index;
+        SetMapsFromSave();
+        _currentMap = Instantiate(_maps[SavePlayerDataJSON.Instance.Savedata.lastMapIndex].map, _mapPivot.transform);
+        _currentPlayer = Instantiate(_maps[SavePlayerDataJSON.Instance.Savedata.lastMapIndex].player, _playerPivot.transform);
+        _cam.backgroundColor = _maps[SavePlayerDataJSON.Instance.Savedata.lastMapIndex].skyColor;
+        _txtMapName.text = _maps[SavePlayerDataJSON.Instance.Savedata.lastMapIndex].name;
+        _currentIndex = SavePlayerDataJSON.Instance.Savedata.lastMapIndex;
+        index = _currentIndex;
+
         _backButton.onClick.AddListener(BackToLastMap);
         _buyButton.onClick.AddListener(BuyMap);
         _inventoryButton.onClick.AddListener(OpenInventory);
         _txtPrice.text = _maps[index].price.ToString();
-        SetMapsFromSave();
     }
 
     public void OpenInventory()
@@ -131,14 +133,18 @@ public class InventoryManager : Singleton<InventoryManager>
 
     public void ConfirmMap()
     {
-        Destroy(_currentMap);
-        Destroy(_currentPlayer);
-        _currentMap = _placeholderMap;
-        _currentPlayer = _placeholderPlayer;
-        _currentIndex = index;
-        _placeholderMap = null;
-        _placeholderPlayer = null;
-        _selectButton.gameObject.SetActive(false);
+        if (_maps[index].unlocked)
+        {
+            Destroy(_currentMap);
+            Destroy(_currentPlayer);
+            _currentMap = _placeholderMap;
+            _currentPlayer = _placeholderPlayer;
+            _currentIndex = index;
+            _placeholderMap = null;
+            _placeholderPlayer = null;
+            _selectButton.gameObject.SetActive(false);
+            SavePlayerDataJSON.Instance.SaveParams();
+        }
     }
 
     public void CheckButton()
@@ -161,6 +167,10 @@ public class InventoryManager : Singleton<InventoryManager>
     public Map GetActualMap()
     {
         return _maps[index];
+    }
+    public int GetActualMapIndex()
+    {
+        return index;
     }
 
     public void SetMapsFromSave()

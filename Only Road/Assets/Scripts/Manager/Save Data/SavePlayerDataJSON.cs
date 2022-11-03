@@ -32,10 +32,12 @@ public class SavePlayerDataJSON : Singleton<SavePlayerDataJSON>
         float musicVolume = AudioManager.Instance.GetActualVolume(SliderType.Music);
         float effectVolume = AudioManager.Instance.GetActualVolume(SliderType.Effects);
         Map[] unlockedMaps = InventoryManager.Instance.Maps;
+        int index = InventoryManager.Instance.GetActualMapIndex();
 
         _savedata.effectVolume = effectVolume;
         _savedata.musicVolume = musicVolume;
         _savedata.unlockedMaps = unlockedMaps;
+        _savedata.lastMapIndex = index;
 
         _savedata.coins = coins;
         if(_savedata.highscore < score)
@@ -68,10 +70,12 @@ public class SavePlayerDataJSON : Singleton<SavePlayerDataJSON>
             _deleteSavedata.coins = 0;
             _deleteSavedata.musicVolume = 1;
             _deleteSavedata.effectVolume = 1;
+            _deleteSavedata.lastMapIndex = 0;
 
             for (int i = 0; i < InventoryManager.Instance.Maps.Length; i++)
             {
-                InventoryManager.Instance.Maps[i].unlocked = false;
+                if(i != 0)
+                    InventoryManager.Instance.Maps[i].unlocked = false;
             }
 
             _deleteSavedata.unlockedMaps = InventoryManager.Instance.Maps;
@@ -90,6 +94,7 @@ public class SavePlayerDataJSON : Singleton<SavePlayerDataJSON>
             _savedata.musicVolume = 1;
             _savedata.effectVolume = 1;
             _savedata.unlockedMaps = InventoryManager.Instance.Maps;
+            _savedata.lastMapIndex = 0;
             return;
         }
 

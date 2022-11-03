@@ -13,12 +13,14 @@ public class AudioManager : Singleton<AudioManager>
     [SerializeField] private AudioClip[] _effects;
 
 
-    private Dictionary<Map, AudioClip> _musicDictionary = new Dictionary<Map, AudioClip>();
+    private Dictionary<string, AudioClip> _musicDictionary = new Dictionary<string, AudioClip>();
 
     private Dictionary<string, AudioClip> _effectDictionary = new Dictionary<string, AudioClip>();
 
     private void Start()
     {
+        _musicDictionary.Clear();
+
         _musicSource.volume = SavePlayerDataJSON.Instance.Savedata.musicVolume;
         _effectSource.volume = SavePlayerDataJSON.Instance.Savedata.effectVolume;
 
@@ -36,7 +38,7 @@ public class AudioManager : Singleton<AudioManager>
 
     public void ChangeMusic(Map map)
     {
-        _musicSource.clip = _musicDictionary[map];
+        _musicSource.clip = _musicDictionary[map.name];
     }
 
     public void ChangeEffect(params object[] parameters)
@@ -46,7 +48,7 @@ public class AudioManager : Singleton<AudioManager>
 
     public void AddMusicClip(Map map)
     {
-        _musicDictionary.Add(map, map.music);
+        _musicDictionary.Add(map.name, map.music);
     }
 
     public void AddEffectClip(string id, AudioClip clip)
