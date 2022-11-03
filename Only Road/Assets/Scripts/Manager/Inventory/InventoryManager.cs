@@ -42,6 +42,8 @@ public class InventoryManager : Singleton<InventoryManager>
     private int _currentIndex;
     private int index;
 
+    public Map[] Maps { get => _maps; set => _maps = value; }
+
     private void Start()
     {
         _currentMap = Instantiate(_maps[index].map, _mapPivot.transform);
@@ -53,6 +55,7 @@ public class InventoryManager : Singleton<InventoryManager>
         _buyButton.onClick.AddListener(BuyMap);
         _inventoryButton.onClick.AddListener(OpenInventory);
         _txtPrice.text = _maps[index].price.ToString();
+        SetMapsFromSave();
     }
 
     public void OpenInventory()
@@ -115,6 +118,7 @@ public class InventoryManager : Singleton<InventoryManager>
             CoinManager.Instance.AddMuchCoins(-_maps[index].price);
             UIManager.Instance.SetCoins();
             CheckButton();
+            SavePlayerDataJSON.Instance.SaveParams();
         }
     }
 
@@ -145,5 +149,10 @@ public class InventoryManager : Singleton<InventoryManager>
             else
                 _selectButton.gameObject.SetActive(true);
         }
+    }
+
+    public void SetMapsFromSave()
+    {
+        _maps = SavePlayerDataJSON.Instance.Savedata.unlockedMaps;
     }
 }
