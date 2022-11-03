@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -12,6 +13,7 @@ public struct Map
     public Color skyColor;
     public int price;
     public bool unlocked;
+    public AudioClip music;
 }
 
 public class InventoryManager : Singleton<InventoryManager>
@@ -34,6 +36,7 @@ public class InventoryManager : Singleton<InventoryManager>
 
 
     private GameObject _placeholderMap;
+
     private GameObject _placeholderPlayer;
 
     private GameObject _currentMap;
@@ -93,6 +96,8 @@ public class InventoryManager : Singleton<InventoryManager>
         _placeholderPlayer = Instantiate(_maps[index].player, _playerPivot.transform);
         _txtMapName.text = _maps[index].name;
         _cam.backgroundColor = _maps[index].skyColor;
+        AudioManager.Instance.ChangeMusic(GetActualMap());
+        AudioManager.Instance.PlayMusic();
     }
 
     public void BackToLastMap()
@@ -108,6 +113,8 @@ public class InventoryManager : Singleton<InventoryManager>
         index = _currentIndex;
         _txtMapName.text = _maps[index].name;
         _cam.backgroundColor = _maps[index].skyColor;
+        AudioManager.Instance.ChangeMusic(GetActualMap());
+        AudioManager.Instance.PlayMusic();
     }
 
     public void BuyMap()
@@ -151,8 +158,16 @@ public class InventoryManager : Singleton<InventoryManager>
         }
     }
 
+    public Map GetActualMap()
+    {
+        return _maps[index];
+    }
+
     public void SetMapsFromSave()
     {
-        _maps = SavePlayerDataJSON.Instance.Savedata.unlockedMaps;
+        for (int i = 0; i < _maps.Length; i++)
+        {
+            _maps[i].unlocked = SavePlayerDataJSON.Instance.Savedata.unlockedMaps[i].unlocked;
+        }
     }
 }

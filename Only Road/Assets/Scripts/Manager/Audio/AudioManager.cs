@@ -10,11 +10,10 @@ public class AudioManager : Singleton<AudioManager>
     [SerializeField] private AudioSource _musicSource;
     [SerializeField] private AudioSource _effectSource;
 
-    [SerializeField] private AudioClip[] _musics;
     [SerializeField] private AudioClip[] _effects;
 
 
-    private Dictionary<string, AudioClip> _musicDictionary = new Dictionary<string, AudioClip>();
+    private Dictionary<Map, AudioClip> _musicDictionary = new Dictionary<Map, AudioClip>();
 
     private Dictionary<string, AudioClip> _effectDictionary = new Dictionary<string, AudioClip>();
 
@@ -23,21 +22,21 @@ public class AudioManager : Singleton<AudioManager>
         _musicSource.volume = SavePlayerDataJSON.Instance.Savedata.musicVolume;
         _effectSource.volume = SavePlayerDataJSON.Instance.Savedata.effectVolume;
 
-        foreach (AudioClip a in _musics)
-            AddMusicClip(a.name, a);
+        foreach (Map m in InventoryManager.Instance.Maps)
+            AddMusicClip(m);
         foreach (AudioClip a in _effects)
             AddEffectClip(a.name, a);
 
-        _musicSource.clip = _musicDictionary[TileManager.Instance.GetActualMap().ToString() + "Music"];
+        ChangeMusic(InventoryManager.Instance.GetActualMap());
         PlayMusic();
 
         EventManager.Instance.Subscribe(EventManager.NameEvent.ChangeSoundEffect, ChangeEffect);
         EventManager.Instance.Subscribe(EventManager.NameEvent.ChangeSoundEffect, PlayOneShot);
     }
 
-    public void ChangeMusic(string id)
+    public void ChangeMusic(Map map)
     {
-        _musicSource.clip = _musicDictionary[id];
+        _musicSource.clip = _musicDictionary[map];
     }
 
     public void ChangeEffect(params object[] parameters)
@@ -45,9 +44,9 @@ public class AudioManager : Singleton<AudioManager>
         _effectSource.clip = _effectDictionary[(string)parameters[0]];
     }
 
-    public void AddMusicClip(string id, AudioClip clip)
+    public void AddMusicClip(Map map)
     {
-        _musicDictionary.Add(id, clip);
+        _musicDictionary.Add(map, map.music);
     }
 
     public void AddEffectClip(string id, AudioClip clip)
