@@ -10,6 +10,8 @@ public struct Map
     public GameObject map;
     public GameObject player;
     public Color skyColor;
+    public int price;
+    public bool unlocked;
 }
 
 public class InventoryManager : Singleton<InventoryManager>
@@ -26,6 +28,9 @@ public class InventoryManager : Singleton<InventoryManager>
     [SerializeField] private TMPro.TextMeshProUGUI _txtMapName;
     [SerializeField] private Button _backButton;
     [SerializeField] private Button _selectButton;
+    [SerializeField] private Button _inventoryButton;
+    [SerializeField] private Button _buyButton;
+    [SerializeField] private TMPro.TextMeshProUGUI _txtPrice;
 
 
     private GameObject _placeholderMap;
@@ -45,6 +50,14 @@ public class InventoryManager : Singleton<InventoryManager>
         _txtMapName.text = _maps[index].name;
         _currentIndex = index;
         _backButton.onClick.AddListener(BackToLastMap);
+        _buyButton.onClick.AddListener(BuyMap);
+        _inventoryButton.onClick.AddListener(OpenInventory);
+        _txtPrice.text = _maps[index].price.ToString();
+    }
+
+    public void OpenInventory()
+    {
+        UIManager.Instance.SetCoins();
     }
 
     public void NextMap()
@@ -54,7 +67,7 @@ public class InventoryManager : Singleton<InventoryManager>
             index++;
             ChangeMap(index);
         }
-        CheckSelectButton();
+        CheckButton();
     }
 
     public void LastMap()
@@ -64,7 +77,7 @@ public class InventoryManager : Singleton<InventoryManager>
             index--;
             ChangeMap(index);
         }
-        CheckSelectButton();
+        CheckButton();
     }
 
     public void ChangeMap(int index)
@@ -94,6 +107,17 @@ public class InventoryManager : Singleton<InventoryManager>
         _cam.backgroundColor = _maps[index].skyColor;
     }
 
+    public void BuyMap()
+    {
+        if(CoinManager.Instance.GetCoins() >= _maps[index].price)
+        {
+            _maps[index].unlocked = true;
+            CoinManager.Instance.AddMuchCoins(-_maps[index].price);
+            UIManager.Instance.SetCoins();
+            CheckButton();
+        }
+    }
+
     public void ConfirmMap()
     {
         Destroy(_currentMap);
@@ -106,11 +130,20 @@ public class InventoryManager : Singleton<InventoryManager>
         _selectButton.gameObject.SetActive(false);
     }
 
-    public void CheckSelectButton()
+    public void CheckButton()
     {
-        if (index == _currentIndex)
+        if(!_maps[index].unlocked)
+        {
             _selectButton.gameObject.SetActive(false);
-        else
-            _selectButton.gameObject.SetActive(true);
+            _buyButton.gameObject.SetActive(true);
+            _txtPrice.text = _maps[index].price.ToString();
+        } else
+        {
+            _buyButton.gameObject.SetActive(false);
+            if (index == _currentIndex)
+                _selectButton.gameObject.SetActive(false);
+            else
+                _selectButton.gameObject.SetActive(true);
+        }
     }
 }
