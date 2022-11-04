@@ -110,8 +110,8 @@ public class StaminaManager : Singleton<StaminaManager>
     public void LoadTime()
     {
         _currentStamina = SavePlayerDataJSON.Instance.Savedata.currentStamina;
-        _nextStamina = SavePlayerDataJSON.Instance.Savedata._nextStamina;
-        _lastStamina = SavePlayerDataJSON.Instance.Savedata._lastStamina;
+        _nextStamina = DateTime.Parse(SavePlayerDataJSON.Instance.Savedata._nextStamina);
+        _lastStamina = DateTime.Parse(SavePlayerDataJSON.Instance.Savedata._lastStamina);
     }
 
     public int GetStamina()

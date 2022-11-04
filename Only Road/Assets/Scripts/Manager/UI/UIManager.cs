@@ -118,7 +118,7 @@ public class UIManager : Singleton<UIManager>
             _txtTimer.gameObject.SetActive(false);
         else
         {
-            _txtTimer.gameObject.SetActive(false);
+            _txtTimer.gameObject.SetActive(true);
             TimeSpan timer = StaminaManager.Instance.GetNextDate() - DateTime.Now;
             _txtTimer.text = timer.Minutes.ToString() + ":" + timer.Seconds.ToString();
         }

@@ -41,8 +41,8 @@ public class SavePlayerDataJSON : Singleton<SavePlayerDataJSON>
         _savedata.unlockedMaps = unlockedMaps;
         _savedata.lastMapIndex = index;
         _savedata.currentStamina = stamina;
-        _savedata._lastStamina = StaminaManager.Instance.GetLastDate();
-        _savedata._nextStamina = StaminaManager.Instance.GetNextDate();
+        _savedata._lastStamina = StaminaManager.Instance.GetLastDate().ToString();
+        _savedata._nextStamina = StaminaManager.Instance.GetNextDate().ToString();
 
         _savedata.coins = coins;
         if(_savedata.highscore < score)
@@ -77,8 +77,8 @@ public class SavePlayerDataJSON : Singleton<SavePlayerDataJSON>
             _deleteSavedata.effectVolume = 1;
             _deleteSavedata.lastMapIndex = 0;
             _deleteSavedata.currentStamina = StaminaManager.Instance.MaxStamina;
-            _deleteSavedata._lastStamina = DateTime.Now;
-            _deleteSavedata._nextStamina = DateTime.Now;
+            _deleteSavedata._lastStamina = DateTime.Now.ToString();
+            _deleteSavedata._nextStamina = DateTime.Now.ToString();
 
             for (int i = 0; i < InventoryManager.Instance.Maps.Length; i++)
             {
@@ -104,8 +104,8 @@ public class SavePlayerDataJSON : Singleton<SavePlayerDataJSON>
             _savedata.unlockedMaps = InventoryManager.Instance.Maps;
             _savedata.lastMapIndex = 0;
             _savedata.currentStamina = StaminaManager.Instance.MaxStamina;
-            _savedata._lastStamina = DateTime.Now;
-            _savedata._nextStamina = DateTime.Now;
+            _savedata._lastStamina = DateTime.Now.ToString();
+            _savedata._nextStamina = DateTime.Now.ToString();
             return;
         }
 
