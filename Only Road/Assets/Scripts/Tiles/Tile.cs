@@ -9,9 +9,8 @@ public class Tile : MonoBehaviour
 
     private void Start()
     {
-        //APLICAR BUILDER?
         _entityMovement = new EntityMovement();
-        _entityMovement.SetStrategy(new NormalAdvance(-TileManager.Instance.GetTilesVelocity(), GetComponent<Rigidbody>(), gameObject));
+        _entityMovement.SetStrategy(new NormalAdvanceTile(GetComponent<Rigidbody>(), gameObject));
         TileManager.Instance.Tiles.Add(this);
     }
 

@@ -2,7 +2,7 @@ using UnityEngine;
 
 public class NormalAdvance : IAdvance
 {
-    private float _velocity;
+    protected float _velocity;
     private Rigidbody _rb;
     private GameObject _entity;
 
@@ -13,13 +13,13 @@ public class NormalAdvance : IAdvance
         _entity = entity;
     }
 
-    //TILES CONSTRUCTOR
-    public NormalAdvance(float velocity, Rigidbody rb, GameObject entity)
-    {
-        _velocity = velocity;
-        _rb = rb;
-        _entity = entity;
-    }
+    ////TILES CONSTRUCTOR
+    //public NormalAdvance(float velocity, Rigidbody rb, GameObject entity)
+    //{
+    //    _velocity = velocity;
+    //    _rb = rb;
+    //    _entity = entity;
+    //}
 
     public void Advance() //AVANZA LA VELOCIDAD A LA QUE AVANZA ACTUALMENTE
     {

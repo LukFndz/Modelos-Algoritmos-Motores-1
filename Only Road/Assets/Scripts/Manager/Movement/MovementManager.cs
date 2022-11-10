@@ -38,7 +38,7 @@ public class MovementManager : Singleton<MovementManager>
             case TypeAdvance.Curvy:
                 return new CurvyAdvance(rb, e, _freq, _mag, _speed);
             case TypeAdvance.Both:
-                if(Random.Range(0,2) == 1)
+                if (Random.Range(0, 2) == 1)
                     return new CurvyAdvance(rb, e, _freq, _mag, _speed);
                 else
                     return new NormalAdvance(rb, e);

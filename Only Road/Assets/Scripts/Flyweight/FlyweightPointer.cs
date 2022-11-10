@@ -8,4 +8,9 @@ public static class FlyweightPointer
     {
         velocity = MovementManager.Instance.GetEntityVelocity()
     };
+
+    public static readonly Flyweight Tile = new Flyweight
+    {
+        velocity = TileManager.Instance.GetTilesVelocity()
+    };
 }
