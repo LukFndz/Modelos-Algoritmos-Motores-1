@@ -2,37 +2,23 @@ using UnityEngine;
 
 public class NormalAdvance : IAdvance
 {
-    protected float _velocity;
     private Rigidbody _rb;
-    private GameObject _entity;
+    protected GameObject _entity;
+    protected int breakGame = 1;
 
     public NormalAdvance(Rigidbody rb, GameObject entity)
     {
-        _velocity = FlyweightPointer.Entity.velocity;
         _rb = rb;
         _entity = entity;
     }
 
-    ////TILES CONSTRUCTOR
-    //public NormalAdvance(float velocity, Rigidbody rb, GameObject entity)
-    //{
-    //    _velocity = velocity;
-    //    _rb = rb;
-    //    _entity = entity;
-    //}
-
-    public void Advance() //AVANZA LA VELOCIDAD A LA QUE AVANZA ACTUALMENTE
+    public virtual void Advance() //AVANZA LA VELOCIDAD A LA QUE AVANZA ACTUALMENTE
     {
-        _entity.transform.position += _entity.transform.right * _velocity * Time.deltaTime;
+        _entity.transform.position += (_entity.transform.right * (FlyweightPointer.Entity.velocity + MovementManager.Instance.Multiplier) * Time.deltaTime) * breakGame;
     }
 
-    public void ChangeVel(float newVel) //CAMBIA LA VELOCIDAD A LA QUE AVANZA ACTUALMENTE
+    public void Stop()
     {
-        _velocity = newVel;
-    }
-
-    public float GetVelocity() //DEVUELVE LA VELOCIDAD A LA QUE AVANZA ACTUALMENTE
-    {
-        return _velocity;
+        breakGame = 0;
     }
 }

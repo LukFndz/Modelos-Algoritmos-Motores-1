@@ -4,17 +4,16 @@ using UnityEngine;
 
 public class CurvyAdvance : IAdvance
 {
-    private float _velocity;
     private GameObject _entity;
     private Rigidbody _rb;
     private float freq;
     private float mag;
     private float speed;
+    private int breakGame = 1;
 
 
     public CurvyAdvance(Rigidbody rb, GameObject entity, float freq, float mag, float speed)
     {
-        _velocity = FlyweightPointer.Entity.velocity;
         _rb = rb;
         _entity = entity;
         this.freq = freq;
@@ -24,19 +23,12 @@ public class CurvyAdvance : IAdvance
 
     public void Advance() //AVANZA
     {
-        _entity.transform.position += (Vector3.forward * Time.deltaTime * speed) * Mathf.Sin(Time.time * freq) * mag;
-        _entity.transform.position += _entity.transform.right * _velocity * Time.deltaTime;
+        _entity.transform.position += ((Vector3.forward * Time.deltaTime * speed) * Mathf.Sin(Time.time * freq) * mag) * breakGame;
+        _entity.transform.position += (_entity.transform.right * (FlyweightPointer.Entity.velocity + MovementManager.Instance.Multiplier) * Time.deltaTime) * breakGame;
     }
 
-    public void ChangeVel(float newVel) //CAMBIAR LA VELOCIDAD A LA QUE AVANZA ACTUALMENTE
+    public void Stop()
     {
-        _velocity = newVel;
-        if (_velocity == 0)
-            speed = 0;
-    }
-
-    public float GetVelocity() //DEVUELVE LA VELOCIDAD A LA QUE AVANZA ACTUALMENTE
-    {
-        return _velocity;
+        breakGame = 0;
     }
 }

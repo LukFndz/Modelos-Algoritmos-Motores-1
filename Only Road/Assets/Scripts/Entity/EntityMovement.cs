@@ -20,18 +20,8 @@ public class EntityMovement
         _currentStrategy = strategy;
     }
 
-    public void ChangeVelocity(float newVel) //CAMBIA LA VELOCIDAD A LA QUE AVANZA ACTUALMENTE (SE LO PASA A LA INTERFAZ)
-    {
-        _currentStrategy.ChangeVel(newVel); 
-    }
-
-    public float GetActualVelocity() //DEVUELVE LA VELOCIDAD A LA QUE AVANZA ACTUALMENTE (SE LA PIDE A LA INTERFAZ)
-    {
-        return _currentStrategy.GetVelocity();
-    }
-
     public void StopMoving(params object[] parameters)
     {
-        ChangeVelocity(0);
+        _currentStrategy.Stop();
     } 
 }

@@ -759,6 +759,7 @@ MonoBehaviour:
   _tilesVelocity: 10
   _startSpawn: {fileID: 396377311}
   _tiles: []
+  _multiplier: 0
 --- !u!1 &195296680
 GameObject:
   m_ObjectHideFlags: 0
@@ -1475,7 +1476,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2cecd4da6cfe87b4e885944324ab3cb7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _velocity: 25
+  _initialVelocity: 20
+  _multiplier: 0
   _freq: 2
   _mag: 5
   _speed: 1

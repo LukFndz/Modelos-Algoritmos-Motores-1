@@ -5,8 +5,5 @@ using UnityEngine;
 public interface IAdvance
 {
     void Advance();
-
-    void ChangeVel(float newVel);
-
-    float GetVelocity();
+    void Stop();
 }

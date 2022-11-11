@@ -6,16 +6,19 @@ public class MovementManager : Singleton<MovementManager>
 {
     [Header("STRAIGHT PARAMS")]
     [Range(20,45)]
-    [SerializeField]private float _velocity;
+    [SerializeField] private float _initialVelocity;
+    [SerializeField] private float _multiplier;
 
 
-                    private Rigidbody _rb;
+    private Rigidbody _rb;
                     private GameObject _enemy;
 
     [Header("CURVY PARAMS")]
     [SerializeField]private float _freq;
     [SerializeField]private float _mag;
     [SerializeField]private float _speed;
+
+    public float Multiplier { get => _multiplier; set => _multiplier = value; }
 
     public enum TypeAdvance
     {
@@ -49,11 +52,12 @@ public class MovementManager : Singleton<MovementManager>
 
     public void ChangeVelocity(params object[] parameters)
     {
-        _velocity += (float)parameters[1];
+        TileManager.Instance.Multiplier = (float)parameters[0];
+        _multiplier += (float)parameters[1];
     }
 
     public float GetEntityVelocity()
     {
-        return _velocity;
+        return _initialVelocity + _multiplier;
     }
 }

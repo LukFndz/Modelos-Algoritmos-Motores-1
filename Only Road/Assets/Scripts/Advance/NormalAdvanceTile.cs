@@ -6,6 +6,10 @@ public class NormalAdvanceTile : NormalAdvance
 {
     public NormalAdvanceTile(Rigidbody rb, GameObject entity) : base(rb, entity)
     {
-        _velocity = -FlyweightPointer.Tile.velocity;
+        
+    }
+    public override void Advance()
+    {
+        _entity.transform.position += -(_entity.transform.right * (FlyweightPointer.Tile.velocity + TileManager.Instance.Multiplier) * Time.deltaTime) * breakGame;
     }
 }

@@ -19,11 +19,6 @@ public class Tile : MonoBehaviour
         _entityMovement.ManualUpdate();
     }
 
-    public void ChangeVelocity(float newVel)
-    {
-        _entityMovement.ChangeVelocity(-newVel);
-    }
-
     private void OnTriggerEnter(Collider other)
     {
         if(other.CompareTag("Limit"))

@@ -57,7 +57,6 @@ public class EntitySpawner : MonoBehaviour
             var advance = MovementManager.Instance.GetMovement(_laneParams[random].movementType, e.gameObject, e.GetComponent<Rigidbody>());
 
             e.EntityMovement.SetStrategy(advance); // SETEA LA ESTRATEGIA A USAR (RECTA/SINUOSA)
-            e.EntityMovement.ChangeVelocity(MovementManager.Instance.GetEntityVelocity()); // CADA VEZ QUE SE PRENDE, SE CAMBIA LA VELOCIDAD A LA ACTUAL
         }
     }
     
