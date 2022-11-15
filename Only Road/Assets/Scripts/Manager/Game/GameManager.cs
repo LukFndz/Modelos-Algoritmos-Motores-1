@@ -52,18 +52,19 @@ public class GameManager : Singleton<GameManager>
 
     public void StartGame()
     {
-        StaminaManager.Instance.UseEnergy(StaminaManager.Instance.PlayEnergy);
+        if (StaminaManager.Instance.UseEnergy(StaminaManager.Instance.PlayEnergy))
+        {
+            _gameState = true;
 
-        _gameState = true;
+            foreach (GameObject g in _mainObjects) //ACTIVA LOS OBJETOS QUE SON NECESARIOS
+                g.SetActive(true);
 
-        foreach (GameObject g in _mainObjects) //ACTIVA LOS OBJETOS QUE SON NECESARIOS
-            g.SetActive(true);
+            var player = FindObjectOfType<Player>();
 
-        var player = FindObjectOfType<Player>();
+            UIManager.Instance.SwitchCanvas(PanelType.IN_GAME_MENU);
 
-        UIManager.Instance.SwitchCanvas(PanelType.IN_GAME_MENU);
-
-        EventManager.Instance.Trigger(EventManager.NameEvent.StartGame, player.MyModel.MovementController.GameSpeed);
+            EventManager.Instance.Trigger(EventManager.NameEvent.StartGame, player.MyModel.MovementController.GameSpeed);
+        }
     }
 
     public void GameOver()

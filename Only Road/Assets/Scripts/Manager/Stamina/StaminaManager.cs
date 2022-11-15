@@ -78,7 +78,7 @@ public class StaminaManager : Singleton<StaminaManager>
         return date.AddSeconds(value);
     }
 
-    public void UseEnergy(int energyAmount)
+    public bool UseEnergy(int energyAmount)
     {
         if(_currentStamina - energyAmount >= 0)
         {
@@ -90,10 +90,10 @@ public class StaminaManager : Singleton<StaminaManager>
                 _nextStamina = AddDuration(DateTime.Now, timeToRecharge);
                 StartCoroutine(RestoreStamina());
             }
-
+            return true;
         } else
         {
-            Debug.Log("No hay stamina");
+            return false;
         }
     }
 
