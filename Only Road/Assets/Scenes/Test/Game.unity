@@ -7816,8 +7816,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _id: 5001671
   _placementId: Rewarded_Android
-  _coinsSkip: 100
-  _coinsFinish: 250
+  _coinsSkip: 5
+  _coinsFinish: 10
 --- !u!4 &971317970
 Transform:
   m_ObjectHideFlags: 0
