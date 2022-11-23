@@ -18,18 +18,19 @@ public class Tank : MonoBehaviour, IPlayer
         }
     }
 
+
     public void StartTank()
     {
         gameObject.SetActive(true);
         _maxTime = PowerUpManager.Instance.PowerUpTime;
-        FindObjectOfType<Player>().MyModel.PowerUpController.IsInvencible = true;
+        PowerUpManager.Instance.Player.MyModel.PowerUpController.IsInvencible = true;
     }
 
     public void DisableTank()
     {
         _timer = 0;
         gameObject.SetActive(false);
-        FindObjectOfType<Player>().MyModel.PowerUpController.IsInvencible = false;
+        PowerUpManager.Instance.Player.MyModel.PowerUpController.IsInvencible = false;
     }
 
     private void OnTriggerEnter(Collider other)
@@ -37,6 +38,7 @@ public class Tank : MonoBehaviour, IPlayer
         var col = other.gameObject?.GetComponent<IAffectTank>();
         if (col != null)
         {
+            CoinManager.Instance.AddMuchCoins(PowerUpManager.Instance.CoinsPerHit);
             ParticleSystem particle = Instantiate(_boom);
             particle.transform.position = other.transform.position + new Vector3(0, 2);
             particle.Play();

@@ -9,8 +9,13 @@ public class PowerUpManager : Singleton<PowerUpManager>
 
     [SerializeField] private float _powerUpTime;
 
+    [Header("TANK")]
+    [SerializeField] private int _coinsPerHit;
+
     float timer;
     public float PowerUpTime { get => _powerUpTime; set => _powerUpTime = value; }
+    public int CoinsPerHit { get => _coinsPerHit; set => _coinsPerHit = value; }
+    public Player Player { get => _player; set => _player = value; }
 
     public void ActivatePowerUp(PowerUpType type)
     {

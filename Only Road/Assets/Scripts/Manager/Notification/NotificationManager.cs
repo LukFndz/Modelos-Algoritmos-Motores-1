@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using Unity.Notifications.Android;
+using System;
 
 public class NotificationManager : MonoBehaviour
 {
@@ -26,5 +27,15 @@ public class NotificationManager : MonoBehaviour
         notif.FireTime = System.DateTime.Now.AddHours(_hoursToNotif);
 
         AndroidNotificationCenter.SendNotification(notif, "reminder_notif");
+
+        var notifStamina = new AndroidNotification();
+        notifStamina.Title = "Only Road";
+        notifStamina.Text = "¡Punto de Stamina Recargado!";
+        notifStamina.SmallIcon = "icon_remindersmall";
+        notifStamina.LargeIcon = "icon_reminderbig";
+        notifStamina.FireTime = DateTime.Parse(SavePlayerDataJSON.Instance.Savedata._nextStamina);
+
+        AndroidNotificationCenter.SendNotification(notif, "reminder_notif");
+
     }
 }
