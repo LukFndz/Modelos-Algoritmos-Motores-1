@@ -2,35 +2,15 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Tank : MonoBehaviour, IPlayer
+public class Tank : MonoBehaviour, IPlayer, IPowerUp
 {
     [SerializeField] private ParticleSystem _boom;
-
-    private float _maxTime;
-    private float _timer;
-
-    private void Update()
-    {
-        _timer += Time.deltaTime;
-        if(_timer > _maxTime)
-        {
-            DisableTank();
-        }
-    }
-
 
     public void StartTank()
     {
         gameObject.SetActive(true);
-        _maxTime = PowerUpManager.Instance.PowerUpTime;
         PowerUpManager.Instance.Player.MyModel.PowerUpController.IsInvencible = true;
-    }
-
-    public void DisableTank()
-    {
-        _timer = 0;
-        gameObject.SetActive(false);
-        PowerUpManager.Instance.Player.MyModel.PowerUpController.IsInvencible = false;
+        PowerUpManager.Instance.ActualPowerUp = this;
     }
 
     private void OnTriggerEnter(Collider other)
@@ -47,4 +27,9 @@ public class Tank : MonoBehaviour, IPlayer
         }
     }
 
+    public void Disable()
+    {
+        gameObject.SetActive(false);
+        PowerUpManager.Instance.Player.MyModel.PowerUpController.IsInvencible = false;
+    }
 }

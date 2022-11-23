@@ -7894,6 +7894,7 @@ MonoBehaviour:
       movementType: 0
     enemyAmount: 6
     timeToSpawn: 1
+    spawnerType: 0
   - entity:
     - {fileID: 1358828992525610881, guid: 474a6a0da600d8c429effd532ad47437, type: 3}
     laneParams:
@@ -7907,10 +7908,12 @@ MonoBehaviour:
       movementType: 0
     - spawnPoint: {fileID: 1671924820}
       movementType: 0
-    enemyAmount: 3
+    enemyAmount: 10
     timeToSpawn: 10
+    spawnerType: 2
   - entity:
     - {fileID: 2008257415313814826, guid: cd8e93bd3adbbbe409cee2843b353804, type: 3}
+    - {fileID: 5147280772386359371, guid: 4fcb1e48b9f42f44ab3b450661a1c6e5, type: 3}
     laneParams:
     - spawnPoint: {fileID: 733635728}
       movementType: 0
@@ -7922,8 +7925,9 @@ MonoBehaviour:
       movementType: 0
     - spawnPoint: {fileID: 1671924820}
       movementType: 0
-    enemyAmount: 1
+    enemyAmount: 4
     timeToSpawn: 20
+    spawnerType: 1
 --- !u!1 &1014363605
 GameObject:
   m_ObjectHideFlags: 0

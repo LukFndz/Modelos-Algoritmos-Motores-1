@@ -4,7 +4,8 @@ using System.Collections.Generic;
 using UnityEngine;
 public enum PowerUpType
 {
-    TANK
+    TANK,
+    ONLYCOINS
 }
 
 public class PowerUp : MonoBehaviour

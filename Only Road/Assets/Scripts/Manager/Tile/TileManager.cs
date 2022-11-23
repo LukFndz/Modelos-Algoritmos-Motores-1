@@ -21,6 +21,6 @@ public class TileManager : Singleton<TileManager>
 
     public void TransportTile(GameObject tile)
     {
-        tile.transform.position = _startSpawn.position;
+        tile.transform.position = new Vector3(_startSpawn.position.x, tile.transform.position.y, tile.transform.position.z);
     }
 }

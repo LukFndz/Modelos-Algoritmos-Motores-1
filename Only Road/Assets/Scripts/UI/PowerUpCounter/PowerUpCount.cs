@@ -33,5 +33,6 @@ public class PowerUpCount : MonoBehaviour
     {
         timer = maxTime;
         UIManager.Instance.FinishPowerUpTimer();
+        PowerUpManager.Instance.FinishPower();
     }
 }

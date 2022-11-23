@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Granade : CollectionableItem, IPowerUp
+public class Granade : CollectionableItem, IPowerUpObject
 {
     public override void GetItem()
     {
@@ -12,6 +12,7 @@ public class Granade : CollectionableItem, IPowerUp
 
     public void Touch()
     {
-        PowerUpManager.Instance.ActivatePowerUp(GetComponent<PowerUp>().type);
+        PowerUpManager.Instance.Player.MyModel.PowerUpController.Tank();
+        PowerUpManager.Instance.ActivatePowerUp();
     }
 }

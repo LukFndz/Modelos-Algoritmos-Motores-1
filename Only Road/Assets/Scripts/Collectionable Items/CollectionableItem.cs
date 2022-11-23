@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class CollectionableItem : MonoBehaviour
+public abstract class CollectionableItem : MonoBehaviour
 {
     [Range(10, 30)]
     [SerializeField] private float _rotationSpeed;

@@ -10,7 +10,8 @@ public struct SpawnerParams
     public Entity[] entity;
     public LaneParams[] laneParams;
     public int enemyAmount;
-    public int timeToSpawn;
+    public float timeToSpawn;
+    public SpawnerType spawnerType;
 }
 
 [System.Serializable]
@@ -18,6 +19,14 @@ public struct LaneParams
 {
     public Transform spawnPoint;
     public MovementManager.TypeAdvance movementType;
+}
+
+[System.Serializable]
+public enum SpawnerType
+{
+    Enemies,
+    PowerUp,
+    Coin
 }
 
 
@@ -28,10 +37,16 @@ public class EntitySpawner : MonoBehaviour
     public Entity[] entity;
     [SerializeField] private LaneParams[] _laneParams;
     [SerializeField] private int _enemyAmount;
-    [SerializeField] private int _timeToSpawn;
+    [SerializeField] private float _timeToSpawn;
+    private float _currentTimeToSpawn;
+    [SerializeField] private SpawnerType _spawnerType;
 
     float spawnTimer;
     int [] lanes = { 0, 1, 2, 3, 4 };
+
+    public SpawnerType SpawnerType { get => _spawnerType; set => _spawnerType = value; }
+    public float CurrentTimeToSpawn { get => _currentTimeToSpawn; set => _currentTimeToSpawn = value; }
+    public float TimeToSpawn { get => _timeToSpawn; set => _timeToSpawn = value; }
 
     public void BuildEntitySpawner(SpawnerParams e)
     {
@@ -41,12 +56,14 @@ public class EntitySpawner : MonoBehaviour
         _factory = new Factory<Entity>(e.entity);
         _pool = new ObjectPool<Entity>(_factory.Get, Entity.TurnOn, Entity.TurnOff, _enemyAmount);
         _timeToSpawn = e.timeToSpawn;
+        _currentTimeToSpawn = e.timeToSpawn;
+        _spawnerType = e.spawnerType;
     }
 
     public void Update()
     {
         spawnTimer += Time.deltaTime;
-        if (spawnTimer > _timeToSpawn)
+        if (spawnTimer > _currentTimeToSpawn)
         {
             spawnTimer = 0;
             var e = _pool.GetObject();

@@ -12,6 +12,7 @@ public class SpawnManager : Singleton<SpawnManager>
     List<EntitySpawner> _spawnersEntity = new List<EntitySpawner>();
 
     public int LastLane { get => _lastLane; set => _lastLane = value; }
+    public List<EntitySpawner> SpawnersEntity { get => _spawnersEntity; set => _spawnersEntity = value; }
 
     private void Awake()
     {
@@ -45,7 +46,4 @@ public class SpawnManager : Singleton<SpawnManager>
         foreach (EntitySpawner e in _spawnersEntity)
             e.enabled = false;
     }
-
-
-
 }
