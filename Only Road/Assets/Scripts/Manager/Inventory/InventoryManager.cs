@@ -18,49 +18,18 @@ public struct Map
 
 public class InventoryManager : Singleton<InventoryManager>
 {
-    [Header("Maps")]
-    [SerializeField] private Map[] _maps;
-    [SerializeField] private Camera _cam;
 
-    [Header("Spawn Pivots")]
-    [SerializeField] private GameObject _mapPivot;
-    [SerializeField] private GameObject _playerPivot;
-
-    [Header("UI")]
-    [SerializeField] private TMPro.TextMeshProUGUI _txtMapName;
-    [SerializeField] private Button _backButton;
-    [SerializeField] private Button _selectButton;
-    [SerializeField] private Button _inventoryButton;
-    [SerializeField] private Button _buyButton;
-    [SerializeField] private TMPro.TextMeshProUGUI _txtPrice;
-
-
-    private GameObject _placeholderMap;
-
-    private GameObject _placeholderPlayer;
-
-    private GameObject _currentMap;
-    private GameObject _currentPlayer;
-
-    private int _currentIndex;
+    private int _currentSelectedMap;
     private int index;
-
-    public Map[] Maps { get => _maps; set => _maps = value; }
 
     private void Start()
     {
         SetMapsFromSave();
-        _currentMap = Instantiate(_maps[SavePlayerDataJSON.Instance.Savedata.lastMapIndex].map, _mapPivot.transform);
-        _currentPlayer = Instantiate(_maps[SavePlayerDataJSON.Instance.Savedata.lastMapIndex].player, _playerPivot.transform);
-        _cam.backgroundColor = _maps[SavePlayerDataJSON.Instance.Savedata.lastMapIndex].skyColor;
-        _txtMapName.text = _maps[SavePlayerDataJSON.Instance.Savedata.lastMapIndex].name;
-        _currentIndex = SavePlayerDataJSON.Instance.Savedata.lastMapIndex;
-        index = _currentIndex;
+        EventManager.Instance.Trigger(EventManager.NameEvent.ChangeMap, SavePlayerDataJSON.Instance.Savedata.lastMapIndex);
+        _currentSelectedMap = SavePlayerDataJSON.Instance.Savedata.lastMapIndex;
 
-        _backButton.onClick.AddListener(BackToLastMap);
-        _buyButton.onClick.AddListener(BuyMap);
-        _inventoryButton.onClick.AddListener(OpenInventory);
-        _txtPrice.text = _maps[index].price.ToString();
+        index = _currentSelectedMap;
+
     }
 
     public void OpenInventory()
@@ -70,12 +39,11 @@ public class InventoryManager : Singleton<InventoryManager>
 
     public void NextMap()
     {
-        if (index < _maps.Length - 1)
+        if (index < MapManager.Instance.Maps.Length - 1)
         {
             index++;
             ChangeMap(index);
         }
-        CheckButton();
     }
 
     public void LastMap()
@@ -85,89 +53,65 @@ public class InventoryManager : Singleton<InventoryManager>
             index--;
             ChangeMap(index);
         }
-        CheckButton();
     }
 
     public void ChangeMap(int index)
     {
-        _currentMap.SetActive(false);
-        _currentPlayer.SetActive(false);
-        Destroy(_placeholderMap);
-        Destroy(_placeholderPlayer);
-        _placeholderMap = Instantiate(_maps[index].map, _mapPivot.transform);
-        _placeholderPlayer = Instantiate(_maps[index].player, _playerPivot.transform);
-        _txtMapName.text = _maps[index].name;
-        _cam.backgroundColor = _maps[index].skyColor;
-        AudioManager.Instance.ChangeMusic(GetActualMap());
-        AudioManager.Instance.PlayMusic();
+        UIManager.Instance.CheckButtonsInventory(index, _currentSelectedMap);
+        EventManager.Instance.Trigger(EventManager.NameEvent.ChangeMap, index);
+        //_currentMap.SetActive(false);
+        //_currentPlayer.SetActive(false);
+        //Destroy(_placeholderMap);
+        //Destroy(_placeholderPlayer);
+        //_txtMapName.text = _maps[index].name;
+        //AudioManager.Instance.ChangeMusic(GetActualMap());
+        //AudioManager.Instance.PlayMusic();
+        //_cam.backgroundColor = _maps[index].skyColor;
     }
 
-    public void BackToLastMap()
+    public void BackToLastMap() //VUELVE AL MAPA 
     {
-        if (_placeholderMap != null)
-        {
-            Destroy(_placeholderMap);
-            Destroy(_placeholderPlayer);
-        }
-        _selectButton.gameObject.SetActive(false);
-        _currentMap.SetActive(true);
-        _currentPlayer.SetActive(true);
-        index = _currentIndex;
-        _txtMapName.text = _maps[index].name;
-        _cam.backgroundColor = _maps[index].skyColor;
-        AudioManager.Instance.ChangeMusic(GetActualMap());
-        AudioManager.Instance.PlayMusic();
+        EventManager.Instance.Trigger(EventManager.NameEvent.ChangeMap, _currentSelectedMap);
+        index = _currentSelectedMap;
+        UIManager.Instance.GoBackInventory(index);
+
+        //if (_placeholderMap != null)
+        //{
+        //    Destroy(_placeholderMap);
+        //    Destroy(_placeholderPlayer);
+        //}
+        //_selectButton.gameObject.SetActive(false);
+        //_currentMap.SetActive(true);
+        //_currentPlayer.SetActive(true);
+        //index = _currentSelectedMap;
+        //_txtMapName.text = _maps[index].name;
+        //_cam.backgroundColor = _maps[index].skyColor;
+        //AudioManager.Instance.ChangeMusic(GetActualMap());
+        //AudioManager.Instance.PlayMusic();
     }
 
     public void BuyMap()
     {
-        if(CoinManager.Instance.GetCoins() >= _maps[index].price)
+        if(CoinManager.Instance.GetCoins() >= MapManager.Instance.Maps[index].price)
         {
-            _maps[index].unlocked = true;
-            CoinManager.Instance.AddMuchCoins(-_maps[index].price);
+            MapManager.Instance.Maps[index].unlocked = true;
+            CoinManager.Instance.AddMuchCoins(-MapManager.Instance.Maps[index].price);
             UIManager.Instance.SetCoins();
-            CheckButton();
+            UIManager.Instance.CheckButtonsInventory(index, _currentSelectedMap);
             SavePlayerDataJSON.Instance.SaveParams();
         }
     }
 
     public void ConfirmMap()
     {
-        if (_maps[index].unlocked)
+        if (MapManager.Instance.Maps[index].unlocked)
         {
-            Destroy(_currentMap);
-            Destroy(_currentPlayer);
-            _currentMap = _placeholderMap;
-            _currentPlayer = _placeholderPlayer;
-            _currentIndex = index;
-            _placeholderMap = null;
-            _placeholderPlayer = null;
-            _selectButton.gameObject.SetActive(false);
+            _currentSelectedMap = index;
+            UIManager.Instance.SelectMap();
             SavePlayerDataJSON.Instance.SaveParams();
         }
     }
 
-    public void CheckButton()
-    {
-        if(!_maps[index].unlocked)
-        {
-            _selectButton.gameObject.SetActive(false);
-            _buyButton.gameObject.SetActive(true);
-            _txtPrice.text = _maps[index].price.ToString();
-        } else
-        {
-            _buyButton.gameObject.SetActive(false);
-            if (index == _currentIndex)
-                _selectButton.gameObject.SetActive(false);
-            else
-                _selectButton.gameObject.SetActive(true);
-        }
-    }
-
-    public Map GetActualMap()
-    {
-        return _maps[index];
-    }
     public int GetActualMapIndex()
     {
         return index;
@@ -175,9 +119,9 @@ public class InventoryManager : Singleton<InventoryManager>
 
     public void SetMapsFromSave()
     {
-        for (int i = 0; i < _maps.Length; i++)
+        for (int i = 0; i < MapManager.Instance.Maps.Length; i++)
         {
-            _maps[i].unlocked = SavePlayerDataJSON.Instance.Savedata.unlockedMaps[i].unlocked;
+            MapManager.Instance.Maps[i].unlocked = SavePlayerDataJSON.Instance.Savedata.unlockedMaps[i].unlocked;
         }
     }
 }

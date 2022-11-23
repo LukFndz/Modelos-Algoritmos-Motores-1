@@ -17,28 +17,35 @@ public class AudioManager : Singleton<AudioManager>
 
     private Dictionary<string, AudioClip> _effectDictionary = new Dictionary<string, AudioClip>();
 
-    private void Start()
+
+    private void Awake()
     {
+        base.Awake();
+        EventManager.Instance.Subscribe(EventManager.NameEvent.ChangeMap, ChangeMusic);
+        EventManager.Instance.Subscribe(EventManager.NameEvent.ChangeMap, PlayMusic);
+
         _musicDictionary.Clear();
 
-        _musicSource.volume = SavePlayerDataJSON.Instance.Savedata.musicVolume;
-        _effectSource.volume = SavePlayerDataJSON.Instance.Savedata.effectVolume;
-
-        foreach (Map m in InventoryManager.Instance.Maps)
+        foreach (Map m in MapManager.Instance.Maps)
             AddMusicClip(m);
         foreach (AudioClip a in _effects)
             AddEffectClip(a.name, a);
 
-        ChangeMusic(InventoryManager.Instance.GetActualMap());
-        PlayMusic();
+    }
+
+    private void Start()
+    {
+        _musicSource.volume = SavePlayerDataJSON.Instance.Savedata.musicVolume;
+        _effectSource.volume = SavePlayerDataJSON.Instance.Savedata.effectVolume;
+        
 
         EventManager.Instance.Subscribe(EventManager.NameEvent.ChangeSoundEffect, ChangeEffect);
         EventManager.Instance.Subscribe(EventManager.NameEvent.ChangeSoundEffect, PlayOneShot);
     }
 
-    public void ChangeMusic(Map map)
+    public void ChangeMusic(params object[] parameters)
     {
-        _musicSource.clip = _musicDictionary[map.name];
+        _musicSource.clip = _musicDictionary[MapManager.Instance.Maps[(int)parameters[0]].name];
     }
 
     public void ChangeEffect(params object[] parameters)
@@ -56,7 +63,7 @@ public class AudioManager : Singleton<AudioManager>
         _effectDictionary.Add(id, clip);
     }
 
-    public void PlayMusic()
+    public void PlayMusic(params object[] parameters)
     {
         _musicSource.Play();
     }

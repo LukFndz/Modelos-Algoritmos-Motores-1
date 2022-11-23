@@ -31,6 +31,13 @@ public class UIManager : Singleton<UIManager>
     [Header("PowerUp")]
     [SerializeField] private GameObject _powerUpOBJ;
 
+    [Header("Inventory")]
+    [SerializeField] private TextMeshProUGUI _txtMapName;
+    [SerializeField] private TextMeshProUGUI _txtPrice;
+    [SerializeField] private Button _backButton;
+    [SerializeField] private Button _selectButton;
+    [SerializeField] private Button _inventoryButton;
+    [SerializeField] private Button _buyButton;
 
     public List<PanelManager> canvasControllerList;
     PanelManager actualActiveCanvas;
@@ -41,6 +48,10 @@ public class UIManager : Singleton<UIManager>
         base.Awake();
         canvasControllerList.ForEach(x => x.gameObject.SetActive(false));
         SwitchCanvas(PanelType.MAIN_MENU);
+
+        EventManager.Instance.Subscribe(EventManager.NameEvent.ChangeMap, ChangeMapName);
+        EventManager.Instance.Subscribe(EventManager.NameEvent.ChangeMap, ChangePriceMap);
+
     }
 
     private void Start()
@@ -48,8 +59,10 @@ public class UIManager : Singleton<UIManager>
         if (!SavePlayerDataJSON.Instance.Savedata.firstTime)
             SwitchCanvas(PanelType.HELP_MENU);
 
-        //Cursor.lockState = CursorLockMode.Locked;
-        //Cursor.visible = false;
+        _backButton.onClick.AddListener(InventoryManager.Instance.BackToLastMap);
+        _buyButton.onClick.AddListener(InventoryManager.Instance.BuyMap);
+        _inventoryButton.onClick.AddListener(InventoryManager.Instance.OpenInventory);
+
     }
 
     public PanelManager GetLastCanvas()
@@ -123,4 +136,44 @@ public class UIManager : Singleton<UIManager>
             _txtTimer.text = timer.Minutes.ToString() + ":" + timer.Seconds.ToString();
         }
     }
+
+    public void ChangeMapName(params object[] parameters)
+    {
+        _txtMapName.text = MapManager.Instance.Maps[(int)parameters[0]].name;
+    }
+
+    public void ChangePriceMap(params object[] parameters)
+    {
+        _txtPrice.text = MapManager.Instance.Maps[(int)parameters[0]].price.ToString();
+    }
+
+    public void CheckButtonsInventory(int index, int currentMap)
+    {
+        if (!MapManager.Instance.Maps[index].unlocked)
+        {
+            _selectButton.gameObject.SetActive(false);
+            _buyButton.gameObject.SetActive(true);
+            _txtPrice.text = MapManager.Instance.Maps[index].price.ToString();
+        }
+        else
+        {
+            _buyButton.gameObject.SetActive(false);
+            if (index == currentMap)
+                _selectButton.gameObject.SetActive(false);
+            else
+                _selectButton.gameObject.SetActive(true);
+        }
+    }
+    
+    public void GoBackInventory(int index)
+    {
+        _selectButton.gameObject.SetActive(false);
+        _txtMapName.text = MapManager.Instance.Maps[index].name;
+    }
+
+    public void SelectMap()
+    {
+        _selectButton.gameObject.SetActive(false);
+    }
+
 }

@@ -31,7 +31,7 @@ public class SavePlayerDataJSON : Singleton<SavePlayerDataJSON>
         float score = ScoreManager.Instance.GetScore();
         float musicVolume = AudioManager.Instance.GetActualVolume(SliderType.Music);
         float effectVolume = AudioManager.Instance.GetActualVolume(SliderType.Effects);
-        Map[] unlockedMaps = InventoryManager.Instance.Maps;
+        Map[] unlockedMaps = MapManager.Instance.Maps;
         int index = InventoryManager.Instance.GetActualMapIndex();
         int stamina = StaminaManager.Instance.GetStamina();
 
@@ -80,13 +80,13 @@ public class SavePlayerDataJSON : Singleton<SavePlayerDataJSON>
             _deleteSavedata._lastStamina = DateTime.Now.ToString();
             _deleteSavedata._nextStamina = DateTime.Now.ToString();
 
-            for (int i = 0; i < InventoryManager.Instance.Maps.Length; i++)
+            for (int i = 0; i < MapManager.Instance.Maps.Length; i++)
             {
                 if(i != 0)
-                    InventoryManager.Instance.Maps[i].unlocked = false;
+                    MapManager.Instance.Maps[i].unlocked = false;
             }
 
-            _deleteSavedata.unlockedMaps = InventoryManager.Instance.Maps;
+            _deleteSavedata.unlockedMaps = MapManager.Instance.Maps;
             WriteParams(_deleteSavedata);
             return;
         }
@@ -101,7 +101,7 @@ public class SavePlayerDataJSON : Singleton<SavePlayerDataJSON>
             _savedata.highscore = 0;
             _savedata.musicVolume = 1;
             _savedata.effectVolume = 1;
-            _savedata.unlockedMaps = InventoryManager.Instance.Maps;
+            _savedata.unlockedMaps = MapManager.Instance.Maps;
             _savedata.lastMapIndex = 0;
             _savedata.currentStamina = StaminaManager.Instance.MaxStamina;
             _savedata._lastStamina = DateTime.Now.ToString();

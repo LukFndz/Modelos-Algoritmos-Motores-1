@@ -12,7 +12,8 @@ public class EventManager : Singleton<EventManager>
         StartGame,
         Gameover,
         ApplyMultipliers,
-        ChangeSoundEffect
+        ChangeSoundEffect,
+        ChangeMap
     }
 
     public void Subscribe(NameEvent eventType, EventReceiver listener)
