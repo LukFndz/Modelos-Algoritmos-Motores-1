@@ -36,6 +36,7 @@ public class StaminaManager : Singleton<StaminaManager>
         UpdateStamina();
         while (_currentStamina < _maxStamina)
         {
+            UIManager.Instance.StateStaminaButton(true);
             DateTime currentDateTime = DateTime.Now;
             DateTime nextDateTime = _nextStamina;
             bool _flagStamina = false;
@@ -70,6 +71,7 @@ public class StaminaManager : Singleton<StaminaManager>
             SavePlayerDataJSON.Instance.SaveParams();
             yield return new WaitForEndOfFrame();
         }
+        UIManager.Instance.StateStaminaButton(false);
         _restoring = false;
     }
 
@@ -95,6 +97,14 @@ public class StaminaManager : Singleton<StaminaManager>
         {
             return false;
         }
+    }
+
+    public void AddStamina(int mod)
+    {
+        _currentStamina += mod;
+        UpdateStamina();
+        UpdateTimer();
+        SavePlayerDataJSON.Instance.SaveParams();
     }
 
     void UpdateStamina()

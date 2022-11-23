@@ -12,15 +12,17 @@ public class AdManager : Singleton<AdManager>, IUnityAdsListener
     [SerializeField] private int _coinsSkip;
     [SerializeField] private int _coinsFinish;
 
+    
+
     private void Start()
     {
         Advertisement.AddListener(this);
         Advertisement.Initialize(_id);
     }
 
-    public void PlayRewardedAd()
+    public void PlayRewardedAd(string id)
     {
-        _placementId = "Rewarded_Android";
+        _placementId = id;
         if (!Advertisement.IsReady()) return;
 
         Advertisement.Show(_placementId);
@@ -61,5 +63,25 @@ public class AdManager : Singleton<AdManager>, IUnityAdsListener
                     break;
             }
         }
+
+        if (_placementId == "Rewarded_Stamina")
+        {
+            switch (showResult)
+            {
+                case ShowResult.Failed:
+                    Debug.Log("Ad Failed");
+                    break;
+                case ShowResult.Skipped:
+                    Debug.Log("Ad Skip");
+                    break;
+                case ShowResult.Finished:
+                    StaminaManager.Instance.AddStamina(1);
+                    break;
+                default:
+                    break;
+            }
+        }
+
+
     }
 }

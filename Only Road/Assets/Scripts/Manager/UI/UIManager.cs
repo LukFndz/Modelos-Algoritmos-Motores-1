@@ -16,7 +16,8 @@ public enum PanelType
     OPTIONS_MENU,
     HELP_MENU,
     END_MENU,
-    REWARD_MENU
+    REWARD_MENU,
+    REWARD_MENU_STAMINA
 }
 
 
@@ -30,6 +31,9 @@ public class UIManager : Singleton<UIManager>
 
     [Header("PowerUp")]
     [SerializeField] private GameObject _powerUpOBJ;
+
+    [Header("MainMenu")]
+    [SerializeField] private Button _staminaButton;
 
     [Header("Inventory")]
     [SerializeField] private TextMeshProUGUI _txtMapName;
@@ -174,6 +178,11 @@ public class UIManager : Singleton<UIManager>
     public void SelectMap()
     {
         _selectButton.gameObject.SetActive(false);
+    }
+
+    public void StateStaminaButton(bool state)
+    {
+        _staminaButton.gameObject.SetActive(state);
     }
 
 }

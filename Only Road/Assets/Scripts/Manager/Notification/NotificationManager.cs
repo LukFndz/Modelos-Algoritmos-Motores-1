@@ -5,6 +5,7 @@ using Unity.Notifications.Android;
 
 public class NotificationManager : MonoBehaviour
 {
+    [SerializeField] private int _hoursToNotif;
     private void Start()
     {
         var notificationChannel = new AndroidNotificationChannel()
@@ -22,7 +23,7 @@ public class NotificationManager : MonoBehaviour
         notif.Text = "¡Hay autos que esquivar!";
         notif.SmallIcon = "icon_remindersmall";
         notif.LargeIcon = "icon_reminderbig";
-        notif.FireTime = System.DateTime.Now.AddHours(2);
+        notif.FireTime = System.DateTime.Now.AddHours(_hoursToNotif);
 
         AndroidNotificationCenter.SendNotification(notif, "reminder_notif");
     }
