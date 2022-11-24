@@ -29,6 +29,7 @@ public class StaminaManager : Singleton<StaminaManager>
         UpdateStamina();
         UpdateTimer();
         StartCoroutine(RestoreStamina());
+        GameManager.Instance.CheckRestart();
     }
 
     private IEnumerator RestoreStamina()

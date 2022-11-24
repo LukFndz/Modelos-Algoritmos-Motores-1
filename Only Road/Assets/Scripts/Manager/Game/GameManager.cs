@@ -34,12 +34,6 @@ public class GameManager : Singleton<GameManager>
 
     public bool GameState { get => _gameState; set => _gameState = value; }
 
-    private void Start()
-    {
-        if (restartGame)
-            StartGame();
-    }
-
     private void OnTriggerEnter(Collider other)
     {
         if (other.gameObject.GetComponent<IEnemy>() != null)
@@ -113,5 +107,11 @@ public class GameManager : Singleton<GameManager>
         restartGame = true;
         Time.timeScale = 1;
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+    }
+
+    public void CheckRestart()
+    {
+        if (restartGame)
+            StartGame();
     }
 }
