@@ -13,14 +13,12 @@ public class PowerUpManager : Singleton<PowerUpManager>
     [Header("TANK")]
     [SerializeField] private int _coinsPerHit;
 
-    private IPowerUp _actualPowerUp;
 
     float timer;
 
     public float PowerUpTime { get => _powerUpTime; set => _powerUpTime = value; }
     public int CoinsPerHit { get => _coinsPerHit; set => _coinsPerHit = value; }
     public Player Player { get => _player; set => _player = value; }
-    public IPowerUp ActualPowerUp { get => _actualPowerUp; set => _actualPowerUp = value; }
 
     public void ActivatePowerUp()
     {
@@ -30,7 +28,7 @@ public class PowerUpManager : Singleton<PowerUpManager>
 
     public void FinishPower()
     {
-        _actualPowerUp.Disable();
-        _actualPowerUp = null;
+        _player.MyModel.PowerUpController.ActualPowerUp.Disable();
+        _player.MyModel.PowerUpController.ActualPowerUp = null;
     }
 }

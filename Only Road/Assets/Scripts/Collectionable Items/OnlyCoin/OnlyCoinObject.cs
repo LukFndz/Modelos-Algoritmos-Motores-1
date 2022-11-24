@@ -14,7 +14,7 @@ public class OnlyCoinObject : CollectionableItem, IPowerUpObject
     public void Touch()
     {
         PowerUpManager.Instance.ActivatePowerUp();
-        PowerUpManager.Instance.ActualPowerUp = new OnlyCoins();
+        PowerUpManager.Instance.Player.MyModel.PowerUpController.ActualPowerUp = new OnlyCoins();
         var spawnCoins = SpawnManager.Instance.SpawnersEntity.Where(x => x.SpawnerType == SpawnerType.Coin).FirstOrDefault();
         SpawnManager.Instance.DisableSpawners();
         spawnCoins.enabled = true;

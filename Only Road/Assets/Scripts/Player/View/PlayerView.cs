@@ -6,6 +6,7 @@ using UnityEngine;
 public class PlayerView : PlayerComponent
 {
     [SerializeField] private ParticleSystem _explosion;
+    [SerializeField] private ParticleSystem _extraLife;
 
     public override void ManualStart()
     {
@@ -15,5 +16,11 @@ public class PlayerView : PlayerComponent
     public void Explosion()
     {
         _explosion.Play();
+    }
+
+    public ParticleSystem ExtraLife()
+    {
+        _extraLife.Play();
+        return _extraLife;
     }
 }

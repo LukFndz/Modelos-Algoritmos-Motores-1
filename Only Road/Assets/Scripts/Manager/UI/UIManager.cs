@@ -35,6 +35,9 @@ public class UIManager : Singleton<UIManager>
     [Header("MainMenu")]
     [SerializeField] private Button _staminaButton;
 
+    [Header("IngameMenu")]
+    [SerializeField] private GameObject _extra;
+
     [Header("Inventory")]
     [SerializeField] private TextMeshProUGUI _txtMapName;
     [SerializeField] private TextMeshProUGUI _txtPrice;
@@ -185,4 +188,8 @@ public class UIManager : Singleton<UIManager>
         _staminaButton.gameObject.SetActive(state);
     }
 
+    public void StateExtra(bool state)
+    {
+        _extra.SetActive(state);
+    }
 }

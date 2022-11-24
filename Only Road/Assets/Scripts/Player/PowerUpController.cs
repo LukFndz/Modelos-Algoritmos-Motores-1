@@ -5,14 +5,17 @@ using UnityEngine;
 [System.Serializable]
 public class PowerUpController
 {
+    [Header("TANK")]
     [SerializeField] private GameObject _tank;
-    private bool _isInvencible;
-
-    private Player _player;
-
     GameObject gTank;
 
-    public bool IsInvencible { get => _isInvencible; set => _isInvencible = value; }
+    [Header("General")]
+    private Player _player;
+    private IPowerUp _actualPowerUp;
+    private IInvencible _actualInvencible;
+
+    public IPowerUp ActualPowerUp { get => _actualPowerUp; set => _actualPowerUp = value; }
+    public IInvencible ActualInvencible { get => _actualInvencible; set => _actualInvencible = value; }
 
     public PowerUpController(Player player)
     {
@@ -31,4 +34,15 @@ public class PowerUpController
     {
         gTank.GetComponent<Tank>().StartTank();
     }
+
+    public void SetInvencible(IInvencible set)
+    {
+        _actualInvencible = set;
+    }
+
+    public void DisableInvencible()
+    {
+        _actualInvencible = null;
+    }
+
 }

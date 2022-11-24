@@ -50,11 +50,18 @@ public class Player : MonoBehaviour, IPlayer
     private void OnCollisionEnter(Collision collision)
     {
         var col = collision.gameObject?.GetComponent<IEnemy>();
-        if (col != null && !_myModel.PowerUpController.IsInvencible) // SI TOCA UN ENEMIGO, ACTIVA EL ENDGAME
+        if (col != null) // SI TOCA UN ENEMIGO
         {
-            OnDeath();
-            col.Touch();
+            if (_myModel.PowerUpController.ActualInvencible != null) // CHECK SI ES INVENCIBLE
+            {
+                _myModel.PowerUpController.ActualInvencible.Touch(collision.gameObject);
+            } else // GAMEOVER
+            {
+                OnDeath();
+                col.Touch();
+            }
         }
+
     }
 
 }
