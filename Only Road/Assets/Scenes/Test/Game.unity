@@ -685,9 +685,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e811c637123ec2749bb11c80d41bccd8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _tileVelocityModifier: 2
+  _player: {fileID: 501255836}
+  _tileVelocityModifier: 1.5
   _enemyVelocityModifier: 1
   _scoreMultiplierModifier: 2
+  _velPlayerMultiplierModifier: 2
   _maxTileVelocityModifier: 30
   _carsToAvoid: 5
   _mainObjects:
@@ -766,10 +768,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 942d399a810644b4c9695376c57e0faf, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _tilesVelocity: 10
   _startSpawn: {fileID: 396377311}
   _tiles: []
-  _multiplier: 0
+  _multiplier: 6
 --- !u!1 &195296680
 GameObject:
   m_ObjectHideFlags: 0
@@ -3734,7 +3735,7 @@ Rigidbody:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 501255834}
   serializedVersion: 2
-  m_Mass: 0.0000001
+  m_Mass: 1
   m_Drag: 1
   m_AngularDrag: 0.05
   m_UseGravity: 1
@@ -3758,7 +3759,7 @@ MonoBehaviour:
     _movementController:
       _rb: {fileID: 501255835}
       _currentSpeed: 0
-      _gameSpeed: 0.4
+      _startSpeed: 0.6
     _powerUpController:
       _tank: {fileID: 1818840839452364548, guid: 3766463094f26d645b9f589a2437e7f0, type: 3}
   _myView:
@@ -3774,8 +3775,8 @@ BoxCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 2.8890114, y: 0.8722123, z: 1.6695385}
-  m_Center: {x: -0.046121597, y: 0.41496283, z: -0.0037603378}
+  m_Size: {x: 2.8890114, y: 0.8722123, z: 1.8535328}
+  m_Center: {x: -0.046121597, y: 0.41496283, z: 0.08823681}
 --- !u!4 &501255840
 Transform:
   m_ObjectHideFlags: 0

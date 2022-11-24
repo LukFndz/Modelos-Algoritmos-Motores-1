@@ -12,12 +12,19 @@ public class Tile : MonoBehaviour
         _entityMovement = new EntityMovement();
         _entityMovement.SetStrategy(new NormalAdvanceTile(GetComponent<Rigidbody>(), gameObject));
         TileManager.Instance.Tiles.Add(this);
+        EventManager.Instance.Subscribe(EventManager.NameEvent.Gameover, StopMove);
     }
 
     void Update()
     {
         _entityMovement.ManualUpdate();
     }
+
+    public void StopMove(params object[] parameters)
+    {
+        _entityMovement.StopMoving();
+    }
+
 
     private void OnTriggerEnter(Collider other)
     {

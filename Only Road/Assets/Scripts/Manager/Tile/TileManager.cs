@@ -6,7 +6,6 @@ using UnityEngine;
 
 public class TileManager : Singleton<TileManager>
 {
-    [SerializeField] private float _tilesVelocity;
     [SerializeField] private Transform _startSpawn;
     [SerializeField] private List<Tile> _tiles;
     [SerializeField] private float _multiplier;
@@ -14,9 +13,14 @@ public class TileManager : Singleton<TileManager>
     public List<Tile> Tiles { get => _tiles; set => _tiles = value; }
     public float Multiplier { get => _multiplier; set => _multiplier = value; }
 
+    private void Update()
+    {
+        Debug.Log(_multiplier);
+    }
+
     public float GetTilesVelocity()
     {
-        return _tilesVelocity;
+        return _multiplier;
     }
 
     public void TransportTile(GameObject tile)

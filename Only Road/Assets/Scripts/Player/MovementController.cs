@@ -7,13 +7,13 @@ public class MovementController
 {
     [SerializeField] private Rigidbody _rb;
     [SerializeField] private float _currentSpeed;
-    [SerializeField] private float _gameSpeed;
+    [SerializeField] private float _startSpeed;
 
     private Player _player;
 
     private Vector3 _input;
 
-    public float GameSpeed { get => _gameSpeed; set => _gameSpeed = value; }
+    public float StartSpeed { get => _startSpeed; set => _startSpeed = value; }
     public Vector3 Input { get => _input; set => _input = value; }
 
     public MovementController(Player player)
@@ -35,6 +35,11 @@ public class MovementController
     public void Move()
     {
         _rb.velocity += _player.transform.forward * _currentSpeed * _input.z;
+    }
+
+    public void UpdateSpeed(float mod)
+    {
+        _currentSpeed += mod;
     }
 
     public void ChangeSpeed(params object[] parameters)

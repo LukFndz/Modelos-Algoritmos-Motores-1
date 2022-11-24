@@ -52,7 +52,7 @@ public class MovementManager : Singleton<MovementManager>
 
     public void ChangeVelocity(params object[] parameters)
     {
-        TileManager.Instance.Multiplier = (float)parameters[0];
+        TileManager.Instance.Multiplier += (float)parameters[0];
         _multiplier += (float)parameters[1];
     }
 

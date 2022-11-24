@@ -11,10 +11,15 @@ public class GameManager : Singleton<GameManager>
     
     private int _avoidCars;
 
+    [Header("PLAYER")]
+    [SerializeField] private Player _player;
+
     [Header("MODIFIERS")]
     [SerializeField] private float _tileVelocityModifier;
     [SerializeField] private float _enemyVelocityModifier;
     [SerializeField] private int _scoreMultiplierModifier;
+    [Range(0,10)]
+    [SerializeField] private float _velPlayerMultiplierModifier;
 
     [Header("MAX TILES VELOCITY")]
     [SerializeField] private float _maxTileVelocityModifier;
@@ -46,6 +51,8 @@ public class GameManager : Singleton<GameManager>
                 EventManager.Instance.Trigger(EventManager.NameEvent.ApplyMultipliers,
                                     _tileVelocityModifier, _enemyVelocityModifier, _scoreMultiplierModifier);
                 _avoidCars = 0;
+
+                _player.MyModel.MovementController.UpdateSpeed(_velPlayerMultiplierModifier / 100);
             }
         }
     }
@@ -63,7 +70,7 @@ public class GameManager : Singleton<GameManager>
 
             UIManager.Instance.SwitchCanvas(PanelType.IN_GAME_MENU);
 
-            EventManager.Instance.Trigger(EventManager.NameEvent.StartGame, player.MyModel.MovementController.GameSpeed);
+            EventManager.Instance.Trigger(EventManager.NameEvent.StartGame, player.MyModel.MovementController.StartSpeed);
         }
     }
 
@@ -74,7 +81,7 @@ public class GameManager : Singleton<GameManager>
         EventManager.Instance.Trigger(EventManager.NameEvent.Gameover, 0f);
 
         EventManager.Instance.Trigger(EventManager.NameEvent.ApplyMultipliers,
-            -TileManager.Instance.GetTilesVelocity(), 0f, 0f);
+            0f, 0f, 0f);
 
         _gameState = false; // ESTADO DEL JUEGO A FALSO
 
