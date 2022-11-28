@@ -14061,7 +14061,7 @@ MonoBehaviour:
     map: {fileID: 1149903910}
     player: {fileID: 808314552}
     skyColor: {r: 0.07058824, g: 0.1137255, b: 0.16078432, a: 0}
-    price: 100
+    price: 10
     unlocked: 0
     music: {fileID: 8300000, guid: 758f4feb041e52246addb9513fb937c9, type: 3}
   _currentIndex: 0

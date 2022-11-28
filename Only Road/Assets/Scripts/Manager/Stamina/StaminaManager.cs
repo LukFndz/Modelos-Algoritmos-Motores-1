@@ -5,7 +5,7 @@ using System;
 
 public class StaminaManager : Singleton<StaminaManager>
 {
-    [SerializeField] private int _maxStamina;
+    [SerializeField] private int _maxStamina = 10;
 
     [SerializeField] private int _currentStamina;
     private bool _restoring;

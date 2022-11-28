@@ -103,7 +103,7 @@ public class SavePlayerDataJSON : Singleton<SavePlayerDataJSON>
             _savedata.effectVolume = 1;
             _savedata.unlockedMaps = MapManager.Instance.Maps;
             _savedata.lastMapIndex = 0;
-            _savedata.currentStamina = StaminaManager.Instance.MaxStamina;
+            _savedata.currentStamina = 10;
             _savedata._lastStamina = DateTime.Now.ToString();
             _savedata._nextStamina = DateTime.Now.ToString();
             return;
