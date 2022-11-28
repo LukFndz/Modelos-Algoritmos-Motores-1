@@ -102,10 +102,13 @@ public class StaminaManager : Singleton<StaminaManager>
 
     public void AddStamina(int mod)
     {
-        _currentStamina += mod;
-        UpdateStamina();
-        UpdateTimer();
-        SavePlayerDataJSON.Instance.SaveParams();
+        if (_currentStamina < _maxStamina)
+        {
+            _currentStamina += mod;
+            UpdateStamina();
+            UpdateTimer();
+            SavePlayerDataJSON.Instance.SaveParams();
+        }
     }
 
     void UpdateStamina()

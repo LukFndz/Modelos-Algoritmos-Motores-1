@@ -35,6 +35,7 @@ public class InventoryManager : Singleton<InventoryManager>
     public void OpenInventory()
     {
         UIManager.Instance.SetCoins();
+        UIManager.Instance.CheckButtonsInventory(index, _currentSelectedMap);
     }
 
     public void NextMap()
@@ -59,6 +60,7 @@ public class InventoryManager : Singleton<InventoryManager>
     {
         UIManager.Instance.CheckButtonsInventory(index, _currentSelectedMap);
         EventManager.Instance.Trigger(EventManager.NameEvent.ChangeMap, index);
+
         //_currentMap.SetActive(false);
         //_currentPlayer.SetActive(false);
         //Destroy(_placeholderMap);
